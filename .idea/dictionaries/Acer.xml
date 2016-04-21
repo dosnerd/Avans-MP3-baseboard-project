@@ -1,3 +1,13 @@
 <component name="ProjectDictionaryState">
-  <dictionary name="Acer" />
+  <dictionary name="Acer">
+    <words>
+      <w>deinit</w>
+      <w>foxg</w>
+      <w>gpio</w>
+      <w>iodeinit</w>
+      <w>ioinit</w>
+      <w>ioread</w>
+      <w>iowrite</w>
+    </words>
+  </dictionary>
 </component>

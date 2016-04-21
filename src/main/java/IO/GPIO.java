@@ -40,7 +40,7 @@ public class GPIO {
     public native int iowrite(int a, int v);
 
     /**
-     * Read the status of the ginven GPIO pin. This method is from the Gpio library
+     * Read the status of the given GPIO pin. This method is from the Gpio library
      *
      * @param a The kernel ID of the given GPIO pin.
      * @return unknown

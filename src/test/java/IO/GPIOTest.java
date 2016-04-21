@@ -1,6 +1,7 @@
 package IO;
 
 import Errors.IllegalPinModeException;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -12,7 +13,7 @@ import org.testng.annotations.Test;
  * @version 1.0
  */
 public class GPIOTest {
-    GPIO gpioController;
+    private GPIO gpioController;
 
     @BeforeClass
     public void setup() {
@@ -24,11 +25,34 @@ public class GPIOTest {
         gpioController.deinit();
     }
 
-    @Test(expectedExceptions = IllegalPinModeException.class)
+    @Test
     public void writeInputPin() {
-        gpioController.setPin(GPIO.PINS.PB31, false);
-        gpioController.setPin(GPIO.PINS.PB30, false);
-        gpioController.setPin(GPIO.PINS.PB21, false);
-        gpioController.setPin(GPIO.PINS.PB20, false);
+        try {
+            gpioController.setPin(GPIO.PINS.PB31, false);
+            Assert.fail();
+        } catch (IllegalPinModeException ignored) {
+
+        }
+
+        try {
+            gpioController.setPin(GPIO.PINS.PB30, false);
+            Assert.fail();
+        } catch (IllegalPinModeException ignored) {
+
+        }
+
+        try {
+            gpioController.setPin(GPIO.PINS.PB21, false);
+            Assert.fail();
+        } catch (IllegalPinModeException ignored) {
+
+        }
+
+        try {
+            gpioController.setPin(GPIO.PINS.PB20, false);
+            Assert.fail();
+        } catch (IllegalPinModeException ignored) {
+
+        }
     }
 }
