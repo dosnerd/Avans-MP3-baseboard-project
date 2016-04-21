@@ -6,6 +6,11 @@
  */
 public class Main {
     public static void main(String[] args) {
-
+        Gpio_Test test = new Gpio_Test();
+        test.run();
+        /*if (test.isFailed()) {
+            //return;
+        }*/
+        //Gpio controller = new Gpio();
     }
 }
