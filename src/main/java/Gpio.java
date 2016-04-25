@@ -29,7 +29,7 @@ public class Gpio {
      *
      * @return unknown
      */
-    public native int ioinit();
+    private native void ioinit();
 
     /**
      * Read the status of the given Gpio pin. This method is from the Gpio library
@@ -38,7 +38,7 @@ public class Gpio {
      * @param v The value the set the Gpio pin
      * @return unknown
      */
-    public native int iowrite(int a, int v);
+    private native void iowrite(int a, int v);
 
     /**
      * Read the status of the given Gpio pin. This method is from the Gpio library
@@ -46,14 +46,14 @@ public class Gpio {
      * @param a The kernel ID of the given Gpio pin.
      * @return unknown
      */
-    public native int ioread(int a);
+    private native void ioread(int a);
 
     /**
      * De-initialize the Gpio library.  This method is from the Gpio library
      *
      * @return unknown
      */
-    public native int iodeinit();
+    private native void iodeinit();
 
     /**
      * To de-initialise the Gpio pin. Must be called when close program or when the Gpio pins are no longer be used.
@@ -78,6 +78,10 @@ public class Gpio {
             //throw exception
             throw new IllegalPinModeException();
         }
+    }
+
+    public void getPin(PINS pin){
+
     }
 
     /**
