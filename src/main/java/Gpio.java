@@ -1,4 +1,5 @@
 import Errors.IllegalPinModeException;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Created by Acer on 20-4-2016.
@@ -8,7 +9,7 @@ import Errors.IllegalPinModeException;
  * a input.
  *
  * @author David de Prez
- * @version 1.0
+ * @version 1.5
  */
 public class Gpio {
     static {
@@ -26,8 +27,6 @@ public class Gpio {
 
     /**
      * Initialize the Gpio pins. This method is from the Gpio library
-     *
-     * @return unknown
      */
     private native void ioinit();
 
@@ -36,7 +35,6 @@ public class Gpio {
      *
      * @param a The kernel ID of the Gpio pin.
      * @param v The value the set the Gpio pin
-     * @return unknown
      */
     private native void iowrite(int a, int v);
 
@@ -44,14 +42,11 @@ public class Gpio {
      * Read the status of the given Gpio pin. This method is from the Gpio library
      *
      * @param a The kernel ID of the given Gpio pin.
-     * @return unknown
      */
     private native void ioread(int a);
 
     /**
      * De-initialize the Gpio library.  This method is from the Gpio library
-     *
-     * @return unknown
      */
     private native void iodeinit();
 
@@ -71,7 +66,7 @@ public class Gpio {
      */
     public void setPin(PINS pin, boolean isHeight) {
         //check if the pin has the right mode
-        if ((pin.type & 0x11) == 0x10) {
+        if (pin.type) {
             //get kernel ID; if value > 0 -> set pin to 1, else set pin to 0
             iowrite(pin.ID, isHeight ? 1 : 0);
         } else {
@@ -80,34 +75,35 @@ public class Gpio {
         }
     }
 
-    public void getPin(PINS pin){
-
+    /**
+     * Not implemented yet.
+     *
+     * @param pin Not implemented yet
+     */
+    public void getPin(PINS pin) {
+        throw new NotImplementedException();
     }
 
     /**
      * List of all usable Gpio pins, save with the right kernel ID and type (input or output)
      */
     public enum PINS {
-        PB2(0x11, 66),  //CLK
-        PB3(0x11, 67),  //SS
-        PB0(0x01, 68),  //MISO
-        PB1(0x11, 69),  //MOSI
-        PB31(0x00, 95),
-        PB30(0x00, 94),
-        PB21(0x00, 85),
-        PB20(0x00, 84),
-        PB17(0x10, 81),
-        PB16(0x10, 80),
-        PA28(0x10, 60),
-        PA27(0x10, 59),
-        PA26(0x10, 58),
-        PA25(0x10, 57),
-        PA22(0x10, 54),
-        PA11(0x10, 43),
-        PA10(0x10, 42),
-        PA9(0x10, 42),
-        PA7(0x10, 39),
-        PA6(0x10, 38);
+        PB31(false, 95),
+        PB30(false, 94),
+        PB21(false, 85),
+        PB20(false, 84),
+        PB17(true, 81),
+        PB16(true, 80),
+        PA28(true, 60),
+        PA27(true, 59),
+        PA26(true, 58),
+        PA25(true, 57),
+        PA22(true, 54),
+        PA11(true, 43),
+        PA10(true, 42),
+        PA9(true, 42),
+        PA7(true, 39),
+        PA6(true, 38);
 
 
         /**
@@ -116,11 +112,11 @@ public class Gpio {
          * a -> output(0)/input(1)
          * b -> GPIO(0)/SPI(1)
          */
-        private final short type;
+        private final boolean type;
         private final int ID;
 
-        PINS(int type, int ID) {
-            this.type = (short) type;
+        PINS(boolean type, int ID) {
+            this.type = type;
             this.ID = ID;
         }
     }

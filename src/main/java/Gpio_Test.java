@@ -7,7 +7,7 @@ import IO.UI;
  * test class for Gpio
  *
  * @author David de Prez
- * @version 1.0
+ * @version 1.1
  */
 public class Gpio_Test {
     private boolean failed;
@@ -41,9 +41,6 @@ public class Gpio_Test {
         IO.UI.println("writeToOutput: ");
         writeToOutput();
 
-        IO.UI.print("writeSPIPinAsNonSPI: ");
-        writeSPIPinAsNonSPI();
-
         if (failed) {
             IO.UI.println("Test failed");
         } else {
@@ -61,47 +58,6 @@ public class Gpio_Test {
     private void Fail(String message) {
         failed = true;
         IO.UI.println(message);
-    }
-
-    /**
-     * Test if it is possible to to call SPI pin on the normal output. When this test fail, you could set the output
-     * of a SPI pin with the normal method (setPin). This could be dangerous because you may be think that the SPI
-     * pin is a GPIO pin en you go using that pin as a GPIO pin.
-     */
-    private void writeSPIPinAsNonSPI() {
-        try {
-            io.setPin(Gpio.PINS.PB2, false);
-            Fail("No exception was threw when trying write value to input pin");
-            return;
-        } catch (IllegalPinModeException ignored) {
-
-        }
-
-        try {
-            io.setPin(Gpio.PINS.PB3, false);
-            Fail("No exception was threw when trying write value to input pin");
-            return;
-        } catch (IllegalPinModeException ignored) {
-
-        }
-
-        try {
-            io.setPin(Gpio.PINS.PB0, false);
-            Fail("No exception was threw when trying write value to input pin");
-            return;
-        } catch (IllegalPinModeException ignored) {
-
-        }
-
-        try {
-            io.setPin(Gpio.PINS.PB1, false);
-            Fail("No exception was threw when trying write value to input pin");
-            return;
-        } catch (IllegalPinModeException ignored) {
-
-        }
-
-        IO.UI.println("Passed");
     }
 
     /**
@@ -151,10 +107,13 @@ public class Gpio_Test {
     private void writeToOutput() {
         for (int i = 8; i < Gpio.PINS.values().length; i++) {
             try {
+                Thread.sleep(1000);
                 UI.println("Testing pin: " + Gpio.PINS.values()[i].name());
                 io.setPin(Gpio.PINS.values()[i], true);
-                Thread.sleep(500);
+                Thread.sleep(1000);
                 io.setPin(Gpio.PINS.values()[i], false);
+                Thread.sleep(1000);
+                io.setPin(Gpio.PINS.values()[i], true);
             } catch (InterruptedException ignored) {
             } catch (Exception ex) {
                 Fail("Exception occurs");
