@@ -1,5 +1,4 @@
 import Errors.IllegalPinModeException;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Created by Acer on 20-4-2016.
@@ -11,7 +10,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  * @author David de Prez
  * @version 1.5
  */
-public class Gpio {
+class Gpio {
     static {
         //when class used for the first time, load Gpio library
         System.loadLibrary("Gpio");
@@ -20,7 +19,7 @@ public class Gpio {
     /**
      * Constructor. This will load the library and initialize the Gpio library.
      */
-    public Gpio() {
+    Gpio() {
         //initialize the Gpio library
         ioinit();
     }
@@ -43,7 +42,7 @@ public class Gpio {
      *
      * @param a The kernel ID of the given Gpio pin.
      */
-    private native void ioread(int a);
+    private native int ioread(int a);
 
     /**
      * De-initialize the Gpio library.  This method is from the Gpio library
@@ -53,7 +52,7 @@ public class Gpio {
     /**
      * To de-initialise the Gpio pin. Must be called when close program or when the Gpio pins are no longer be used.
      */
-    public void deinit() {
+    void deinit() {
         iodeinit();
     }
 
@@ -64,9 +63,9 @@ public class Gpio {
      * @param pin      The pin to change the value
      * @param isHeight The value. If set to true, the pin goes to high (1). If set to false, the pin goes to low (0)
      */
-    public void setPin(PINS pin, boolean isHeight) {
+    void setPin(PINS pin, boolean isHeight) {
         //check if the pin has the right mode
-        if (pin.type) {
+        if (pin.isOutput) {
             //get kernel ID; if value > 0 -> set pin to 1, else set pin to 0
             iowrite(pin.ID, isHeight ? 1 : 0);
         } else {
@@ -76,18 +75,23 @@ public class Gpio {
     }
 
     /**
-     * Not implemented yet.
+     * Read the value of the given pin. Pin must be an input pin.
      *
-     * @param pin Not implemented yet
+     * @param pin A digital input pin to read from
+     * @return false if pin is low, true if pin is high
      */
-    public void getPin(PINS pin) {
-        throw new NotImplementedException();
+    boolean getPin(PINS pin) {
+        if (!pin.isOutput) {
+            return ioread(pin.ID) != 0;
+        }
+
+        throw new IllegalPinModeException();
     }
 
     /**
-     * List of all usable Gpio pins, save with the right kernel ID and type (input or output)
+     * List of all usable Gpio pins, save with the right kernel ID and isOutput (input or output)
      */
-    public enum PINS {
+    enum PINS {
         PB31(false, 95),
         PB30(false, 94),
         PB21(false, 85),
@@ -112,11 +116,11 @@ public class Gpio {
          * a -> output(0)/input(1)
          * b -> GPIO(0)/SPI(1)
          */
-        private final boolean type;
+        private final boolean isOutput;
         private final int ID;
 
-        PINS(boolean type, int ID) {
-            this.type = type;
+        PINS(boolean isOutput, int ID) {
+            this.isOutput = isOutput;
             this.ID = ID;
         }
     }

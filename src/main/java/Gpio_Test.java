@@ -9,11 +9,11 @@ import IO.UI;
  * @author David de Prez
  * @version 1.1
  */
-public class Gpio_Test {
+class Gpio_Test {
     private boolean failed;
     private Gpio io;
 
-    public Gpio_Test() {
+    Gpio_Test() {
         try {
             io = new Gpio();
         } catch (Exception ex) {
@@ -34,12 +34,18 @@ public class Gpio_Test {
     /**
      * Run the tests
      */
-    public void run() {
+    void run() {
         IO.UI.print("writeToInput: ");
         writeToInput();
 
         IO.UI.println("writeToOutput: ");
         writeToOutput();
+
+        IO.UI.println("readFromOutput: ");
+        readFromOutput();
+
+        IO.UI.println("readFromInput: ");
+        readFromInput();
 
         if (failed) {
             IO.UI.println("Test failed");
@@ -57,6 +63,7 @@ public class Gpio_Test {
      */
     private void Fail(String message) {
         failed = true;
+        IO.UI.println("Test failed");
         IO.UI.println(message);
     }
 
@@ -105,7 +112,7 @@ public class Gpio_Test {
      * every GPIO output pin would be 500ms high.
      */
     private void writeToOutput() {
-        for (int i = 8; i < Gpio.PINS.values().length; i++) {
+        for (int i = 4; i < Gpio.PINS.values().length; i++) {
             try {
                 Thread.sleep(1000);
                 UI.println("Testing pin: " + Gpio.PINS.values()[i].name());
@@ -120,5 +127,41 @@ public class Gpio_Test {
                 ex.printStackTrace();
             }
         }
+        UI.println("Test passed");
+    }
+
+    /**
+     * Test if it possible to read an output pin. This can not harm the board, but
+     * the class should not allowed it. It wouldn't be dangerous if this test fails,
+     * but it would be nice if it doesn't. This because it will decrease the change of
+     * picking a wrong pin to read from.
+     */
+    private void readFromOutput() {
+        for (int i = 4; i < Gpio.PINS.values().length; i++) {
+            try {
+                io.getPin(Gpio.PINS.values()[i]);
+                Fail("Read from output is possible. This is not allowed.");
+                return;
+            } catch (IllegalPinModeException ignored) {
+            }
+        }
+
+        UI.println("passed");
+    }
+
+
+    private void readFromInput() {
+        for (int i = 0; i < 4; i++) {
+            try {
+                if (io.getPin(Gpio.PINS.values()[i])) {
+                    UI.println("Warning: " + Gpio.PINS.values()[i].name() + " is high!");
+                }
+            } catch (Exception ex) {
+                Fail("An unaccepted error occurs");
+                ex.printStackTrace();
+                return;
+            }
+        }
+        UI.println("Passed");
     }
 }
