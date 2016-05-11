@@ -39,4 +39,8 @@ public class UI {
             System.out.print(text);
         }
     }
+
+    static void error(String text) {
+        System.err.println(text);
+    }
 }
