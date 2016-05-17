@@ -39,4 +39,14 @@ public class UI {
             System.out.print(text);
         }
     }
+
+    /**
+     * Write the text to the standard error output stream. This will always works and does not depend
+     * on the _log variable.
+     *
+     * @param text Text that says that there is an error and the description of the error.
+     */
+    static void error(String text, int errorNumber) {
+        System.err.println("E:" + errorNumber + ": " + text);
+    }
 }

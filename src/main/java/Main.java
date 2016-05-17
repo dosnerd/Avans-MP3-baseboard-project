@@ -1,3 +1,4 @@
+import IO.GPIO;
 import IO.UI;
 
 /**
@@ -10,12 +11,22 @@ public class Main {
     private static boolean _doTest;
 
     public static void main(String[] args) {
+        Gpio gpio = new Gpio();
+        GPIO.setDefaultGpio(gpio);
+
         setArgs(args);
         if (_doTest) {
             Gpio_Test test = new Gpio_Test();
             test.run();
 
             SinusTest sinusTest = new SinusTest();
+            sinusTest.startTest();
+            try {
+                Thread.sleep(1000 * 5);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            sinusTest.endTest();
         }
     }
 
