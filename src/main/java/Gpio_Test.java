@@ -158,15 +158,22 @@ class Gpio_Test {
         UI.println("passed");
     }
 
-
+    /**
+     * This will try to read from an input. If it can and the input is high, it will give a warning. When it
+     * can't read from the input, the test will fail. This test will pass if it can read all input pins.
+     */
     private void readFromInput() {
         for (int i = 0; i < 5; i++) {
             try {
+                //check if value of input is high and give a warning is so
                 if (io.getPin(GPIO.Pin.values()[i])) {
                     UI.println("Warning: " + GPIO.Pin.values()[i].name() + " is high!");
                 }
             } catch (Exception ex) {
-                Fail("An unaccepted error occurs");
+                //fail the test because the unexpected error
+                Fail("An unexpected error occurs");
+
+                //print the error
                 ex.printStackTrace();
                 return;
             }

@@ -14,6 +14,13 @@ import java.lang.reflect.Method;
 public class GPIO {
     private static Object defaultGpio;
 
+    /**
+     * Set the Gpio object. This is needed because an object of class can not create an object from the
+     * default package. With the reflection API it will be possible to access the objects from classes
+     * from the default package.
+     *
+     * @param defaultGpio An object of the type Gpio
+     */
     public static void setDefaultGpio(Object defaultGpio) {
         GPIO.defaultGpio = defaultGpio;
     }
@@ -26,14 +33,17 @@ public class GPIO {
      */
     private void iowrite(int a, int v) {
         try {
+            //get the iowrite method from the Gpio class by using the reflection API
             Method method = defaultGpio.getClass().getMethod("iowrite", int.class, int.class);
+
+            //invoke (call) the iowrite method.
             method.invoke(defaultGpio, a, v);
         } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            UI.error("iowrite method doesn't exists", 7);
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            UI.error("Error on iowrite method", 8);
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            UI.error("Can not access iowrite method", 9);
         }
     }
 
@@ -44,14 +54,17 @@ public class GPIO {
      */
     private int ioread(int a) {
         try {
+            //get the ioread method from the Gpio class by using the reflection API
             Method method = defaultGpio.getClass().getMethod("ioread", int.class);
+
+            //invoke (call) the ioread method, cast (convert) it to an integer and return the value
             return (Integer) method.invoke(defaultGpio, a);
         } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            UI.error("ioread method doesn't exists", 7);
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            UI.error("Error on ioread method", 8);
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            UI.error("Can not access ioread method", 9);
         }
         return -1;
     }
@@ -61,15 +74,20 @@ public class GPIO {
      */
     public void deinit() {
         try {
+            //get the iodeinit method from the Gpio class by using the reflection API
             Method method = defaultGpio.getClass().getMethod("iodeinit");
+
+            //invoke (call) the iodeinit method.
             method.invoke(defaultGpio);
         } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            UI.error("iodeinit method doesn't exists", 7);
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            UI.error("Error on iodeinit method", 8);
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            UI.error("Can not access iodeinit method", 9);
         }
+
+        UI.println("Gpio deinitialized");
     }
 
     /**
@@ -97,10 +115,10 @@ public class GPIO {
      * @return false if pin is low, true if pin is high
      */
     public boolean getPin(Pin pin) {
+        //check is pin is an input pin and read the value of the pin.
         if (!pin.isOutput) {
-            return ioread(pin.ID) != 0;
+            return (ioread(pin.ID) != 0);
         }
-
         throw new IllegalPinModeException();
     }
 

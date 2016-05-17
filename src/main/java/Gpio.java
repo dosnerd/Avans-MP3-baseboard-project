@@ -1,3 +1,5 @@
+import IO.UI;
+
 /**
  * Created by Acer on 20-4-2016.
  * <p/>
@@ -21,6 +23,7 @@ public class Gpio {
     Gpio() {
         //initialize the Gpio library
         ioinit();
+        UI.println("Gpio initialized");
     }
 
     /**
