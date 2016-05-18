@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e27e6767-840a-4709-8774-aa6cc3b933a3" name="Default" comment="replace Gpio.java, UI.java and Gpio_Test from VS1033 branch&#10;add GPIO.java, from VS1033 branch">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/IO/GPIO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gpio.class" afterPath="$PROJECT_DIR$/out/production/Gpio.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Gpio_Test.class" afterPath="$PROJECT_DIR$/out/production/Gpio_Test.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IO/UI.class" afterPath="$PROJECT_DIR$/out/production/IO/UI.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Main.class" afterPath="$PROJECT_DIR$/out/production/Main.class" />
+    <list default="true" id="e27e6767-840a-4709-8774-aa6cc3b933a3" name="Default" comment="add funtion to edit memory&#10;add function to send 1 bit over a serial line&#10;add function to send the memory and update the output of the shift register &#10;">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/IO/ShiftRegister.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Gpio.java" afterPath="$PROJECT_DIR$/src/main/java/Gpio.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Gpio_Test.java" afterPath="$PROJECT_DIR$/src/main/java/Gpio_Test.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/IO/UI.java" afterPath="$PROJECT_DIR$/src/main/java/IO/UI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Main.java" afterPath="$PROJECT_DIR$/src/main/java/Main.java" />
     </list>
     <ignored path="project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,10 +26,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="UI.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/IO/UI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
+            <state relative-caret-position="356">
               <caret line="48" column="4" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="4" />
               <folding>
                 <element signature="docComment;method#set_log#0;class#UI#0" expanded="false" />
@@ -46,8 +38,22 @@
                 <element signature="docComment;method#print#0;class#UI#0" expanded="false" />
                 <element signature="method#print#0;class#UI#0" expanded="false" />
                 <element signature="docComment;method#error#0;class#UI#0" expanded="false" />
-                <element signature="e#1291#1292#0" expanded="true" />
-                <element signature="e#1359#1360#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShiftRegister.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/IO/ShiftRegister.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
+              <folding>
+                <element signature="docComment;method#setPin#0;class#ShiftRegister#0" expanded="false" />
+                <element signature="method#setPin#0;class#ShiftRegister#0" expanded="false" />
+                <element signature="docComment;method#update#0;class#ShiftRegister#0" expanded="false" />
+                <element signature="docComment;method#sendBit#0;class#ShiftRegister#0" expanded="false" />
+                <element signature="method#sendBit#0;class#ShiftRegister#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -81,10 +87,10 @@
       <file leaf-file-name="Gpio.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Gpio.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="16" column="35" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="35" />
+            <state relative-caret-position="238">
+              <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
               <folding>
-                <element signature="docComment;class#Gpio#0" expanded="false" />
+                <element signature="initializer##0;class#Gpio#0" expanded="false" />
                 <element signature="docComment;method#Gpio#0;class#Gpio#0" expanded="false" />
                 <element signature="method#Gpio#0;class#Gpio#0" expanded="false" />
                 <element signature="docComment;method#ioinit#0;class#Gpio#0" expanded="false" />
@@ -150,6 +156,13 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
@@ -177,6 +190,7 @@
         <option value="$PROJECT_DIR$/src/main/java/IO/GPIO.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/IO/UI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/IO/ShiftRegister.java" />
       </list>
     </option>
   </component>
@@ -187,9 +201,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="388" />
-    <option name="width" value="1212" />
-    <option name="height" value="900" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1616" />
+    <option name="height" value="916" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -288,32 +303,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Errors" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -321,7 +310,7 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -750,7 +739,7 @@
       <workItem from="1461926342181" duration="4581000" />
       <workItem from="1461938224727" duration="317000" />
       <workItem from="1462009521512" duration="1861000" />
-      <workItem from="1463493834578" duration="1683000" />
+      <workItem from="1463493834578" duration="9431000" />
     </task>
     <task id="LOCAL-00001" summary="Project now compatible with eclipse.">
       <created>1461926544025</created>
@@ -773,19 +762,35 @@
       <option name="project" value="LOCAL" />
       <updated>1461937808717</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="replace Gpio.java, UI.java and Gpio_Test from VS1033 branch&#10;add GPIO.java, from VS1033 branch">
+      <created>1463495523667</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1463495523667</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8623000" />
+    <option name="totallyTimeSpent" value="16371000" />
+  </component>
+  <component name="TodoView" selected-index="4">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="388" y="0" width="1212" height="900" extended-state="0" />
+    <frame x="-8" y="-8" width="1616" height="916" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.328125" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32908162" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32780612" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -795,8 +800,9 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17447917" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12917738" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908162" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -809,7 +815,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Documentation" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="479" y="272" width="734" height="332" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908162" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="UnknownFeatures">
@@ -836,7 +841,8 @@
     <MESSAGE value="Add compiled files" />
     <MESSAGE value="Change GPIO_Test: Added new tests, shows 'Test failed' if a test fails, bux fixed with testing not all pins&#10;Change Gpio: change ioread return value to int, change name of property 'type' to 'isOutput', add getPin" />
     <MESSAGE value="replace Gpio.java, UI.java and Gpio_Test from VS1033 branch&#10;add GPIO.java, from VS1033 branch" />
-    <option name="LAST_COMMIT_MESSAGE" value="replace Gpio.java, UI.java and Gpio_Test from VS1033 branch&#10;add GPIO.java, from VS1033 branch" />
+    <MESSAGE value="add funtion to edit memory&#10;add function to send 1 bit over a serial line&#10;add function to send the memory and update the output of the shift register &#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="add funtion to edit memory&#10;add function to send 1 bit over a serial line&#10;add function to send the memory and update the output of the shift register &#10;" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -880,7 +886,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="docComment;class#Gpio#0" expanded="false" />
+            <element signature="initializer##0;class#Gpio#0" expanded="false" />
             <element signature="docComment;method#Gpio#0;class#Gpio#0" expanded="false" />
             <element signature="method#Gpio#0;class#Gpio#0" expanded="false" />
             <element signature="docComment;method#ioinit#0;class#Gpio#0" expanded="false" />
@@ -910,22 +916,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Gpio.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="16" column="35" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="35" />
-          <folding>
-            <element signature="docComment;class#Gpio#0" expanded="false" />
-            <element signature="docComment;method#Gpio#0;class#Gpio#0" expanded="false" />
-            <element signature="method#Gpio#0;class#Gpio#0" expanded="false" />
-            <element signature="docComment;method#ioinit#0;class#Gpio#0" expanded="false" />
-            <element signature="docComment;method#iowrite#0;class#Gpio#0" expanded="false" />
-            <element signature="docComment;method#ioread#0;class#Gpio#0" expanded="false" />
-            <element signature="docComment;method#iodeinit#0;class#Gpio#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1000,7 +990,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/IO/UI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
+        <state relative-caret-position="356">
           <caret line="48" column="4" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="4" />
           <folding>
             <element signature="docComment;method#set_log#0;class#UI#0" expanded="false" />
@@ -1009,11 +999,113 @@
             <element signature="docComment;method#print#0;class#UI#0" expanded="false" />
             <element signature="method#print#0;class#UI#0" expanded="false" />
             <element signature="docComment;method#error#0;class#UI#0" expanded="false" />
-            <element signature="e#1291#1292#0" expanded="true" />
-            <element signature="e#1359#1360#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Gpio.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+          <folding>
+            <element signature="initializer##0;class#Gpio#0" expanded="false" />
+            <element signature="docComment;method#Gpio#0;class#Gpio#0" expanded="false" />
+            <element signature="method#Gpio#0;class#Gpio#0" expanded="false" />
+            <element signature="docComment;method#ioinit#0;class#Gpio#0" expanded="false" />
+            <element signature="docComment;method#iowrite#0;class#Gpio#0" expanded="false" />
+            <element signature="docComment;method#ioread#0;class#Gpio#0" expanded="false" />
+            <element signature="docComment;method#iodeinit#0;class#Gpio#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/IO/ShiftRegister.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
+          <folding>
+            <element signature="docComment;method#setPin#0;class#ShiftRegister#0" expanded="false" />
+            <element signature="method#setPin#0;class#ShiftRegister#0" expanded="false" />
+            <element signature="docComment;method#update#0;class#ShiftRegister#0" expanded="false" />
+            <element signature="docComment;method#sendBit#0;class#ShiftRegister#0" expanded="false" />
+            <element signature="method#sendBit#0;class#ShiftRegister#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.6</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>project</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
