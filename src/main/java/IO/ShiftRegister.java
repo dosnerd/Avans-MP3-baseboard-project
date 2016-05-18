@@ -18,8 +18,11 @@ public class ShiftRegister {
     private GPIO.Pin latch;
     private GPIO gpio;
 
-    public ShiftRegister(GPIO gpio) {
+    public ShiftRegister(GPIO gpio, GPIO.Pin clock, GPIO.Pin serial, GPIO.Pin latch) {
         this.gpio = gpio;
+        this.clock = clock;
+        this.serial = serial;
+        this.latch = latch;
     }
 
     /**
