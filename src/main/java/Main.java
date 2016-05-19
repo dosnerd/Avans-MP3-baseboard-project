@@ -1,5 +1,7 @@
 import IO.GPIO;
 import IO.UI;
+import Test.Gpio_Test;
+import Test.SinusTest;
 
 /**
  * Created by Acer on 20-4-2016.

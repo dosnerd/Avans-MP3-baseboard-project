@@ -43,6 +43,14 @@ public class ShiftRegister {
     }
 
     /**
+     * Set the memory.
+     * @param data data that replace the memory
+     */
+    public void setData(byte data) {
+        this.data = data;
+    }
+
+    /**
      * Send the values in the memory to the shift register. After that is wil update
      * the output of the shift register (latch).
      */

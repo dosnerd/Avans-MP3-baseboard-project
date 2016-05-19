@@ -1,3 +1,5 @@
+package Test;
+
 import Errors.IllegalPinModeException;
 import IO.GPIO;
 import IO.UI;
@@ -10,11 +12,11 @@ import IO.UI;
  * @author David de Prez
  * @version 1.1
  */
-class Gpio_Test {
+public class Gpio_Test {
     private boolean failed;
     private GPIO io;
 
-    Gpio_Test() {
+    public Gpio_Test() {
         try {
             io = new GPIO();
         } catch (Exception ex) {
@@ -35,7 +37,7 @@ class Gpio_Test {
     /**
      * Run the tests
      */
-    void run() {
+    public void run() {
         UI.print("writeToInput: ");
         writeToInput();
 
