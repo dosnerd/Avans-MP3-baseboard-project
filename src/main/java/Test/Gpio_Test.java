@@ -12,62 +12,42 @@ import IO.UI;
  * @author David de Prez
  * @version 1.1
  */
-public class Gpio_Test {
-    private boolean failed;
+public class Gpio_Test extends Test {
     private GPIO io;
 
     public Gpio_Test() {
         try {
             io = new GPIO();
         } catch (Exception ex) {
-            failed = true;
+            Fail("Can not create GPIO instance");
             ex.printStackTrace();
         }
     }
 
-    /**
-     * get if all tests are passed or not
-     *
-     * @return true if all test are passed, false if one ore more test failed
-     */
-    public boolean isFailed() {
-        return failed;
-    }
-
-    /**
-     * Run the tests
-     */
+    @Override
     public void run() {
-        UI.print("writeToInput: ");
-        writeToInput();
+        if (!isFailed()) {
+            UI.print("Start GPIO test");
+            UI.print("writeToInput: ");
+            writeToInput();
 
-        UI.println("writeToOutput: ");
-        writeToOutput();
+            UI.println("writeToOutput: ");
+            writeToOutput();
 
-        UI.print("readFromOutput: ");
-        readFromOutput();
+            UI.print("readFromOutput: ");
+            readFromOutput();
 
-        UI.println("readFromInput: ");
-        readFromInput();
+            UI.println("readFromInput: ");
+            readFromInput();
 
-        if (failed) {
-            UI.println("Test failed");
-        } else {
-            UI.println("Test passed");
+            if (isFailed()) {
+                UI.println("Test failed");
+            } else {
+                UI.println("Test passed");
+            }
+
+            io.deinit();
         }
-
-        io.deinit();
-    }
-
-    /**
-     * Call when a test fail. Give a message about the failure
-     *
-     * @param message Message about the failure
-     */
-    private void Fail(String message) {
-        failed = true;
-        UI.println("Test failed");
-        UI.println(message);
     }
 
     /**

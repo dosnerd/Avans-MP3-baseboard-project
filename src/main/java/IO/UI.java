@@ -8,10 +8,22 @@ package IO;
  */
 public class UI {
     private static boolean _log;
+    private static Dislay _display;
+
+    /**
+     * This will set the _display. When this is set, the errornumber will be displayed when there
+     * is an error. This will not happen when it is testing
+     *
+     * @param _display The display to print the error number to
+     */
+    public static void set_display(Dislay _display) {
+        UI._display = _display;
+    }
 
     /**
      * This will set the _log. If _log is true, it can write text to the console. If _log is false, it won't write
      * text to the console.
+     *
      * @param _log Value for _log
      */
     public static void set_log(boolean _log) {
@@ -46,7 +58,19 @@ public class UI {
      *
      * @param text Text that says that there is an error and the description of the error.
      */
-    static void error(String text, int errorNumber) {
+    static public void error(String text, int errorNumber) {
         System.err.println("E:" + errorNumber + ": " + text);
+
+        try {
+            //check if can write to display display
+            if (_display != null) {
+                //Show error number to display
+                _display.ClearScreen();
+                _display.Write("<<E:" + errorNumber + ">>", true);
+            }
+            Thread.sleep(1000 * 10);
+        } catch (InterruptedException ex) {
+            System.err.println("E:" + errorNumber + ": " + text);
+        }
     }
 }

@@ -1,7 +1,6 @@
 import IO.GPIO;
 import IO.UI;
-import Test.Gpio_Test;
-import Test.SinusTest;
+import Test.*;
 
 /**
  * Created by Acer on 20-4-2016.
@@ -18,8 +17,9 @@ public class Main {
 
         setArgs(args);
         if (_doTest) {
-            Gpio_Test test = new Gpio_Test();
-            test.run();
+            runTest(new Gpio_Test());
+            runTest(new ShiftRegister_Test());
+            runTest(new Display_Test());
 
             SinusTest sinusTest = new SinusTest();
             sinusTest.startTest();
@@ -30,6 +30,11 @@ public class Main {
             }
             sinusTest.endTest();
         }
+    }
+
+    private static boolean runTest(Test test) {
+        test.run();
+        return test.isFailed();
     }
 
     private static void setArgs(String[] args) {
