@@ -68,19 +68,15 @@ public class Display_Test extends Test {
      * This test will true to write Hello World to the first line
      */
     private void HelloWorld() {
-        dislay.Write("Hello world", true);
+        dislay.WriteNewLine("Hello world", true);
         UI.println("Passed");
     }
 
     /**
-     * This will first clear the screen. Then it will try to write
-     * 'Second line' to the screen. On the seconde line it will
-     * write 'On the 2 line'
+     * It will try to write on the second line 'Second line'.
      */
     private void SecondLine() {
-        dislay.ClearScreen();
-        dislay.Write("Second line", true);
-        dislay.Write("On the 2 line", false);
+        dislay.WriteNewLine("Second line", false);
         UI.println("Passed");
     }
 }

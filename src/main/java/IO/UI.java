@@ -66,7 +66,7 @@ public class UI {
             if (_display != null) {
                 //Show error number to display
                 _display.ClearScreen();
-                _display.Write("<<E:" + errorNumber + ">>", true);
+                _display.WriteNewLine("<<E:" + errorNumber + ">>", true);
             }
             Thread.sleep(1000 * 10);
         } catch (InterruptedException ex) {

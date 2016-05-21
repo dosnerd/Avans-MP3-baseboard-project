@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e27e6767-840a-4709-8774-aa6cc3b933a3" name="Default" comment="Add Shiftregister test&#10;Add DisplayTest&#10;Add Test class&#10;Extend all test from the Test class&#10;Add possibility to add a display to the UI class&#10;Add to UI class that is will print the error number when a display is available&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/Test/Display_Test.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/Test/ShiftRegister_Test.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/Test/Test.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Gpio_Test.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/SinusTest.class" afterPath="" />
+    <list default="true" id="e27e6767-840a-4709-8774-aa6cc3b933a3" name="Default" comment="Add RotaryDial class&#10;Add The project manual (Dutch version)&#10;Add Commands to most methods in Display and RoaryDial&#10;Change in Display the method Write to WriteNewLine&#10;Change Display will remember the 2 lines. When write, it will rewrite the given line.">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Projecthandleiding PROJMP3 - v3.2.pdf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/IO/RotaryDial.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/IO/UI.class" afterPath="$PROJECT_DIR$/out/production/IO/UI.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Main.class" afterPath="$PROJECT_DIR$/out/production/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/IO/Dislay.java" afterPath="$PROJECT_DIR$/src/main/java/IO/Dislay.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/IO/UI.java" afterPath="$PROJECT_DIR$/src/main/java/IO/UI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Main.java" afterPath="$PROJECT_DIR$/src/main/java/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Test/Gpio_Test.java" afterPath="$PROJECT_DIR$/src/main/java/Test/Gpio_Test.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Test/Display_Test.java" afterPath="$PROJECT_DIR$/src/main/java/Test/Display_Test.java" />
     </list>
     <ignored path="project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,50 +25,47 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="Gpio_Test.java" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/main/java/Test/Gpio_Test.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="136">
-                    <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-                    <folding>
-                      <element signature="docComment;class#Gpio_Test#0" expanded="false" />
-                      <element signature="method#Gpio_Test#0;class#Gpio_Test#0" expanded="false" />
-                      <element signature="method#run#0;class#Gpio_Test#0" expanded="false" />
-                      <element signature="docComment;method#writeToInput#0;class#Gpio_Test#0" expanded="false" />
-                      <element signature="method#writeToInput#0;class#Gpio_Test#0" expanded="false" />
-                      <element signature="docComment;method#writeToOutput#0;class#Gpio_Test#0" expanded="false" />
-                      <element signature="method#writeToOutput#0;class#Gpio_Test#0" expanded="false" />
-                      <element signature="docComment;method#readFromOutput#0;class#Gpio_Test#0" expanded="false" />
-                      <element signature="method#readFromOutput#0;class#Gpio_Test#0" expanded="false" />
-                      <element signature="docComment;method#readFromInput#0;class#Gpio_Test#0" expanded="false" />
-                      <element signature="method#readFromInput#0;class#Gpio_Test#0" expanded="false" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="project" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Dislay.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/IO/Dislay.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="135" column="28" selection-start-line="135" selection-start-column="16" selection-end-line="135" selection-end-column="28" />
+              <folding>
+                <element signature="method#Dislay#0;class#Dislay#0" expanded="false" />
+                <element signature="docComment;method#initialize#0;class#Dislay#0" expanded="false" />
+                <element signature="method#initialize#0;class#Dislay#0" expanded="false" />
+                <element signature="docComment;method#entryModeSet#0;class#Dislay#0" expanded="false" />
+                <element signature="method#entryModeSet#0;class#Dislay#0" expanded="false" />
+                <element signature="docComment;method#setDisplay#0;class#Dislay#0" expanded="false" />
+                <element signature="method#setDisplay#0;class#Dislay#0" expanded="false" />
+                <element signature="docComment;method#functionSet#0;class#Dislay#0" expanded="false" />
+                <element signature="method#functionSet#0;class#Dislay#0" expanded="false" />
+                <element signature="docComment;method#setDDRAMaddress#0;class#Dislay#0" expanded="false" />
+                <element signature="method#setDDRAMaddress#0;class#Dislay#0" expanded="false" />
+                <element signature="docComment;method#Send#0;class#Dislay#0" expanded="false" />
+                <element signature="method#Send#0;class#Dislay#0" expanded="false" />
+                <element signature="docComment;method#WriteNewLine#0;class#Dislay#0" expanded="false" />
+                <element signature="method#WriteNewLine#0;class#Dislay#0" expanded="false" />
+                <element signature="docComment;method#ClearScreen#0;class#Dislay#0" expanded="false" />
+                <element signature="method#ClearScreen#0;class#Dislay#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="UI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/IO/UI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="16" column="63" selection-start-line="16" selection-start-column="63" selection-end-line="16" selection-end-column="63" />
+            <state relative-caret-position="306">
+              <caret line="36" column="7" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
               <folding>
+                <element signature="docComment;method#set_display#0;class#UI#0" expanded="false" />
                 <element signature="docComment;method#set_log#0;class#UI#0" expanded="false" />
                 <element signature="docComment;method#println#0;class#UI#0" expanded="false" />
                 <element signature="method#println#0;class#UI#0" expanded="false" />
@@ -85,28 +78,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Test.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Test/Test.java">
+      <file leaf-file-name="RotaryDial.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/IO/RotaryDial.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+            <state relative-caret-position="221">
+              <caret line="39" column="25" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
               <folding>
-                <element signature="docComment;method#isFailed#0;class#Test#0" expanded="false" />
-                <element signature="docComment;method#run#0;class#Test#0" expanded="false" />
-                <element signature="docComment;method#Fail#0;class#Test#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="586">
-              <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#runTest#0;class#Main#0" expanded="false" />
+                <element signature="docComment;class#RotaryDial#0" expanded="false" />
+                <element signature="docComment;method#RotaryDial#0;class#RotaryDial#0" expanded="false" />
+                <element signature="method#RotaryDial#0;class#RotaryDial#0" expanded="false" />
+                <element signature="e#722#794#0" expanded="false" />
+                <element signature="docComment;method#getDirection#0;class#RotaryDial#0" expanded="false" />
+                <element signature="method#getDirection#0;class#RotaryDial#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -128,6 +111,11 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Display" />
+      </map>
+    </option>
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -138,15 +126,16 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/IO/ShiftRegister.java" />
-        <option value="$PROJECT_DIR$/src/main/java/IO/Dislay.java" />
         <option value="$PROJECT_DIR$/src/main/java/IO/Gpio_Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/Gpio_Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/Test/Gpio_Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/Test/ShiftRegister_Test.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Test/Display_Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/IO/UI.java" />
         <option value="$PROJECT_DIR$/src/main/java/Test/Test.java" />
+        <option value="$PROJECT_DIR$/src/main/java/IO/UI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/IO/Dislay.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Test/Display_Test.java" />
+        <option value="$PROJECT_DIR$/src/main/java/IO/RotaryDial.java" />
       </list>
     </option>
   </component>
@@ -279,32 +268,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="IO" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Errors" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -737,31 +700,40 @@
       <updated>1463671293879</updated>
       <workItem from="1463671321279" duration="929000" />
       <workItem from="1463672347568" duration="3065000" />
-      <workItem from="1463679690559" duration="3341000" />
+      <workItem from="1463679690559" duration="10894000" />
     </task>
+    <task id="LOCAL-00001" summary="Add Shiftregister test&#10;Add DisplayTest&#10;Add Test class&#10;Extend all test from the Test class&#10;Add possibility to add a display to the UI class&#10;Add to UI class that is will print the error number when a display is available&#10;">
+      <created>1463683040531</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1463683040531</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8969000" />
+    <option name="totallyTimeSpent" value="16522000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="916" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3284974" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32780612" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32780612" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40509555" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40433672" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15488432" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908162" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -774,7 +746,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Documentation" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="479" y="272" width="734" height="332" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908162" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="UpdateCopyrightCheckinHandler">
@@ -795,7 +766,8 @@
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="add Display class&#10;Move all test classes to class package&#10;" />
     <MESSAGE value="Add Shiftregister test&#10;Add DisplayTest&#10;Add Test class&#10;Extend all test from the Test class&#10;Add possibility to add a display to the UI class&#10;Add to UI class that is will print the error number when a display is available&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Shiftregister test&#10;Add DisplayTest&#10;Add Test class&#10;Extend all test from the Test class&#10;Add possibility to add a display to the UI class&#10;Add to UI class that is will print the error number when a display is available&#10;" />
+    <MESSAGE value="Add RotaryDial class&#10;Add The project manual (Dutch version)&#10;Add Commands to most methods in Display and RoaryDial&#10;Change in Display the method Write to WriteNewLine&#10;Change Display will remember the 2 lines. When write, it will rewrite the given line." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add RotaryDial class&#10;Add The project manual (Dutch version)&#10;Add Commands to most methods in Display and RoaryDial&#10;Change in Display the method Write to WriteNewLine&#10;Change Display will remember the 2 lines. When write, it will rewrite the given line." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -810,7 +782,7 @@
           <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="13" />
+      <option name="time" value="18" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -819,29 +791,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/IO/ShiftRegister.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="50" column="22" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
-          <folding>
-            <element signature="docComment;class#ShiftRegister#0" expanded="false" />
-            <element signature="method#ShiftRegister#0;class#ShiftRegister#0" expanded="false" />
-            <element signature="docComment;method#setPin#0;class#ShiftRegister#0" expanded="false" />
-            <element signature="docComment;method#update#0;class#ShiftRegister#0" expanded="false" />
-            <element signature="docComment;method#sendBit#0;class#ShiftRegister#0" expanded="false" />
-            <element signature="method#sendBit#0;class#ShiftRegister#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Test/Gpio_Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -934,7 +883,7 @@
             <element signature="method#print#0;class#UI#0" expanded="false" />
             <element signature="docComment;method#error#0;class#UI#0" expanded="false" />
             <element signature="e#1679#1680#0" expanded="true" />
-            <element signature="e#2175#2176#0" expanded="true" />
+            <element signature="e#2182#2183#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1160,7 +1109,7 @@
             <element signature="method#print#0;class#UI#0" expanded="false" />
             <element signature="docComment;method#error#0;class#UI#0" expanded="false" />
             <element signature="e#1679#1680#0" expanded="true" />
-            <element signature="e#2175#2176#0" expanded="true" />
+            <element signature="e#2182#2183#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1217,7 +1166,7 @@
             <element signature="method#print#0;class#UI#0" expanded="false" />
             <element signature="docComment;method#error#0;class#UI#0" expanded="false" />
             <element signature="e#1679#1680#0" expanded="true" />
-            <element signature="e#2175#2176#0" expanded="true" />
+            <element signature="e#2182#2183#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1357,14 +1306,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1448,6 +1389,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Test/ShiftRegister_Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="19" column="94" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="94" />
+          <folding>
+            <element signature="docComment;class#ShiftRegister_Test#0" expanded="false" />
+            <element signature="docComment;method#count#0;class#ShiftRegister_Test#0" expanded="false" />
+            <element signature="method#count#0;class#ShiftRegister_Test#0" expanded="false" />
+            <element signature="docComment;method#lightBar#0;class#ShiftRegister_Test#0" expanded="false" />
+            <element signature="method#lightBar#0;class#ShiftRegister_Test#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="586">
+          <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#runTest#0;class#Main#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Test/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="37" column="1" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
+          <folding>
+            <element signature="docComment;method#isFailed#0;class#Test#0" expanded="false" />
+            <element signature="docComment;method#run#0;class#Test#0" expanded="false" />
+            <element signature="docComment;method#Fail#0;class#Test#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Test/Gpio_Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1468,43 +1454,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/IO/Dislay.java">
+    <entry file="file://$PROJECT_DIR$/out/production/IO/UI.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+        <state relative-caret-position="106">
+          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
           <folding>
-            <element signature="docComment;class#Dislay#0" expanded="false" />
-            <element signature="method#Dislay#0;class#Dislay#0" expanded="false" />
-            <element signature="method#initialize#0;class#Dislay#0" expanded="false" />
-            <element signature="method#entryModeSet#0;class#Dislay#0" expanded="false" />
-            <element signature="method#setDisplay#0;class#Dislay#0" expanded="false" />
-            <element signature="method#functionSet#0;class#Dislay#0" expanded="false" />
-            <element signature="method#setDDRAMaddress#0;class#Dislay#0" expanded="false" />
-            <element signature="method#Send#0;class#Dislay#0" expanded="false" />
-            <element signature="method#Write#0;class#Dislay#0" expanded="false" />
-            <element signature="method#ClearScreen#0;class#Dislay#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Test/ShiftRegister_Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="19" column="94" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="94" />
-          <folding>
-            <element signature="docComment;class#ShiftRegister_Test#0" expanded="false" />
-            <element signature="docComment;method#count#0;class#ShiftRegister_Test#0" expanded="false" />
-            <element signature="method#count#0;class#ShiftRegister_Test#0" expanded="false" />
-            <element signature="docComment;method#lightBar#0;class#ShiftRegister_Test#0" expanded="false" />
-            <element signature="method#lightBar#0;class#ShiftRegister_Test#0" expanded="false" />
+            <element signature="e#0#1114#0" expanded="true" />
+            <element signature="method#UI#0;class#UI#0" expanded="false" />
+            <element signature="method#println#0;class#UI#0" expanded="false" />
+            <element signature="method#print#0;class#UI#0" expanded="false" />
+            <element signature="method#error#0;class#UI#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Test/Display_Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+        <state relative-caret-position="306">
+          <caret line="74" column="4" selection-start-line="74" selection-start-column="4" selection-end-line="74" selection-end-column="4" />
           <folding>
             <element signature="docComment;class#Display_Test#0" expanded="false" />
             <element signature="method#Display_Test#0;class#Display_Test#0" expanded="false" />
@@ -1512,28 +1479,45 @@
             <element signature="docComment;method#Clearing#0;class#Display_Test#0" expanded="false" />
             <element signature="method#Clearing#0;class#Display_Test#0" expanded="false" />
             <element signature="docComment;method#HelloWorld#0;class#Display_Test#0" expanded="false" />
+            <element signature="method#HelloWorld#0;class#Display_Test#0" expanded="false" />
             <element signature="docComment;method#SecondLine#0;class#Display_Test#0" expanded="false" />
             <element signature="method#SecondLine#0;class#Display_Test#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/IO/Dislay.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="586">
-          <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
+        <state relative-caret-position="252">
+          <caret line="135" column="28" selection-start-line="135" selection-start-column="16" selection-end-line="135" selection-end-column="28" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#runTest#0;class#Main#0" expanded="false" />
+            <element signature="method#Dislay#0;class#Dislay#0" expanded="false" />
+            <element signature="docComment;method#initialize#0;class#Dislay#0" expanded="false" />
+            <element signature="method#initialize#0;class#Dislay#0" expanded="false" />
+            <element signature="docComment;method#entryModeSet#0;class#Dislay#0" expanded="false" />
+            <element signature="method#entryModeSet#0;class#Dislay#0" expanded="false" />
+            <element signature="docComment;method#setDisplay#0;class#Dislay#0" expanded="false" />
+            <element signature="method#setDisplay#0;class#Dislay#0" expanded="false" />
+            <element signature="docComment;method#functionSet#0;class#Dislay#0" expanded="false" />
+            <element signature="method#functionSet#0;class#Dislay#0" expanded="false" />
+            <element signature="docComment;method#setDDRAMaddress#0;class#Dislay#0" expanded="false" />
+            <element signature="method#setDDRAMaddress#0;class#Dislay#0" expanded="false" />
+            <element signature="docComment;method#Send#0;class#Dislay#0" expanded="false" />
+            <element signature="method#Send#0;class#Dislay#0" expanded="false" />
+            <element signature="docComment;method#WriteNewLine#0;class#Dislay#0" expanded="false" />
+            <element signature="method#WriteNewLine#0;class#Dislay#0" expanded="false" />
+            <element signature="docComment;method#ClearScreen#0;class#Dislay#0" expanded="false" />
+            <element signature="method#ClearScreen#0;class#Dislay#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/IO/UI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="16" column="63" selection-start-line="16" selection-start-column="63" selection-end-line="16" selection-end-column="63" />
+        <state relative-caret-position="306">
+          <caret line="36" column="7" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
           <folding>
+            <element signature="docComment;method#set_display#0;class#UI#0" expanded="false" />
             <element signature="docComment;method#set_log#0;class#UI#0" expanded="false" />
             <element signature="docComment;method#println#0;class#UI#0" expanded="false" />
             <element signature="method#println#0;class#UI#0" expanded="false" />
@@ -1545,14 +1529,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Test/Test.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/IO/RotaryDial.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+        <state relative-caret-position="221">
+          <caret line="39" column="25" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
           <folding>
-            <element signature="docComment;method#isFailed#0;class#Test#0" expanded="false" />
-            <element signature="docComment;method#run#0;class#Test#0" expanded="false" />
-            <element signature="docComment;method#Fail#0;class#Test#0" expanded="false" />
+            <element signature="docComment;class#RotaryDial#0" expanded="false" />
+            <element signature="docComment;method#RotaryDial#0;class#RotaryDial#0" expanded="false" />
+            <element signature="method#RotaryDial#0;class#RotaryDial#0" expanded="false" />
+            <element signature="e#722#794#0" expanded="false" />
+            <element signature="docComment;method#getDirection#0;class#RotaryDial#0" expanded="false" />
+            <element signature="method#getDirection#0;class#RotaryDial#0" expanded="false" />
           </folding>
         </state>
       </provider>
