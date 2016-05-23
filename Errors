@@ -1,0 +1,10 @@
+E1: Unknown IO exception
+E2: IO write exception
+E3: IO read exception
+E4: Sleep exception
+E5: Unknown exception
+E6: Can not close file
+E7: Method doesn't exists
+E8: InvocationTargetException
+E9: Can not access method
+E10: Can not reset input stream

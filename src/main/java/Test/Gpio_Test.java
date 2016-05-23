@@ -1,7 +1,4 @@
-package Test;
-
 import Errors.IllegalPinModeException;
-import IO.GPIO;
 import IO.UI;
 
 /**
@@ -13,19 +10,31 @@ import IO.UI;
  * @version 1.1
  */
 public class Gpio_Test extends Test {
+    private boolean failed;
     private GPIO io;
 
-    public Gpio_Test() {
+    Gpio_Test() {
         try {
-            io = new GPIO();
+            io = new Gpio();
         } catch (Exception ex) {
-            Fail("Can not create GPIO instance");
+            failed = true;
             ex.printStackTrace();
         }
     }
 
-    @Override
-    public void run() {
+    /**
+     * get if all tests are passed or not
+     *
+     * @return true if all test are passed, false if one ore more test failed
+     */
+    public boolean isFailed() {
+        return failed;
+    }
+
+    /**
+     * Run the tests
+     */
+    void run() {
         if (!isFailed()) {
             UI.print("Start GPIO test");
             UI.print("writeToInput: ");
@@ -46,8 +55,18 @@ public class Gpio_Test extends Test {
                 UI.println("Test passed");
             }
 
-            io.deinit();
-        }
+        io.deinit();
+    }
+
+    /**
+     * Call when a test fail. Give a message about the failure
+     *
+     * @param message Message about the failure
+     */
+    private void Fail(String message) {
+        failed = true;
+        UI.println("Test failed");
+        UI.println(message);
     }
 
     /**
@@ -56,7 +75,7 @@ public class Gpio_Test extends Test {
      */
     private void writeToInput() {
         try {
-            io.setPin(GPIO.Pin.PB31, false);
+            io.setPin(Gpio.PINS.PB31, false);
             Fail("No exception was threw when trying write value to input pin");
             return;
         } catch (IllegalPinModeException ignored) {
@@ -64,7 +83,7 @@ public class Gpio_Test extends Test {
         }
 
         try {
-            io.setPin(GPIO.Pin.PB30, false);
+            io.setPin(Gpio.PINS.PB30, false);
             Fail("No exception was threw when trying write value to input pin");
             return;
         } catch (IllegalPinModeException ignored) {
@@ -72,7 +91,7 @@ public class Gpio_Test extends Test {
         }
 
         try {
-            io.setPin(GPIO.Pin.PB21, false);
+            io.setPin(Gpio.PINS.PB21, false);
             Fail("No exception was threw when trying write value to input pin");
             return;
         } catch (IllegalPinModeException ignored) {
@@ -80,22 +99,14 @@ public class Gpio_Test extends Test {
         }
 
         try {
-            io.setPin(GPIO.Pin.PB20, false);
+            io.setPin(Gpio.PINS.PB20, false);
             Fail("No exception was threw when trying write value to input pin");
             return;
         } catch (IllegalPinModeException ignored) {
 
         }
 
-        try {
-            io.setPin(GPIO.Pin.PB19, false);
-            Fail("No exception was threw when trying write value to input pin");
-            return;
-        } catch (IllegalPinModeException ignored) {
-
-        }
-
-        UI.println("Passed");
+        IO.UI.println("Passed");
     }
 
     /**
@@ -103,15 +114,15 @@ public class Gpio_Test extends Test {
      * every GPIO output pin would be 500ms high.
      */
     private void writeToOutput() {
-        for (int i = 5; i < GPIO.Pin.values().length; i++) {
+        for (int i = 4; i < Gpio.PINS.values().length; i++) {
             try {
                 Thread.sleep(1000);
-                UI.println("Testing pin: " + GPIO.Pin.values()[i].name());
-                io.setPin(GPIO.Pin.values()[i], true);
+                UI.println("Testing pin: " + Gpio.PINS.values()[i].name());
+                io.setPin(Gpio.PINS.values()[i], true);
                 Thread.sleep(1000);
-                io.setPin(GPIO.Pin.values()[i], false);
+                io.setPin(Gpio.PINS.values()[i], false);
                 Thread.sleep(1000);
-                io.setPin(GPIO.Pin.values()[i], true);
+                io.setPin(Gpio.PINS.values()[i], true);
             } catch (InterruptedException ignored) {
             } catch (Exception ex) {
                 Fail("Exception occurs");
@@ -128,9 +139,9 @@ public class Gpio_Test extends Test {
      * picking a wrong pin to read from.
      */
     private void readFromOutput() {
-        for (int i = 5; i < GPIO.Pin.values().length; i++) {
+        for (int i = 4; i < Gpio.PINS.values().length; i++) {
             try {
-                io.getPin(GPIO.Pin.values()[i]);
+                io.getPin(Gpio.PINS.values()[i]);
                 Fail("Read from output is possible. This is not allowed.");
                 return;
             } catch (IllegalPinModeException ignored) {
@@ -140,22 +151,15 @@ public class Gpio_Test extends Test {
         UI.println("passed");
     }
 
-    /**
-     * This will try to read from an input. If it can and the input is high, it will give a warning. When it
-     * can't read from the input, the test will fail. This test will pass if it can read all input pins.
-     */
+
     private void readFromInput() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 4; i++) {
             try {
-                //check if value of input is high and give a warning is so
-                if (io.getPin(GPIO.Pin.values()[i])) {
-                    UI.println("Warning: " + GPIO.Pin.values()[i].name() + " is high!");
+                if (io.getPin(Gpio.PINS.values()[i])) {
+                    UI.println("Warning: " + Gpio.PINS.values()[i].name() + " is high!");
                 }
             } catch (Exception ex) {
-                //fail the test because the unexpected error
-                Fail("An unexpected error occurs");
-
-                //print the error
+                Fail("An unaccepted error occurs");
                 ex.printStackTrace();
                 return;
             }
