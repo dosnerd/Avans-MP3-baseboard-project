@@ -1,10 +1,11 @@
 import IO.GPIO;
 import IO.UI;
-import Test.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+//import Test.*;
 
 /**
  * Created by Acer on 20-4-2016.
@@ -30,50 +31,40 @@ public class Main {
              * while it's in the default package
             */
             GPIO.setDefaultGpio(new Gpio());
-
-            //check if all tests need to run
             if (_doTest) {
-                runTest(new Gpio_Test());
-                runTest(new ShiftRegister_Test());
-                runTest(new Display_Test());
-        Gpio gpio = new Gpio();
-        GPIO.setDefaultGpio(gpio);
+                Test.Test a = new Test.Gpio_Test();
+                runTest(a);
+                runTest(new Test.ShiftRegister_Test());
+                runTest(new Test.Display_Test());
 
-        setArgs(args);
-        if (_doTest) {
-            runTest(new Gpio_Test());
-            runTest(new ShiftRegister_Test());
-            runTest(new Display_Test());
-
-            //run sinus test for about 1000ms
-            SinusTest sinusTest = new SinusTest();
-            sinusTest.startTest();
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException ex) {
-                UI.error("Can not sleep", 4);
+                //run sinus test for about 1000ms
+                Test.SinusTest sinusTest = new Test.SinusTest();
+                sinusTest.startTest();
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException ex) {
+                    UI.error("Can not sleep", 4);
+                }
+                sinusTest.endTest();
             }
-            sinusTest.endTest();
-        }
-    }
 
             MP3 mp3 = new MP3();
             if (_saveMode) {
                 try {
                     UI.println("Start in save mode");
-                    mp3.run();
+                    mp3.Run();
                 } catch (Exception ex) {
                     UI.error("An error occurs", 5);
                 }
             } else {
                 UI.println("Start in unsave mode");
-                mp3.run();
+                mp3.Run();
             }
         }
     }
 
 
-    private static boolean runTest(Test test) {
+    private static boolean runTest(Test.Test test) {
         test.run();
         return test.isFailed();
     }

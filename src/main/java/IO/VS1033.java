@@ -29,6 +29,10 @@ public class VS1033 implements Runnable {
         init();
     }
 
+    public boolean isPlaying() {
+        return play;
+    }
+
     /**
      * Check if the file stream is on the end of the file
      *
@@ -151,7 +155,7 @@ public class VS1033 implements Runnable {
      * Stop sending data to the VS1033. This will cause the VS1033 to give sound. The location
      * in the file will be remembered. When
      */
-    private void Pauze() {
+    public void Pauze() {
         play = false;
     }
 
@@ -179,7 +183,7 @@ public class VS1033 implements Runnable {
      * @param data        The data or the command(s) to send at once.
      * @param isOperation If true, the data will be sended over SCI. If false, the data will be send over SDI.
      */
-    private synchronized void Write(byte[] data, boolean isOperation) {
+    public synchronized void Write(byte[] data, boolean isOperation) {
         //UI.println("Prepaire for sending over SCI/SDI...");
 
         //check if allowed to send data/command
@@ -323,15 +327,12 @@ public class VS1033 implements Runnable {
      */
     private void tick() {
         if (play && gpio.getPin(GPIO.Pin.PB19)) {
-
-            //UI.println(String.valueOf((tick + 1) / (bitsSended + 1)));
-
             if (fileStreamAvailable() && bitsSended / ((tick++ + 1.0) / 10) <= bufferSize) {
-                checkBitRate();
                 try {
                     byte[] buffer = new byte[bufferSize];
                     //TODO: remove t
-                    int t = fileStream.read(buffer);
+                    //noinspection ResultOfMethodCallIgnored
+                    fileStream.read(buffer);
                     Write(buffer, false);
 
                     bitsSended += bufferSize;
@@ -340,6 +341,14 @@ public class VS1033 implements Runnable {
                     UI.error("Can not read from file", 3);
                 }
             }
+        }
+    }
+
+    private void sleep(int miliSecondes) {
+        try {
+            Thread.sleep(miliSecondes);
+        } catch (InterruptedException ex) {
+            UI.error("Can not sleep", 4);
         }
     }
 }

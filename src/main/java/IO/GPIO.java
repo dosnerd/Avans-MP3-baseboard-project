@@ -4,6 +4,8 @@ import Errors.IllegalPinModeException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Acer on 11-5-2016.
@@ -13,6 +15,11 @@ import java.lang.reflect.Method;
  */
 public class GPIO {
     private static Object defaultGpio;
+    private Map<Pin, Long> blickData;
+
+    public GPIO() {
+        blickData = new HashMap<Pin, Long>();
+    }
 
     /**
      * Set the Gpio object. This is needed because an object of class can not create an object from the
@@ -120,6 +127,19 @@ public class GPIO {
             return (ioread(pin.ID) != 0);
         }
         throw new IllegalPinModeException();
+    }
+
+    public void blick(Pin pin, int seconds) {
+        blickData.put(pin, System.currentTimeMillis() + seconds * 1000);
+        setPin(pin, true);
+    }
+
+    public void checkBlick() {
+        for (Map.Entry<Pin, Long> entry : blickData.entrySet()) {
+            if (entry.getValue() >= System.currentTimeMillis()) {
+                setPin(entry.getKey(), false);
+            }
+        }
     }
 
     /**

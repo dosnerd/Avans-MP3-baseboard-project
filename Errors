@@ -8,3 +8,4 @@ E7: Method doesn't exists
 E8: InvocationTargetException
 E9: Can not access method
 E10: Can not reset input stream
+E11: NullPointerException

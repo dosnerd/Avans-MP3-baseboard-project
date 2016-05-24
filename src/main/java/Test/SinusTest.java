@@ -15,7 +15,7 @@ import java.io.RandomAccessFile;
  * @author David de Prez
  * @version 1.0
  */
-class SinusTest {
+public class SinusTest {
     private RandomAccessFile SCI;
     private RandomAccessFile SDI;
 
@@ -23,7 +23,7 @@ class SinusTest {
      * Constructor
      * Run a software reset on the VS1033 and set some settings in VS1033 to allow a sinus test.
      */
-    SinusTest() {
+    public SinusTest() {
         UI.println("Initialize VS1033");
         //commands for initialize VS1033 and volume
         byte[] init = {0x02, 0x00, 0x08, 0x26};
@@ -54,7 +54,7 @@ class SinusTest {
     /**
      * Send the command to the IO.VS1033 to run the sinus test. The IO.VS1033 give on its output a sinus signal.
      */
-    void startTest() {
+    public void startTest() {
         try {
             //create commando and send it
             byte[] startTest = {0x53, (byte) 0xEf, 0x6E, 0x7E, 0, 0, 0, 0};
@@ -68,7 +68,7 @@ class SinusTest {
     /**
      * End the test by stopping the IO.VS1033 with sending the sinus and close the interfaces.
      */
-    void endTest() {
+    public void endTest() {
         try {
             //create commando and send it
             byte[] endTest = {0x45, 0x78, 0x69, 0x74, 0, 0, 0, 0};

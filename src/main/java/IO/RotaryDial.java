@@ -58,7 +58,7 @@ public class RotaryDial {
         }
     }
 
-    enum Direction {
+    public enum Direction {
         LEFT,
         RIGHT,
         NO_WAY
