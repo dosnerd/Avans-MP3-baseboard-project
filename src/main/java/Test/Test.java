@@ -2,6 +2,8 @@ package Test;
 
 import IO.UI;
 
+import java.util.Scanner;
+
 /**
  * Created by Acer on 19-5-2016.
  *
@@ -9,14 +11,31 @@ import IO.UI;
  * @version 1.0
  */
 public abstract class Test {
+    private final Scanner reader;
     private boolean failed;
+
+    Test() {
+        reader = new Scanner(System.in);
+    }
+
+    boolean waitForConirm() {
+        String line;
+
+        UI.print("Passed? (y/n): ");
+        while (!(line = reader.nextLine().toLowerCase()).equals("y") && !line.equals("n")) try {
+            Thread.sleep(1);
+        } catch (InterruptedException ex) {
+            UI.error("Can not sleep", 4);
+        }
+        return line.equals("y");
+    }
 
     /**
      * get if all tests are passed or not
      *
      * @return true if all test are passed, false if one ore more test failed
      */
-    public boolean isFailed() {
+    boolean isFailed() {
         return failed;
     }
 

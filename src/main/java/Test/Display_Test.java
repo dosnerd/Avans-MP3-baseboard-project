@@ -15,9 +15,9 @@ public class Display_Test extends Test {
     private GPIO io;
     private IO.Dislay dislay;
 
-    public Display_Test() {
+    public Display_Test(GPIO io) {
         try {
-            io = new GPIO();
+            this.io = io;
             dislay = new Dislay(
                     io,
                     new ShiftRegister(io, GPIO.Pin.PB17, GPIO.Pin.PB16, GPIO.Pin.PA28),
@@ -32,9 +32,13 @@ public class Display_Test extends Test {
     @Override
     public void run() {
         if (!isFailed()) {
+            io.setPin(GPIO.Pin.PA6, true);
+
             UI.println("Start shift register test");
             UI.print("Clearing: ");
             Clearing();
+
+            dislay.setDisplay(true);
 
             UI.print("Hello world: ");
             HelloWorld();
@@ -44,15 +48,13 @@ public class Display_Test extends Test {
 
             UI.print("Clearing (2nd time): ");
             Clearing();
+            waitForConirm();
 
             if (isFailed()) {
                 UI.println("Test failed");
             } else {
                 UI.println("Test passed");
             }
-        }
-        if (io != null) {
-            io.deinit();
         }
     }
 
@@ -69,7 +71,11 @@ public class Display_Test extends Test {
      */
     private void HelloWorld() {
         dislay.WriteNewLine("Hello world", true);
-        UI.println("Passed");
+        if (waitForConirm()) {
+            UI.println("Passed");
+        } else {
+            Fail("");
+        }
     }
 
     /**
@@ -77,6 +83,10 @@ public class Display_Test extends Test {
      */
     private void SecondLine() {
         dislay.WriteNewLine("Second line", false);
-        UI.println("Passed");
+        if (waitForConirm()) {
+            UI.println("Passed");
+        } else {
+            Fail("");
+        }
     }
 }

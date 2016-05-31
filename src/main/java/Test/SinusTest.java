@@ -27,7 +27,7 @@ public class SinusTest {
         UI.println("Initialize VS1033");
         //commands for initialize VS1033 and volume
         byte[] init = {0x02, 0x00, 0x08, 0x26};
-        byte[] vol = {0x02, 0x0B, 0x1F, 0x1F};
+        byte[] vol = {0x02, 0x0B, 0x00, 0x00};
 
 
         try {

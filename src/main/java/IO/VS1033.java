@@ -9,19 +9,18 @@ import java.io.*;
  * @version 1.0
  */
 public class VS1033 implements Runnable {
+    private final byte[] _INIT = {0x02, 0x00, 0x08, (byte) 0x06}; //MODE46, 68
     private final GPIO gpio;
-    private final String PATH = System.getProperty("user.home") + "/music/";
+    private int bufferSize = 32;
+    private byte[] buffer = new byte[bufferSize];
     private RandomAccessFile SCI;
     private RandomAccessFile SDI;
     private InputStream fileStream;
     private boolean run = true;
     private boolean play = false;
     private String source = "";
-
-    private int bufferSize = 128;
-    private long tick;
-
-    private long bitsSended = 0;
+    private boolean valid = true;
+    private long blinkPlay;
 
     public VS1033(GPIO gpio) {
         this.gpio = gpio;
@@ -33,17 +32,13 @@ public class VS1033 implements Runnable {
         return play;
     }
 
-    /**
-     * Check if the file stream is on the end of the file
-     *
-     * @return true if on the end of the file. False if there is data available.
-     */
-    private boolean getEndOfFile() {
-        try {
-            return fileStream == null || fileStream.available() <= 0;
-        } catch (IOException ignored) {
-            return false;
-        }
+    public boolean ValidFile() {
+        return valid;
+    }
+
+    public void changeBuffer(int size) {
+        this.bufferSize = size;
+        buffer = new byte[bufferSize];
     }
 
     /**
@@ -52,9 +47,10 @@ public class VS1033 implements Runnable {
      */
     private void init() {
         //initialize and volume data
-        byte[] init = {0x02, 0x00, 0x08, 0x46}; //MODE
+        //byte[] clockf = {0x02, 0x03, (byte) 0x90, (byte) 0x00};//CLOCKF
         byte[] clockf = {0x02, 0x03, (byte) 0x90, (byte) 0x00};//CLOCKF
-        byte[] vol = {0x02, 0x0B, 0x2F, 0x2F};  //VOL
+        byte[] vol = {0x02, 0x0B, 0x1F, 0x1F};  //VOL
+        byte[] sampleRate = {0x02, 0x05, (byte) 0xAC, (byte) 0x45};//audata
         //TODO: BASS
 
         UI.println("Initializing VS1033...");
@@ -68,10 +64,13 @@ public class VS1033 implements Runnable {
 
             //send commands
             UI.println("Send initialize data");
-            Write(init, true);
+            Write(_INIT, true);
 
             UI.println("Send clock data");
             Write(clockf, true);
+
+            UI.println("Send audata data");
+            Write(sampleRate, true);
 
             UI.println("Send volume data");
             Write(vol, true);
@@ -87,6 +86,8 @@ public class VS1033 implements Runnable {
      * close the file stream, close, the SCI connection and close the SDI connection,
      */
     public void deinit() {
+        UI.println("Closing vs1033");
+
         run = false;
         play = false;
         source = "";
@@ -117,6 +118,11 @@ public class VS1033 implements Runnable {
      */
     public void Play() {
         play = true;
+        UI.println("play");
+        gpio.setPin(GPIO.Pin.PA25, false);
+
+        gpio.cancelBlick(GPIO.Pin.PA9);
+        gpio.setPin(GPIO.Pin.PA9, true);
     }
 
     /**
@@ -125,26 +131,46 @@ public class VS1033 implements Runnable {
      * @param filename The name of the track without path
      */
     public void Play(String filename) {
+        UI.println("Request " + filename);
+
         //stop playing, preventing sending more data of the current file to VS1033
         play = false;
 
-        //set path of file
-        source = PATH + filename;
+        //software reset
+        Write(_INIT, true);
 
-        //force to create a new file stream
+        //set path of file and close old file
+        source = filename;
         closeFileStream();
-        play = true;
+
+        try {
+            //check if file exists
+            File f = new File(source);
+            if (f.exists()) {
+                //open file
+                fileStream = new FileInputStream(source);
+                valid = true;
+                //tick = 0;
+                UI.println("New file");
+            } else {
+                UI.println("File not found");
+            }
+        } catch (IOException ex) {
+            UI.error("Can not open file", 12);
+        }
+
+        Play();
     }
 
     /**
      * Try to safely close the file stream
      */
-    private void closeFileStream() {
+    private synchronized void closeFileStream() {
         try {
             if (fileStream != null) {
+                UI.println("Close file");
                 fileStream.close();
                 fileStream = null;
-                tick = 0;
             }
         } catch (IOException ex) {
             UI.error("Can not close filestream", 6);
@@ -156,6 +182,7 @@ public class VS1033 implements Runnable {
      * in the file will be remembered. When
      */
     public void Pauze() {
+        UI.println("Pauze");
         play = false;
     }
 
@@ -164,9 +191,12 @@ public class VS1033 implements Runnable {
      */
     public void Stop() {
         Pauze();
+        UI.println("Stop");
+        gpio.setPin(GPIO.Pin.PA25, true);
         try {
-            fileStream.reset();
-            tick = 0;
+            sleep(100);
+            closeFileStream();
+            fileStream = new FileInputStream(source);
         } catch (IOException ex) {
             UI.error("Can not reset file", 10);
         }
@@ -183,7 +213,7 @@ public class VS1033 implements Runnable {
      * @param data        The data or the command(s) to send at once.
      * @param isOperation If true, the data will be sended over SCI. If false, the data will be send over SDI.
      */
-    public synchronized void Write(byte[] data, boolean isOperation) {
+    public void Write(byte[] data, boolean isOperation) {
         //UI.println("Prepaire for sending over SCI/SDI...");
 
         //check if allowed to send data/command
@@ -210,67 +240,6 @@ public class VS1033 implements Runnable {
         }
     }
 
-    private synchronized byte[] Read(byte[] command, int length) {
-        //Write(command, true);
-        /*while (!gpio.getPin(GPIO.Pin.PB19)) {
-            //wait when not allowed to send data/command
-            try {
-                UI.println("wait");
-                Thread.sleep(1);
-            } catch (InterruptedException ignored) {
-            }
-        }*/
-
-        byte[] read = new byte[length];
-        try {
-            SCI.write(command);
-            Thread.sleep(1);
-            for (int i = 0; i < length; i++) {
-                read[i] = SCI.readByte();
-            }
-        } catch (IOException ex) {
-            UI.error("Can not read SCI", 3);
-        } catch (Exception ignored) {
-            //TODO: make this beter catch
-        }
-
-        return read;
-    }
-
-    private void checkBitRate() {
-        //byte[] a = Read(new byte[]{0x03, 0x08}, 2);
-        byte[] HDAT = Read(new byte[]{0x03, 0x09}, 2);
-        Read(new byte[]{}, 2);
-        byte[] a = Read(new byte[]{0x03, 0x08}, 2);
-        //byte[] HDAT = Read(new byte[]{0x03, 0x09}, 2);
-        byte biterate = HDAT[0];
-
-        UI.println("{}");
-        for (byte b : a) {
-            UI.println(String.valueOf(b));
-        }
-
-        UI.println("{}");
-        for (byte b : HDAT) {
-            UI.println(String.valueOf(b));
-        }
-
-        UI.println("{}");
-
-        byte layer = (byte) (HDAT[1] >> 1 & 3);
-        byte ID = (byte) (HDAT[1] >> 3 & 3);
-
-        UI.println(String.valueOf(layer));
-        UI.println(String.valueOf(ID));
-
-
-        UI.println("{}");
-        //byte biterate = (byte) Read(new byte[]{0x03, 0x08}, 3)[0];
-        biterate = (byte) (((biterate >> 4) & 15) >> 1);
-        UI.println(String.valueOf(biterate));
-
-    }
-
     @Override
     public void run() {
         UI.println("Stream thread running");
@@ -281,66 +250,33 @@ public class VS1033 implements Runnable {
     }
 
     /**
-     * Check if the file stream is available. If it isn't available, it will try to create a
-     * new file stream from the source. If it still not available, it return false, else return true.
-     *
-     * @return if the file stream is available
-     */
-    private boolean fileStreamAvailable() {
-        //check if file stream is available
-        if (fileStream == null) {
-            if (source.isEmpty()) {
-                return false;
-            } else {
-                //try to make file stream
-                try {
-                    closeFileStream();
-
-                    UI.println(source);
-
-                    File f = new File(source);
-                    if (f.exists()) {
-                        fileStream = new FileInputStream(source);
-                        tick = 0;
-                        UI.println("New file");
-                        return true;
-                    } else {
-                        UI.println("File not found");
-                        return false;
-                    }
-                } catch (IOException ex) {
-                    return false;
-                }
-            }
-        }
-
-        if (getEndOfFile()) {
-            UI.println("End file");
-        }
-
-        //return if end of file
-        return !getEndOfFile();
-    }
-
-    /**
      * The actions and check performed by every tick
      */
     private void tick() {
+        InputStream tempRdr = fileStream;
         if (play && gpio.getPin(GPIO.Pin.PB19)) {
-            if (fileStreamAvailable() && bitsSended / ((tick++ + 1.0) / 10) <= bufferSize) {
+            if (tempRdr != null) {
                 try {
-                    byte[] buffer = new byte[bufferSize];
-                    //TODO: remove t
-                    //noinspection ResultOfMethodCallIgnored
-                    fileStream.read(buffer);
-                    Write(buffer, false);
-
-                    bitsSended += bufferSize;
-
+                    if (tempRdr.read(buffer) > -1) {
+                        valid = true;
+                        Write(buffer, false);
+                    } else {
+                        valid = false;
+                    }
                 } catch (IOException ex) {
                     UI.error("Can not read from file", 3);
+                    valid = false;
                 }
+            } else {
+                valid = false;
             }
+        } else if (!play) {
+            if (blinkPlay <= System.currentTimeMillis()) {
+                UI.println("Blick");
+                gpio.blick(GPIO.Pin.PA9, 250);
+                blinkPlay = System.currentTimeMillis() + 500;
+            }
+            sleep(10);
         }
     }
 

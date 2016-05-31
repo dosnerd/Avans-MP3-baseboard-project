@@ -4,7 +4,7 @@ import java.io.UnsupportedEncodingException;
 
 /**
  * Created by Acer on 19-5-2016.
- *
+ * <p>
  * This class simplify the use of the LCD screen that we use. It initialized the display immediately. You
  * can easily clear the screen or edit one of the two lines, without rewriting the other line.
  *
@@ -12,46 +12,44 @@ import java.io.UnsupportedEncodingException;
  * @version 1.0
  */
 public class Dislay {
-    private ShiftRegister dataPins;
-    private GPIO gpio;
-    private GPIO.Pin enable;
-    private GPIO.Pin rs;
-    private String[] lines;
+    private final ShiftRegister dataPins;
+    private final GPIO gpio;
+    private final GPIO.Pin enable;
+    private final GPIO.Pin rs;
+    private final String[] lines;
 
     public Dislay(GPIO gpio, ShiftRegister dataPins, GPIO.Pin enable, GPIO.Pin rs) {
+        UI.println("Initialize Display...");
         this.gpio = gpio;
         this.dataPins = dataPins;
         this.enable = enable;
         this.rs = rs;
         lines = new String[]{"", ""};
 
-        try {
-            initialize();
-        } catch (InterruptedException ex) {
-            UI.error("Can not sleep", 4);
-        }
+        initialize();
+
     }
 
     /**
      * This initialize the display.
-     *
-     * @throws InterruptedException if the thread can not sleep (Thread.sleep(x) throws this)
      */
-    private void initialize() throws InterruptedException {
+    private void initialize() {
         UI.println("Initialize LCD screen...");
         //3 time function set as suggested by the datasheet
         functionSet();
-        Thread.sleep(4);
+        sleep(4);
         functionSet();
-        Thread.sleep(1);
+        sleep(1);
         functionSet();
 
         //setup
         functionSet();
         setDisplay(false);
         ClearScreen();
-        Thread.sleep(1);
+        sleep(1);
         entryModeSet(false, true);
+        sleep(1);
+
         UI.println("LCD screen initialized");
     }
 
@@ -76,12 +74,14 @@ public class Dislay {
      * @param show Show the data in the display (turn display on/off). If true, then it shows the data. If false,
      *             the data is invisible.
      */
-    private void setDisplay(boolean show) {
+    public void setDisplay(boolean show) {
         gpio.setPin(rs, false);
         for (int i = 0; i < 8; i++) {
-            if (i == 3)
-                dataPins.setPin(3, show);
-            else
+            if (i == 2) {
+                dataPins.setPin(2, show);
+            } else if (i == 3) {
+                dataPins.setPin(3, true);
+            } else
                 dataPins.setPin(i, false);
         }
         Send();
@@ -90,29 +90,33 @@ public class Dislay {
     /**
      * Set startup information. This includes interface data lenght (how many pins we use),
      * how many lines we use and type of font (5x8 dots, 5x11 dots)
-     * @throws InterruptedException
      */
-    private void functionSet() throws InterruptedException {
+    private void functionSet() {
         gpio.setPin(rs, false);
         dataPins.setPin(7, false);
         dataPins.setPin(6, false);
         dataPins.setPin(5, true);
-        dataPins.setPin(4, true);
 
+        dataPins.setPin(4, true);
         dataPins.setPin(3, true);
-        dataPins.setPin(2, true);
+        dataPins.setPin(2, false);
+        dataPins.setPin(1, false);
+        dataPins.setPin(0, false);
         Send();
-        Thread.sleep(1);
+        sleep(1);
     }
 
     /**
      * Set the cursor to the given position.
+     *
      * @param index posistion of cursor in memory
      */
     private void setDDRAMaddress(int index) {
         if (index < 0 || index > 0x67) {
             throw new IndexOutOfBoundsException();
         }
+        dataPins.setData((byte) index);
+        dataPins.setPin(7, true);
         Send();
     }
 
@@ -121,9 +125,14 @@ public class Dislay {
      * before sending, because the enable line must be high first.
      */
     private void Send() {
-        gpio.setPin(enable, true);
-        dataPins.update();
-        gpio.setPin(enable, false);
+        try {
+            gpio.setPin(enable, true);
+            dataPins.update();
+            gpio.setPin(enable, false);
+
+        } catch (Exception ex) {
+            UI.println("Crash");
+        }
     }
 
     /**
@@ -137,16 +146,27 @@ public class Dislay {
     public void WriteNewLine(String data, boolean firstLine) {
         //check size of data
         if (data.length() > 39) {
-            data = "<E11>";
+            UI.error("String is to long", 13);
+            data = "<E13>";
         }
 
         //clear screen and save data
-        ClearScreen();
-        if (!firstLine) {
+        gpio.setPin(rs, true);
+
+        if (firstLine) {
+            while (data.length() < lines[0].length()) {
+                data += " ";
+            }
             lines[0] = data;
         } else {
+            while (data.length() < lines[1].length()) {
+                data += " ";
+            }
             lines[1] = data;
         }
+
+
+        functionSet();
 
         //print both lines, because the both cleared
         for (int i = 0; i < lines.length; i++) {
@@ -155,6 +175,9 @@ public class Dislay {
             //if not the firstline, set cursor to second line
             if (i != 0) {
                 setDDRAMaddress(0x40);
+            } else {
+                setDDRAMaddress(0x0);
+                //setDDRAMaddress(0x0);
             }
 
             //print text to screen
@@ -162,13 +185,16 @@ public class Dislay {
                 //get bytes in ACII and writes those to screen
                 for (byte character : line.getBytes("US-ASCII")) {
                     dataPins.setData(character);
+                    gpio.setPin(rs, true);
                     Send();
                 }
+                setDisplay(true);
             } catch (UnsupportedEncodingException ex) {
                 UI.println("US-ACII conversion not supported");
 
                 //get bytes and writes those to screen
                 for (byte character : line.getBytes()) {
+                    gpio.setPin(rs, true);
                     dataPins.setData(character);
                     Send();
                 }
@@ -180,11 +206,22 @@ public class Dislay {
      * Clear the screen and set the cursor to begin of the first line
      */
     public void ClearScreen() {
+        UI.println("Clear screen");
         dataPins.setPin(0, true);
         for (int i = 1; i < 8; i++) {
             dataPins.setPin(i, false);
         }
 
+        sleep(1);
         Send();
+        sleep(1);
+    }
+
+    private void sleep(int milis) {
+        try {
+            Thread.sleep(milis);
+        } catch (InterruptedException ignored) {
+
+        }
     }
 }

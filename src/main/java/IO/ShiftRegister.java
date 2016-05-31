@@ -12,13 +12,14 @@ package IO;
  * @version 1.0
  */
 public class ShiftRegister {
+    private final GPIO.Pin clock;
+    private final GPIO.Pin serial;
+    private final GPIO.Pin latch;
+    private final GPIO gpio;
     private byte data;
-    private GPIO.Pin clock;
-    private GPIO.Pin serial;
-    private GPIO.Pin latch;
-    private GPIO gpio;
 
     public ShiftRegister(GPIO gpio, GPIO.Pin clock, GPIO.Pin serial, GPIO.Pin latch) {
+        UI.println("Initialize Shift register...");
         this.gpio = gpio;
         this.clock = clock;
         this.serial = serial;
@@ -35,10 +36,10 @@ public class ShiftRegister {
         //check if the pin needs to be high or low
         if (value) {
             //set the bit in the memory high(1) in the right location
-            data = (byte) (data | (1 << pin - 1));
+            data = (byte) (data | (1 << pin));
         } else {
             //set the bit in the memory low(0) in the right location
-            data = (byte) (data & ~(1 << pin - 1));
+            data = (byte) (data & ~(1 << pin));
         }
     }
 
@@ -46,7 +47,7 @@ public class ShiftRegister {
      * Set the memory.
      * @param data data that replace the memory
      */
-    public void setData(byte data) {
+    void setData(byte data) {
         this.data = data;
     }
 
@@ -55,15 +56,17 @@ public class ShiftRegister {
      * the output of the shift register (latch).
      */
     public void update() {
+
         //Send memory to shift register
         gpio.setPin(latch, false);
-        for (int i = 7; i >= 0; i++) {
+        for (int i = 7; i >= 0; i--) {
             sendBit(i);
         }
 
         //update output of shift register (latch)
         gpio.setPin(latch, true);
         //TODO: check if this is to fast
+        sleep(1);
         gpio.setPin(latch, false);
     }
 
@@ -74,11 +77,22 @@ public class ShiftRegister {
      */
     private void sendBit(int position) {
         //get the value of the give position in the memory
-        boolean value = (data & ~(1 << position)) > 0;
+        boolean value = (data & (1 << position)) > 0;
 
         //send to the shift register
         gpio.setPin(clock, false);
         gpio.setPin(serial, value);
+        sleep(1);
         gpio.setPin(clock, true);
+        sleep(1);
+        gpio.setPin(serial, false);
+    }
+
+    private void sleep(int mili) {
+        try {
+            Thread.sleep(mili);
+        } catch (InterruptedException ex) {
+            UI.error("Can not sleep", 4);
+        }
     }
 }

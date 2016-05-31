@@ -9,9 +9,9 @@ package IO;
  * @version 1.0
  */
 public class RotaryDial {
-    private GPIO gpio;
-    private GPIO.Pin pinA;
-    private GPIO.Pin pinB;
+    private final GPIO gpio;
+    private final GPIO.Pin pinA;
+    private final GPIO.Pin pinB;
     private boolean previousValueA;
 
     /**
@@ -22,6 +22,7 @@ public class RotaryDial {
      * @param pinB The other pin of the rotary dial
      */
     public RotaryDial(GPIO gpio, GPIO.Pin pinA, GPIO.Pin pinB) {
+        UI.println("Initialize Rotary dial...");
         this.gpio = gpio;
         this.pinA = pinA;
         this.pinB = pinB;
@@ -41,6 +42,9 @@ public class RotaryDial {
         try {
             //check for the rising edge of the first pin of the rotary dial.
             if (!previousValueA && gpio.getPin(pinA)) {
+                previousValueA = gpio.getPin(pinA);
+                UI.print(previousValueA + "");
+                UI.print(gpio.getPin(pinA) + "");
 
                 //look if it turning right or left by reading pin B
                 if (gpio.getPin(pinB)) {

@@ -13,14 +13,12 @@ import IO.UI;
  * @version 1.1
  */
 public class Gpio_Test extends Test {
-    private boolean failed;
     private GPIO io;
 
-    public Gpio_Test() {
+    public Gpio_Test(GPIO io) {
         try {
-            io = new GPIO();
+            this.io = io;
         } catch (Exception ex) {
-            failed = true;
             ex.printStackTrace();
         }
     }
@@ -31,6 +29,17 @@ public class Gpio_Test extends Test {
     @Override
     public void run() {
         if (!isFailed()) {
+            UI.print("Prepaire GPIO test");
+            for (GPIO.Pin p : GPIO.Pin.values()) {
+                try {
+                    io.setPin(p, false);
+                } catch (IllegalPinModeException ignored) {
+
+                } catch (Exception ex) {
+                    UI.print("Can not prepaire pin: " + p.name());
+                }
+            }
+
             UI.print("Start GPIO test");
             UI.print("writeToInput: ");
             writeToInput();
@@ -49,8 +58,6 @@ public class Gpio_Test extends Test {
             } else {
                 UI.println("Test passed");
             }
-
-            io.deinit();
         }
     }
 
@@ -91,6 +98,14 @@ public class Gpio_Test extends Test {
 
         }
 
+        try {
+            io.setPin(GPIO.Pin.PB19, false);
+            Fail("No exception was threw when trying write value to input pin");
+            return;
+        } catch (IllegalPinModeException ignored) {
+
+        }
+
         IO.UI.println("Passed");
     }
 
@@ -99,16 +114,12 @@ public class Gpio_Test extends Test {
      * every GPIO output pin would be 500ms high.
      */
     private void writeToOutput() {
-        for (int i = 4; i < GPIO.Pin.values().length; i++) {
+        for (int i = 5; i < GPIO.Pin.values().length; i++) {
             try {
-                Thread.sleep(1000);
                 UI.println("Testing pin: " + GPIO.Pin.values()[i].name());
                 io.setPin(GPIO.Pin.values()[i], true);
-                Thread.sleep(1000);
+                waitForConirm();
                 io.setPin(GPIO.Pin.values()[i], false);
-                Thread.sleep(1000);
-                io.setPin(GPIO.Pin.values()[i], true);
-            } catch (InterruptedException ignored) {
             } catch (Exception ex) {
                 Fail("Exception occurs");
                 ex.printStackTrace();
@@ -124,10 +135,10 @@ public class Gpio_Test extends Test {
      * picking a wrong pin to read from.
      */
     private void readFromOutput() {
-        for (int i = 4; i < GPIO.Pin.values().length; i++) {
+        for (int i = 5; i < GPIO.Pin.values().length; i++) {
             try {
                 io.getPin(GPIO.Pin.values()[i]);
-                Fail("Read from output is possible. This is not allowed.");
+                Fail("Read from output is possible. This is not allowed. (" + GPIO.Pin.values()[i].name() + ")");
                 return;
             } catch (IllegalPinModeException ignored) {
             }
@@ -138,7 +149,7 @@ public class Gpio_Test extends Test {
 
 
     private void readFromInput() {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             try {
                 if (io.getPin(GPIO.Pin.values()[i])) {
                     UI.println("Warning: " + GPIO.Pin.values()[i].name() + " is high!");
@@ -151,4 +162,5 @@ public class Gpio_Test extends Test {
         }
         UI.println("Passed");
     }
+
 }

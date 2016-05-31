@@ -15,9 +15,10 @@ import java.util.Map;
  */
 public class GPIO {
     private static Object defaultGpio;
-    private Map<Pin, Long> blickData;
+    private final Map<Pin, Long> blickData;
 
     public GPIO() {
+        UI.println("Initialize GPIO...");
         blickData = new HashMap<Pin, Long>();
     }
 
@@ -129,17 +130,23 @@ public class GPIO {
         throw new IllegalPinModeException();
     }
 
-    public void blick(Pin pin, int seconds) {
-        blickData.put(pin, System.currentTimeMillis() + seconds * 1000);
+    public void blick(Pin pin, int milis) {
+        blickData.put(pin, System.currentTimeMillis() + milis);
         setPin(pin, true);
     }
 
     public void checkBlick() {
-        for (Map.Entry<Pin, Long> entry : blickData.entrySet()) {
-            if (entry.getValue() >= System.currentTimeMillis()) {
-                setPin(entry.getKey(), false);
+        for (Pin pin : Pin.values()) {
+            if (pin.isOutput && blickData.containsKey(pin) && blickData.get(pin) <= System.currentTimeMillis()) {
+                setPin(pin, false);
+                blickData.remove(pin);
             }
+            Thread.yield();
         }
+    }
+
+    void cancelBlick(Pin pin) {
+        blickData.remove(pin);
     }
 
     /**
@@ -155,12 +162,12 @@ public class GPIO {
         PB16(true, 80),//SHIFT serial
         PA28(true, 60),//SHIFT latch
         PA27(true, 59),//MUX 0
-        PA26(true, 58),//MUX 1
-        PA25(true, 57),//MUX 2
+        PA26(true, 58),//stop
+        PA25(true, 57),//-
         PA22(true, 54),//LCD r/w
         PA11(true, 43),//LCD rs
         PA10(true, 42),//PREV LED
-        PA9(true, 42),//PLAY LED
+        PA9(true, 41),//PLAY LED
         PA7(true, 39),//NEXT LED
         PA6(true, 38);//PWR LED
 

@@ -9,3 +9,5 @@ E8: InvocationTargetException
 E9: Can not access method
 E10: Can not reset input stream
 E11: NullPointerException
+E12: Can not open file
+E13: String is to long

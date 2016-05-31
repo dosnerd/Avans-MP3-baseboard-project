@@ -4,6 +4,7 @@ import IO.UI;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 //import Test.*;
 
@@ -13,9 +14,10 @@ import java.io.InputStreamReader;
  * @author David de Prez
  * @version 1.2
  */
-public class Main {
+class Main {
     private static boolean _doTest;
     private static boolean _saveMode = true;
+    private static boolean _manualMode;
 
     /**
      * The main function. Here all the arguments are checked, setup Gpio and start the program
@@ -31,42 +33,58 @@ public class Main {
              * while it's in the default package
             */
             GPIO.setDefaultGpio(new Gpio());
+            GPIO gpio = new GPIO();
             if (_doTest) {
-                Test.Test a = new Test.Gpio_Test();
-                runTest(a);
-                runTest(new Test.ShiftRegister_Test());
-                runTest(new Test.Display_Test());
+                try {
+                    runTest(new Test.Gpio_Test(gpio));
+                    runTest(new Test.ShiftRegister_Test(gpio));
+                    runTest(new Test.MUXLED_Test(gpio));
+
+                    runTest(new Test.Display_Test(gpio));
+                } catch (Exception ex) {
+                    UI.error("Unknown error", 5);
+                }
 
                 //run sinus test for about 1000ms
                 Test.SinusTest sinusTest = new Test.SinusTest();
                 sinusTest.startTest();
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException ex) {
-                    UI.error("Can not sleep", 4);
+                Scanner read = new Scanner(System.in);
+                while (!read.next().equals("exit")) {
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException ex) {
+                        UI.error("Can not sleep", 4);
+                    }
                 }
                 sinusTest.endTest();
             }
 
-            MP3 mp3 = new MP3();
+            MP3 mp3;
+            if (_manualMode) {
+                mp3 = new ManualControl(gpio);
+            } else {
+                mp3 = new MP3(gpio);
+            }
+
             if (_saveMode) {
                 try {
-                    UI.println("Start in save mode");
+                    UI.println("Start in safe mode");
                     mp3.Run();
                 } catch (Exception ex) {
                     UI.error("An error occurs", 5);
+                    mp3.Stop();
+                    ex.printStackTrace();
                 }
             } else {
-                UI.println("Start in unsave mode");
+                UI.println("Start in unsafe mode");
                 mp3.Run();
             }
         }
     }
 
 
-    private static boolean runTest(Test.Test test) {
+    private static void runTest(Test.Test test) {
         test.run();
-        return test.isFailed();
     }
 
 
@@ -91,6 +109,9 @@ public class Main {
             } else if (argument.equals("--unsave") || argument.equals("-u")) {
                 //disable save mode
                 _saveMode = false;
+            } else if (argument.equals("--manual") || argument.equals("-m")) {
+                //disable save mode
+                _manualMode = true;
             } else if (argument.equals("--help") || argument.equals("-h")) {
                 //read help file
                 BufferedReader rdr = null;

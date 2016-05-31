@@ -68,7 +68,7 @@ public class UI {
                 _display.ClearScreen();
                 _display.WriteNewLine("<<E:" + errorNumber + ">>", true);
             }
-            Thread.sleep(1000 * 10);
+            Thread.sleep(1000);
         } catch (InterruptedException ex) {
             System.err.println("E:" + errorNumber + ": " + text);
         }
