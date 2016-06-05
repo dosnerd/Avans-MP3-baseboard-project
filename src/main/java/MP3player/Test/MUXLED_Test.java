@@ -1,8 +1,8 @@
-package Test;
+package MP3player.Test;
 
-import IO.GPIO;
-import IO.MUX;
-import IO.UI;
+import MP3player.IO.GPIO;
+import MP3player.IO.MUX;
+import MP3player.IO.UI;
 
 /**
  * Created by Acer on 25-5-2016.
@@ -35,21 +35,25 @@ public class MUXLED_Test extends Test {
         UI.print("Pin 0: ");
         io.setPin(GPIO.Pin.PA10, true);
         while (!mux.getPin(0)) mux.check();
+        io.setPin(GPIO.Pin.PA10, false);
         UI.println("Found");
 
         UI.print("Pin 1: ");
         io.setPin(GPIO.Pin.PA9, true);
         while (!mux.getPin(1)) mux.check();
+        io.setPin(GPIO.Pin.PA9, false);
         UI.println("Found");
 
         UI.print("Pin 2: ");
-        io.setPin(GPIO.Pin.PA26, true);
+        io.setPin(GPIO.Pin.PA25, true);
         while (!mux.getPin(2)) mux.check();
+        io.setPin(GPIO.Pin.PA25, false);
         UI.println("Found");
 
         UI.print("Pin 3: ");
         io.setPin(GPIO.Pin.PA7, true);
         while (!mux.getPin(3)) mux.check();
+        io.setPin(GPIO.Pin.PA7, false);
         UI.println("Found");
     }
 

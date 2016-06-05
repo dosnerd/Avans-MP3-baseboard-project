@@ -1,9 +1,9 @@
-import IO.UI;
+import MP3player.IO.UI;
 
 /**
  * Created by Acer on 20-4-2016.
  * <p/>
- * To control the Gpio of the FOXG20, within the MP3-baseboard, easier. All usable pin are already combined with
+ * To control the Gpio of the FOXG20, within the MP3player.MP3-baseboard, easier. All usable pin are already combined with
  * the right kernel ID, native library is already loaded and it will check if the selected pin is a output or
  * a input.
  *

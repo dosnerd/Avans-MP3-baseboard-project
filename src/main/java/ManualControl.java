@@ -1,5 +1,6 @@
-import IO.GPIO;
-import IO.UI;
+import MP3player.IO.GPIO;
+import MP3player.IO.UI;
+import MP3player.MP3;
 
 import java.util.Scanner;
 

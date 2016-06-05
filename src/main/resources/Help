@@ -1,8 +1,8 @@
 Usage: java Main [OPTION]...
-Controls the MP3
+Controls the MP3player.MP3
 
     -t              Run all tests
     -l              Enable log (all logs will be write to screen)
     -u, --unsave    Disable the try catch blok in the main
-    -m, --manual    Get a commend line that can control the MP3
+    -m, --manual    Get a commend line that can control the MP3player.MP3
     -h, --help      Shows this help

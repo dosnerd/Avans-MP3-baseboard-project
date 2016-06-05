@@ -1,4 +1,4 @@
-package IO;
+package MP3player.IO;
 
 import java.io.*;
 
@@ -48,7 +48,7 @@ public class VS1033 implements Runnable {
     private void init() {
         //initialize and volume data
         //byte[] clockf = {0x02, 0x03, (byte) 0x90, (byte) 0x00};//CLOCKF
-        byte[] clockf = {0x02, 0x03, (byte) 0x90, (byte) 0x00};//CLOCKF
+        byte[] clockf = {0x02, 0x03, (byte) 0x84, (byte) 0xE2};//CLOCKF
         byte[] vol = {0x02, 0x0B, 0x1F, 0x1F};  //VOL
         byte[] sampleRate = {0x02, 0x05, (byte) 0xAC, (byte) 0x45};//audata
         //TODO: BASS
@@ -77,7 +77,7 @@ public class VS1033 implements Runnable {
 
             UI.println("VS1033 initialized");
         } catch (IOException ignored) {
-            IO.UI.println("IO exception. Probably can't open /dev/spidev1.*");
+            MP3player.IO.UI.println("IO exception. Probably can't open /dev/spidev1.*");
         }
     }
 
@@ -196,6 +196,9 @@ public class VS1033 implements Runnable {
         try {
             sleep(100);
             closeFileStream();
+            for (int i = 0; i < 50; i++) {
+                Write(new byte[]{0, 0, 0, 0}, false);
+            }
             fileStream = new FileInputStream(source);
         } catch (IOException ex) {
             UI.error("Can not reset file", 10);
@@ -217,14 +220,8 @@ public class VS1033 implements Runnable {
         //UI.println("Prepaire for sending over SCI/SDI...");
 
         //check if allowed to send data/command
-        while (!gpio.getPin(GPIO.Pin.PB19)) {
-            //wait when not allowed to send data/command
-            try {
-                UI.println("wait");
-                Thread.sleep(1);
-            } catch (InterruptedException ignored) {
-            }
-        }
+        //noinspection StatementWithEmptyBody
+        while (!gpio.getPin(GPIO.Pin.PB19)) ;
 
         //try sending data/command
         try {
@@ -253,30 +250,33 @@ public class VS1033 implements Runnable {
      * The actions and check performed by every tick
      */
     private void tick() {
-        InputStream tempRdr = fileStream;
-        if (play && gpio.getPin(GPIO.Pin.PB19)) {
-            if (tempRdr != null) {
-                try {
-                    if (tempRdr.read(buffer) > -1) {
-                        valid = true;
-                        Write(buffer, false);
-                    } else {
-                        valid = false;
+        if (valid) {
+            InputStream tempRdr = fileStream;
+            if (play) {//&& gpio.getPin(GPIO.Pin.PB19)) {
+                if (tempRdr != null) {
+                    try {
+                        if (tempRdr.read(buffer) > -1) {
+                            valid = true;
+                            Write(buffer, false);
+                        } else {
+                            valid = false;
+                        }
+                    } catch (IOException ex) {
+                        if (!ex.getMessage().equals("Stream Closed")) {
+                            UI.error("Can not read from file", 3);
+                            valid = false;
+                        }
                     }
-                } catch (IOException ex) {
-                    UI.error("Can not read from file", 3);
+                } else {
                     valid = false;
                 }
             } else {
-                valid = false;
+                if (blinkPlay <= System.currentTimeMillis()) {
+                    gpio.blick(GPIO.Pin.PA9, 250);
+                    blinkPlay = System.currentTimeMillis() + 500;
+                }
+                sleep(10);
             }
-        } else if (!play) {
-            if (blinkPlay <= System.currentTimeMillis()) {
-                UI.println("Blick");
-                gpio.blick(GPIO.Pin.PA9, 250);
-                blinkPlay = System.currentTimeMillis() + 500;
-            }
-            sleep(10);
         }
     }
 

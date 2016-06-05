@@ -1,12 +1,12 @@
-import IO.GPIO;
-import IO.UI;
+import MP3player.IO.GPIO;
+import MP3player.IO.UI;
+import MP3player.MP3;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 
-//import Test.*;
+//import MP3player.Test.*;
 
 /**
  * Created by Acer on 20-4-2016.
@@ -28,34 +28,39 @@ class Main {
     public static void main(String[] args) {
         //check all arguments
         if (setArgs(args)) {
-            /*create a Gpio object and give it to the IO.GPIO class
-             * Now can the IO.GPIO class work with the Gpio class
+            /*create a Gpio object and give it to the MP3player.IO.GPIO class
+             * Now can the MP3player.IO.GPIO class work with the Gpio class
              * while it's in the default package
             */
             GPIO.setDefaultGpio(new Gpio());
             GPIO gpio = new GPIO();
             if (_doTest) {
                 try {
-                    runTest(new Test.Gpio_Test(gpio));
-                    runTest(new Test.ShiftRegister_Test(gpio));
-                    runTest(new Test.MUXLED_Test(gpio));
+                    runTest(new MP3player.Test.Gpio_Test(gpio));
+                    runTest(new MP3player.Test.ShiftRegister_Test(gpio));
+                    runTest(new MP3player.Test.MUXLED_Test(gpio));
 
-                    runTest(new Test.Display_Test(gpio));
+                    runTest(new MP3player.Test.Display_Test(gpio));
                 } catch (Exception ex) {
                     UI.error("Unknown error", 5);
                 }
 
                 //run sinus test for about 1000ms
-                Test.SinusTest sinusTest = new Test.SinusTest();
+                MP3player.Test.SinusTest sinusTest = new MP3player.Test.SinusTest();
                 sinusTest.startTest();
-                Scanner read = new Scanner(System.in);
-                while (!read.next().equals("exit")) {
+
+                for (int i = 0xFE; i >= 0; i--) {
                     try {
-                        Thread.sleep(1);
-                    } catch (InterruptedException ex) {
-                        UI.error("Can not sleep", 4);
+                        UI.println(i + "");
+                        sinusTest.getSCI().write(new byte[]{0x02, 0x0B, (byte) i, (byte) i});
+                        Thread.sleep(100);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                 }
+
                 sinusTest.endTest();
             }
 
@@ -69,7 +74,10 @@ class Main {
             if (_saveMode) {
                 try {
                     UI.println("Start in safe mode");
+
+                    //mp3.getVs1033().run();
                     mp3.Run();
+
                 } catch (Exception ex) {
                     UI.error("An error occurs", 5);
                     mp3.Stop();
@@ -83,7 +91,7 @@ class Main {
     }
 
 
-    private static void runTest(Test.Test test) {
+    private static void runTest(MP3player.Test.Test test) {
         test.run();
     }
 

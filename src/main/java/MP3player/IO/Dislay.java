@@ -1,4 +1,4 @@
-package IO;
+package MP3player.IO;
 
 import java.io.UnsupportedEncodingException;
 
@@ -11,12 +11,17 @@ import java.io.UnsupportedEncodingException;
  * @author David de Prez
  * @version 1.0
  */
-public class Dislay {
+public class Dislay implements Runnable {
     private final ShiftRegister dataPins;
     private final GPIO gpio;
     private final GPIO.Pin enable;
     private final GPIO.Pin rs;
     private final String[] lines;
+    private final int[] pos;
+    private int shiftTime = 1000;
+    private long nextShift;
+    private boolean run;
+    private boolean lock;
 
     public Dislay(GPIO gpio, ShiftRegister dataPins, GPIO.Pin enable, GPIO.Pin rs) {
         UI.println("Initialize Display...");
@@ -25,9 +30,26 @@ public class Dislay {
         this.enable = enable;
         this.rs = rs;
         lines = new String[]{"", ""};
+        pos = new int[2];
+
+        run = true;
 
         initialize();
 
+    }
+
+    public int getShiftTime() {
+        return shiftTime;
+    }
+
+    public void setShiftTime(int shiftTime) {
+        if (shiftTime > 0) {
+            this.shiftTime = shiftTime;
+        }
+    }
+
+    public void Stop() {
+        run = false;
     }
 
     /**
@@ -41,6 +63,7 @@ public class Dislay {
         functionSet();
         sleep(1);
         functionSet();
+        sleep(1);
 
         //setup
         functionSet();
@@ -49,6 +72,10 @@ public class Dislay {
         sleep(1);
         entryModeSet(false, true);
         sleep(1);
+
+        setDisplay(true);
+
+        //functionSet();
 
         UI.println("LCD screen initialized");
     }
@@ -74,7 +101,7 @@ public class Dislay {
      * @param show Show the data in the display (turn display on/off). If true, then it shows the data. If false,
      *             the data is invisible.
      */
-    public void setDisplay(boolean show) {
+    private void setDisplay(boolean show) {
         gpio.setPin(rs, false);
         for (int i = 0; i < 8; i++) {
             if (i == 2) {
@@ -115,6 +142,7 @@ public class Dislay {
         if (index < 0 || index > 0x67) {
             throw new IndexOutOfBoundsException();
         }
+        gpio.setPin(rs, false);
         dataPins.setData((byte) index);
         dataPins.setPin(7, true);
         Send();
@@ -124,7 +152,7 @@ public class Dislay {
      * Send data to the display. In here the shift register will be updated. Don't do this
      * before sending, because the enable line must be high first.
      */
-    private void Send() {
+    private synchronized void Send() {
         try {
             gpio.setPin(enable, true);
             dataPins.update();
@@ -132,6 +160,30 @@ public class Dislay {
 
         } catch (Exception ex) {
             UI.println("Crash");
+        }
+    }
+
+    private void Write(String line) {
+        byte[] data;
+
+        try {
+            data = line.getBytes("US-ASCII");
+        } catch (UnsupportedEncodingException ex) {
+            UI.println("US-ACII conversion not supported");
+            data = line.getBytes();
+        }
+
+
+        for (int i = 0; i < data.length; i++) {
+            if (i > 16) {
+                return;
+            }
+
+            byte character = data[i];
+
+            dataPins.setData(character);
+            gpio.setPin(rs, true);
+            Send();
         }
     }
 
@@ -143,61 +195,67 @@ public class Dislay {
      * @param data      Data shorten then 39 for in the line.
      * @param firstLine True if the data is on the top line. False if data on second line
      */
-    public void WriteNewLine(String data, boolean firstLine) {
-        //check size of data
-        if (data.length() > 39) {
-            UI.error("String is to long", 13);
-            data = "<E13>";
-        }
+    public synchronized void WriteNewLine(String data, boolean firstLine) {
+        int index = firstLine ? 0 : 1;
 
         //clear screen and save data
         gpio.setPin(rs, true);
 
-        if (firstLine) {
-            while (data.length() < lines[0].length()) {
-                data += " ";
-            }
-            lines[0] = data;
-        } else {
-            while (data.length() < lines[1].length()) {
-                data += " ";
-            }
-            lines[1] = data;
+        while (data.length() <= lines[index].length() && data.length() < 16) {
+            data += " ";
         }
 
+        lines[index] = data;
+        pos[index] = -1;
 
-        functionSet();
+    }
 
-        //print both lines, because the both cleared
-        for (int i = 0; i < lines.length; i++) {
-            String line = lines[i];
+    @Override
+    public void run() {
+        UI.println("Start display thread");
+        while (run) {
+            update();
+            sleep(10);
+        }
+        UI.println("Stop display thread");
+    }
 
-            //if not the firstline, set cursor to second line
-            if (i != 0) {
-                setDDRAMaddress(0x40);
-            } else {
-                setDDRAMaddress(0x0);
-                //setDDRAMaddress(0x0);
+    private void update() {
+        synchronized (lines) {
+            for (int i = 0; i < lines.length; i++) {
+                //noinspection StatementWithEmptyBody
+                while (lock) ;
+                lock = true;
+                int p = pos[i];
+                if (p == -1) {
+                    setDDRAMaddress(0x40 * i);
+                    Write(lines[i]);
+                    pos[i] = 0;
+                } else if (lines[i].length() > 16 && nextShift < System.currentTimeMillis()) {
+                    pos[i]++;
+                    p++;
+
+                    if (lines[i].length() - p - 18 < 0) {
+                        if (lines[i].length() - p - 8 < 0) {
+                            pos[i] = 0;
+                            p = 0;
+                        } else {
+                            setDDRAMaddress(0x40 * i);
+                            Write(lines[i].substring(p) + "        ");
+                            lock = false;
+                            continue;
+                        }
+                    }
+
+                    setDDRAMaddress(0x40 * i);
+                    Write(lines[i].substring(p));
+                }
+
+                lock = false;
             }
 
-            //print text to screen
-            try {
-                //get bytes in ACII and writes those to screen
-                for (byte character : line.getBytes("US-ASCII")) {
-                    dataPins.setData(character);
-                    gpio.setPin(rs, true);
-                    Send();
-                }
-                setDisplay(true);
-            } catch (UnsupportedEncodingException ex) {
-                UI.println("US-ACII conversion not supported");
-
-                //get bytes and writes those to screen
-                for (byte character : line.getBytes()) {
-                    gpio.setPin(rs, true);
-                    dataPins.setData(character);
-                    Send();
-                }
+            if (nextShift < System.currentTimeMillis()) {
+                nextShift = System.currentTimeMillis() + shiftTime;
             }
         }
     }
@@ -206,15 +264,20 @@ public class Dislay {
      * Clear the screen and set the cursor to begin of the first line
      */
     public void ClearScreen() {
+        //noinspection StatementWithEmptyBody
+        while (lock) ;
+        lock = true;
+
         UI.println("Clear screen");
+        gpio.setPin(rs, false);
         dataPins.setPin(0, true);
         for (int i = 1; i < 8; i++) {
             dataPins.setPin(i, false);
         }
 
-        sleep(1);
         Send();
         sleep(1);
+        lock = false;
     }
 
     private void sleep(int milis) {

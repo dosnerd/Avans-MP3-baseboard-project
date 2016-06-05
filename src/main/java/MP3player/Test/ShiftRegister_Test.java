@@ -1,8 +1,8 @@
-package Test;
+package MP3player.Test;
 
-import IO.GPIO;
-import IO.ShiftRegister;
-import IO.UI;
+import MP3player.IO.GPIO;
+import MP3player.IO.ShiftRegister;
+import MP3player.IO.UI;
 
 /**
  * Created by Acer on 19-5-2016.
@@ -31,9 +31,9 @@ public class ShiftRegister_Test extends Test {
             lightBar();
 
             if (isFailed()) {
-                UI.println("Test failed");
+                UI.println("MP3player.Test failed");
             } else {
-                UI.println("Test passed");
+                UI.println("MP3player.Test passed");
             }
         }
     }

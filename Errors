@@ -1,6 +1,6 @@
-E1: Unknown IO exception
-E2: IO write exception
-E3: IO read exception
+E1: Unknown MP3player.IO exception
+E2: MP3player.IO write exception
+E3: MP3player.IO read exception
 E4: Sleep exception
 E5: Unknown exception
 E6: Can not close file
@@ -11,3 +11,4 @@ E10: Can not reset input stream
 E11: NullPointerException
 E12: Can not open file
 E13: String is to long
+E14: Can not find file

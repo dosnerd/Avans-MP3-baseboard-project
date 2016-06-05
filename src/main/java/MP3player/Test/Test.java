@@ -1,6 +1,6 @@
-package Test;
+package MP3player.Test;
 
-import IO.UI;
+import MP3player.IO.UI;
 
 import java.util.Scanner;
 
@@ -51,7 +51,7 @@ public abstract class Test {
      */
     void Fail(String message) {
         failed = true;
-        UI.println("Test failed");
+        UI.println("MP3player.Test failed");
         UI.println(message);
     }
 }

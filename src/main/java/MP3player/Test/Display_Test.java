@@ -1,9 +1,9 @@
-package Test;
+package MP3player.Test;
 
-import IO.Dislay;
-import IO.GPIO;
-import IO.ShiftRegister;
-import IO.UI;
+import MP3player.IO.Dislay;
+import MP3player.IO.GPIO;
+import MP3player.IO.ShiftRegister;
+import MP3player.IO.UI;
 
 /**
  * Created by Acer on 19-5-2016.
@@ -13,7 +13,7 @@ import IO.UI;
  */
 public class Display_Test extends Test {
     private GPIO io;
-    private IO.Dislay dislay;
+    private MP3player.IO.Dislay dislay;
 
     public Display_Test(GPIO io) {
         try {
@@ -38,8 +38,6 @@ public class Display_Test extends Test {
             UI.print("Clearing: ");
             Clearing();
 
-            dislay.setDisplay(true);
-
             UI.print("Hello world: ");
             HelloWorld();
 
@@ -51,9 +49,9 @@ public class Display_Test extends Test {
             waitForConirm();
 
             if (isFailed()) {
-                UI.println("Test failed");
+                UI.println("MP3player.Test failed");
             } else {
-                UI.println("Test passed");
+                UI.println("MP3player.Test passed");
             }
         }
     }

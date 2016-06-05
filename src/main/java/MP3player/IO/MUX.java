@@ -1,4 +1,4 @@
-package IO;
+package MP3player.IO;
 
 /**
  * Created by Acer on 23-5-2016.
@@ -50,6 +50,8 @@ public class MUX {
         }
     }
 
+
+    //TODO: optimize this (read everthing, save in array)
     private boolean readPin(int pin) {
         gpio.setPin(select1, (pin & 1) > 0);
         gpio.setPin(select2, (pin & (1 << 1)) > 0);

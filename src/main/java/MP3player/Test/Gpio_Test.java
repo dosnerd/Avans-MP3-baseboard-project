@@ -1,8 +1,8 @@
-package Test;
+package MP3player.Test;
 
-import Errors.IllegalPinModeException;
-import IO.GPIO;
-import IO.UI;
+import MP3player.Errors.IllegalPinModeException;
+import MP3player.IO.GPIO;
+import MP3player.IO.UI;
 
 /**
  * Created by Acer on 21-4-2016.
@@ -54,9 +54,9 @@ public class Gpio_Test extends Test {
             readFromInput();
 
             if (isFailed()) {
-                UI.println("Test failed");
+                UI.println("MP3player.Test failed");
             } else {
-                UI.println("Test passed");
+                UI.println("MP3player.Test passed");
             }
         }
     }
@@ -106,11 +106,11 @@ public class Gpio_Test extends Test {
 
         }
 
-        IO.UI.println("Passed");
+        MP3player.IO.UI.println("Passed");
     }
 
     /**
-     * Test if it possible to set normal output pin. If this succeed, you can control the GPIO pins. With this test,
+     * MP3player.Test if it possible to set normal output pin. If this succeed, you can control the GPIO pins. With this test,
      * every GPIO output pin would be 500ms high.
      */
     private void writeToOutput() {
@@ -125,11 +125,11 @@ public class Gpio_Test extends Test {
                 ex.printStackTrace();
             }
         }
-        UI.println("Test passed");
+        UI.println("MP3player.Test passed");
     }
 
     /**
-     * Test if it possible to read an output pin. This can not harm the board, but
+     * MP3player.Test if it possible to read an output pin. This can not harm the board, but
      * the class should not allowed it. It wouldn't be dangerous if this test fails,
      * but it would be nice if it doesn't. This because it will decrease the change of
      * picking a wrong pin to read from.

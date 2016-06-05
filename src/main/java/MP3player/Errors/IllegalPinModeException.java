@@ -1,4 +1,4 @@
-package Errors;
+package MP3player.Errors;
 
 /**
  * Created by Acer on 20-4-2016.

@@ -1,6 +1,6 @@
-package IO;
+package MP3player.IO;
 
-import Errors.IllegalPinModeException;
+import MP3player.Errors.IllegalPinModeException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -155,15 +155,15 @@ public class GPIO {
     public enum Pin {
         PB31(false, 95),//MUX
         PB30(false, 94),//DIAL
-        PB21(false, 85),//DIAL
-        PB20(false, 84),//FREE
+        PB21(false, 85),//DIAL push
+        PB20(false, 84),//DIAL
         PB19(false, 83),//DREQ
         PB17(true, 81),//SHIFT clk
         PB16(true, 80),//SHIFT serial
         PA28(true, 60),//SHIFT latch
         PA27(true, 59),//MUX 0
-        PA26(true, 58),//stop
-        PA25(true, 57),//-
+        PA26(true, 58),//MUX 1
+        PA25(true, 57),//STOP
         PA22(true, 54),//LCD r/w
         PA11(true, 43),//LCD rs
         PA10(true, 42),//PREV LED

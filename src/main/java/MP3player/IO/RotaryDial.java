@@ -1,4 +1,4 @@
-package IO;
+package MP3player.IO;
 
 /**
  * Created by Acer on 20-5-2016.
@@ -8,11 +8,13 @@ package IO;
  * @author David de Prez
  * @version 1.0
  */
-public class RotaryDial {
+public class RotaryDial implements Runnable {
     private final GPIO gpio;
     private final GPIO.Pin pinA;
     private final GPIO.Pin pinB;
     private boolean previousValueA;
+    private int counts;
+    private boolean run = true;
 
     /**
      * Constructor
@@ -32,6 +34,41 @@ public class RotaryDial {
         previousValueA = gpio.getPin(pinA);
     }
 
+    public void Stop() {
+        run = false;
+    }
+
+    @Override
+    public void run() {
+        UI.println("Start volume thread");
+        while (run) {
+            check();
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        UI.println("Stop volume thread");
+    }
+
+    private void check() {
+        boolean statusA = gpio.getPin(pinA);
+        if (previousValueA && !statusA) {
+            previousValueA = false;
+
+            //look if it turning right or left by reading pin B
+            if (gpio.getPin(pinB)) {
+                UI.println("Rotary dial turning left");
+                counts--;
+            } else {
+                UI.println("Rotary dial turning right");
+                counts++;
+            }
+        }
+        previousValueA = statusA;
+    }
+
     /**
      * Get the direction that the rotary dial is turning to. This code is partially from
      * http://playground.arduino.cc/Main/RotaryEncoders#Waveform.
@@ -41,25 +78,17 @@ public class RotaryDial {
     public Direction getDirection() {
         try {
             //check for the rising edge of the first pin of the rotary dial.
-            if (!previousValueA && gpio.getPin(pinA)) {
-                previousValueA = gpio.getPin(pinA);
-                UI.print(previousValueA + "");
-                UI.print(gpio.getPin(pinA) + "");
-
-                //look if it turning right or left by reading pin B
-                if (gpio.getPin(pinB)) {
-                    UI.println("Rotary dial turning left");
-                    return Direction.LEFT;
-                } else {
-                    UI.println("Rotary dial turning right");
-                    return Direction.RIGHT;
-                }
+            if (counts > 0) {
+                return Direction.LEFT;
+            } else if (counts < 0) {
+                return Direction.RIGHT;
             }
 
             return Direction.NO_WAY;
         } finally {
-            previousValueA = gpio.getPin(pinA);
+            counts = 0;
         }
+
     }
 
     public enum Direction {

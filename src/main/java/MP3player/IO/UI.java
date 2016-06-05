@@ -1,4 +1,4 @@
-package IO;
+package MP3player.IO;
 
 /**
  * Created by Acer on 21-4-2016.
