@@ -18,7 +18,7 @@ public class MP3 /*implements Runnable*/ {
     private final RotaryDial rotaryDial;
     private final FileSearch files;
     private boolean run = true;
-    private short volume = 0x2F;
+    private short volume = 9;
     private int song;
     private MP3player.Menu.Menu menuActive;
     private long dialPushTime;
@@ -49,7 +49,7 @@ public class MP3 /*implements Runnable*/ {
         UI.set_display(display);
 
         gpio.setPin(GPIO.Pin.PA6, true);
-        display.WriteNewLine("Vol: " + (int) (100 * (1 - volume / 254.0)) + "%", false);
+        display.WriteNewLine("Vol: " + volume, false);
 
         UI.println("MP3player.MP3 initialized");
         UI.println("Starting threads");
@@ -125,8 +125,8 @@ public class MP3 /*implements Runnable*/ {
         setHideLines();
 
         if (files.getPlayList().size() > 0) {
-            song = 0;
-            vs1033.Play(files.getSong(0).getPath());
+            song = (int) (Math.random() * files.getPlayList().size());
+            vs1033.Play(files.getSong(song).getPath());
             showSong();
         }
         //sleep(1000 * 60 * 5);
@@ -228,6 +228,18 @@ public class MP3 /*implements Runnable*/ {
         }
     }
 
+    private void setVolume() {
+        double volume = Math.pow(1.446, this.volume);
+        volume = volume == 1 ? 0 : volume;
+
+        vs1033.Write(new byte[]{0x02, 0x0B, (byte) volume, (byte) volume}, true);
+
+        UI.println("Actual volume: " + volume);
+
+        display.WriteNewLine("Vol: " + this.volume, false);
+        setHideLines();
+    }
+
     private void increaseVolume(int amount) {
 
         if (volume > 0x00) {
@@ -236,7 +248,7 @@ public class MP3 /*implements Runnable*/ {
                 volume = 0x00;
             }
 
-            vs1033.Write(new byte[]{0x02, 0x0B, (byte) volume, (byte) volume}, true);
+            setVolume();
             UI.println("Volume(" + volume + ")");
         }
     }
@@ -244,7 +256,7 @@ public class MP3 /*implements Runnable*/ {
     protected void increaseVolume() {
         UI.println("increase volume");
         if (--volume >= 0x00) {
-            vs1033.Write(new byte[]{0x02, 0x0B, (byte) volume, (byte) volume}, true);
+            setVolume();
         } else {
             volume++;
         }
@@ -259,15 +271,15 @@ public class MP3 /*implements Runnable*/ {
                 volume = 0xFE;
             }
 
-            vs1033.Write(new byte[]{0x02, 0x0B, (byte) volume, (byte) volume}, true);
+            setVolume();
             UI.println("Volume(" + volume + ")");
         }
     }
 
     protected void decreaseVolume() {
         UI.println("decrease volume");
-        if (++volume < 0xFE) {
-            vs1033.Write(new byte[]{0x02, 0x0B, (byte) volume, (byte) volume}, true);
+        if (++volume < 16) {
+            setVolume();
         } else {
             volume--;
         }
@@ -283,7 +295,7 @@ public class MP3 /*implements Runnable*/ {
             } else {
                 menuActive = null;
                 showSong();
-                display.WriteNewLine("Vol: " + (int) (100 * (1 - volume / 254.0)) + "%", false);
+                display.WriteNewLine("Vol: " + volume, false);
             }
         } else if (multyplexer.pressed(1)) {
             UI.println("pauze/play");
@@ -317,28 +329,22 @@ public class MP3 /*implements Runnable*/ {
     private void checkVolume() {
         RotaryDial.Direction direction = rotaryDial.getDirection();
         if (direction == RotaryDial.Direction.RIGHT) {
-            setHideLines();
             if (menuActive == null) {
-                increaseVolume(6);
+                increaseVolume();
             } else {
+                setHideLines();
                 menuActive.up();
-                return;
             }
 
         } else if (direction == RotaryDial.Direction.LEFT) {
-            setHideLines();
             if (menuActive == null) {
-                decreaseVolume(6);
+                decreaseVolume();
             } else {
+                setHideLines();
                 menuActive.down();
-                return;
             }
 
-        } else {
-            return;
         }
-
-        display.WriteNewLine("Vol: " + (int) (100 * (1 - volume / 254.0)) + "%", false);
     }
 
     private void close() {
@@ -367,7 +373,7 @@ public class MP3 /*implements Runnable*/ {
             menuActive = menuActive.select();
             if (menuActive == null) {
                 showSong();
-                display.WriteNewLine("Vol: " + (int) (100 * (1 - volume / 254.0)) + "%", false);
+                display.WriteNewLine("Vol: " + volume, false);
             }
         }
     }

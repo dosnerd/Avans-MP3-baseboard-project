@@ -66,7 +66,7 @@ public class ShiftRegister {
         //update output of shift register (latch)
         gpio.setPin(latch, true);
         //TODO: check if this is to fast
-        sleep(1);
+        sleep(0);
         gpio.setPin(latch, false);
     }
 
@@ -82,10 +82,10 @@ public class ShiftRegister {
         //send to the shift register
         gpio.setPin(clock, false);
         gpio.setPin(serial, value);
-        sleep(1);
+        sleep(0);
         gpio.setPin(clock, true);
-        sleep(1);
-        gpio.setPin(serial, false);
+        //sleep(0);
+        //gpio.setPin(serial, false);
     }
 
     private void sleep(int mili) {
