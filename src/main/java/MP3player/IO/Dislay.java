@@ -36,6 +36,8 @@ public class Dislay implements Runnable {
 
         initialize();
 
+        setDDRAMaddress(0);
+        Write("Loading");
     }
 
     public int getShiftTime() {

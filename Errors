@@ -12,3 +12,5 @@ E11: NullPointerException
 E12: Can not open file
 E13: String is to long
 E14: Can not find file
+E15: Can not load settings
+E16: Can not save settings

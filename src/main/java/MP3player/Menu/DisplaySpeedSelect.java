@@ -9,7 +9,7 @@ package MP3player.Menu;
 class DisplaySpeedSelect extends Menu {
 
     DisplaySpeedSelect(MP3player.IO.Dislay display) {
-        super("Display speed", display);
+        super("Scroll speed", display);
         setStandardValue(display.getShiftTime() + "");
     }
 

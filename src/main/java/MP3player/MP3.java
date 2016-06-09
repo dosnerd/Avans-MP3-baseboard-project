@@ -3,6 +3,11 @@ package MP3player;
 import MP3player.Errors.IllegalPinModeException;
 import MP3player.IO.*;
 import MP3player.Sources.FileSearch;
+import MP3player.Sources.Save;
+
+import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 /**
  * Created by Acer on 23-5-2016.
@@ -32,9 +37,9 @@ public class MP3 /*implements Runnable*/ {
         files = new FileSearch();
 
         this.gpio = gpio;
-        multyplexer = new MUX(gpio, GPIO.Pin.PA27, GPIO.Pin.PA26, null, GPIO.Pin.PB31);
         ShiftRegister dataPins = new ShiftRegister(gpio, GPIO.Pin.PB17, GPIO.Pin.PB16, GPIO.Pin.PA28);
         display = new Dislay(gpio, dataPins, GPIO.Pin.PA22, GPIO.Pin.PA11);
+        multyplexer = new MUX(gpio, GPIO.Pin.PA27, GPIO.Pin.PA26, null, GPIO.Pin.PB31);
         rotaryDial = new RotaryDial(gpio, GPIO.Pin.PB20, GPIO.Pin.PB30);
         vs1033 = new VS1033(gpio);
 
@@ -49,7 +54,7 @@ public class MP3 /*implements Runnable*/ {
         UI.set_display(display);
 
         gpio.setPin(GPIO.Pin.PA6, true);
-        display.WriteNewLine("Vol: " + volume, false);
+        display.WriteNewLine("Vol: " + (15 - volume), false);
 
         UI.println("MP3player.MP3 initialized");
         UI.println("Starting threads");
@@ -67,6 +72,69 @@ public class MP3 /*implements Runnable*/ {
         volumeThread.start();
 
         UI.println("MP3player.MP3 created");
+
+        load();
+    }
+
+    private void load() {
+        try {
+            UI.println("Loading settings");
+            InputStream stream = MP3.class.getResourceAsStream("save");
+            if (stream == null) {
+                UI.error("Stream is null", 15);
+                return;
+            }
+
+            ObjectInputStream rdr = new ObjectInputStream(stream);
+            Object saveFile = rdr.readObject();
+            if (saveFile instanceof Save) {
+                Save save = (Save) saveFile;
+                volume = save.getVolume();
+                timeToHide = save.getTimeToHide();
+                display.setShiftTime(save.getScrollSpeed());
+                files.setFilter(save.getFilter());
+                disco = save.isDisco();
+
+                setVolume();
+                UI.println("Settings loaded");
+            }
+        } catch (IOException ex) {
+            UI.error("Can not load settings", 15);
+        } catch (ClassNotFoundException ex) {
+            UI.error("Save file is in wrong format", 15);
+        }
+
+    }
+
+    private void save() {
+        try {
+            UI.println("Saving settings");
+            URL url = MP3.class.getResource("save");
+
+            if (url == null) {
+                UI.error("url is null", 16);
+                return;
+            }
+
+            File saveFile = new File(url.toURI());
+            ObjectOutputStream wrt = new ObjectOutputStream(new FileOutputStream(saveFile));
+
+            Save save = new Save();
+            save.setTimeToHide(timeToHide);
+            save.setDisco(disco);
+            save.setFilter(files.getFilter());
+            save.setScrollSpeed(display.getShiftTime());
+            save.setVolume(volume);
+            wrt.writeObject(save);
+            UI.println("Settings saved");
+        } catch (URISyntaxException ex) {
+            UI.error("Can not convert URL", 16);
+        } catch (FileNotFoundException ex) {
+            UI.error("Can not find file", 16);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            UI.error("Can not save settings", 16);
+        }
     }
 
     public int getTimeToHide() {
@@ -111,7 +179,11 @@ public class MP3 /*implements Runnable*/ {
     }
 
     public void Stop() {
+        display.WriteNewLine("Shutdown...", true);
+
         run = false;
+        save();
+
         display.Stop();
         gpio.setPin(GPIO.Pin.PA6, false);
         vs1033.Stop();
@@ -236,7 +308,7 @@ public class MP3 /*implements Runnable*/ {
 
         UI.println("Actual volume: " + volume);
 
-        display.WriteNewLine("Vol: " + this.volume, false);
+        display.WriteNewLine("Vol: " + (15 - this.volume), false);
         setHideLines();
     }
 
@@ -295,7 +367,7 @@ public class MP3 /*implements Runnable*/ {
             } else {
                 menuActive = null;
                 showSong();
-                display.WriteNewLine("Vol: " + volume, false);
+                display.WriteNewLine("Vol: " + (15 - volume), false);
             }
         } else if (multyplexer.pressed(1)) {
             UI.println("pauze/play");
@@ -373,7 +445,7 @@ public class MP3 /*implements Runnable*/ {
             menuActive = menuActive.select();
             if (menuActive == null) {
                 showSong();
-                display.WriteNewLine("Vol: " + volume, false);
+                display.WriteNewLine("Vol: " + (15 - volume), false);
             }
         }
     }
