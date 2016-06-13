@@ -83,16 +83,23 @@ public class VS1033 implements Runnable {
 
     /**
      * This wil de-initialize the VS1033. This means that it will stop playing, remove the filepath,
-     * close the file stream, close, the SCI connection and close the SDI connection,
+     * close the file stream, close, the SCI connection and close the SDI connection.
      */
     public void deinit() {
         UI.println("Closing vs1033");
 
+        //stop thread
         run = false;
         play = false;
+
+        //wait until thread is stopped
+        while (!run) sleep(5);
+
+        //close stream
         source = "";
         closeFileStream();
 
+        //close SCI
         try {
             if (SCI != null) {
                 SCI.close();
@@ -102,6 +109,7 @@ public class VS1033 implements Runnable {
             UI.error("Can not close SCI", 6);
         }
 
+        //close SDI
         try {
             if (SDI != null) {
                 SDI.close();
@@ -110,7 +118,6 @@ public class VS1033 implements Runnable {
         } catch (IOException ex) {
             UI.error("Can not close SCI", 6);
         }
-        UI.println("Gpio deinitialized");
     }
 
     /**
@@ -243,6 +250,9 @@ public class VS1033 implements Runnable {
         while (run) {
             tick();
         }
+
+        //confirm thread is stopped
+        run = true;
         UI.println("Stream thread stopped");
     }
 

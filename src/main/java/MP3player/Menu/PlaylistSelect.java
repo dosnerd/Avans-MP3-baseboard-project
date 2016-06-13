@@ -1,6 +1,6 @@
 package MP3player.Menu;
 
-import MP3player.IO.Dislay;
+import MP3player.IO.Display;
 import MP3player.Sources.File;
 import MP3player.Sources.FileSearch;
 
@@ -18,8 +18,8 @@ class PlaylistSelect extends Menu {
     private List<String> filters;
     private int filter;
 
-    PlaylistSelect(Dislay dislay, FileSearch fileSearch) {
-        super("Filter", dislay);
+    PlaylistSelect(Display display, FileSearch fileSearch) {
+        super("Filter", display);
         this.fileSearch = fileSearch;
         filters = new ArrayList<String>();
         filters.add("All");
@@ -56,7 +56,7 @@ class PlaylistSelect extends Menu {
             filter = 0;
         }
 
-        getDislay().WriteNewLine(filters.get(filter), false);
+        getDisplay().WriteNewLine(filters.get(filter), false);
     }
 
     @Override
@@ -65,6 +65,6 @@ class PlaylistSelect extends Menu {
             filter = filters.size() - 1;
         }
 
-        getDislay().WriteNewLine(filters.get(filter), false);
+        getDisplay().WriteNewLine(filters.get(filter), false);
     }
 }

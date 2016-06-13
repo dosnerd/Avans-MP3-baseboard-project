@@ -1,6 +1,6 @@
 package MP3player.Menu;
 
-import MP3player.IO.Dislay;
+import MP3player.IO.Display;
 import MP3player.IO.UI;
 
 import java.util.ArrayList;
@@ -16,12 +16,12 @@ public class Menu {
     private String name;
     private List<Menu> subMenus;
     private int selectedMenu;
-    private Dislay dislay;
+    private Display display;
     private String standardValue;
 
-    Menu(String name, Dislay dislay) {
+    Menu(String name, Display display) {
         this.name = name;
-        this.dislay = dislay;
+        this.display = display;
         subMenus = new ArrayList<Menu>();
 
         standardValue = "<<No menu>>";
@@ -38,12 +38,12 @@ public class Menu {
     public Menu select() {
         if (subMenus.size() > 0) {
             UI.println("Select: " + subMenus.get(selectedMenu).name);
-            dislay.WriteNewLine(subMenus.get(selectedMenu).name, true);
+            display.WriteNewLine(subMenus.get(selectedMenu).name, true);
 
             if (subMenus.get(selectedMenu).subMenus.size() > 0) {
-                dislay.WriteNewLine(subMenus.get(selectedMenu).subMenus.get(0).name, false);
+                display.WriteNewLine(subMenus.get(selectedMenu).subMenus.get(0).name, false);
             } else {
-                dislay.WriteNewLine(subMenus.get(selectedMenu).standardValue, false);
+                display.WriteNewLine(subMenus.get(selectedMenu).standardValue, false);
             }
 
             return subMenus.get(selectedMenu);
@@ -51,8 +51,8 @@ public class Menu {
         return null;
     }
 
-    Dislay getDislay() {
-        return dislay;
+    Display getDisplay() {
+        return display;
     }
 
     void addSubMenu(Menu menu) {
@@ -69,7 +69,7 @@ public class Menu {
 
         UI.println("Look: " + subMenus.get(selectedMenu).name);
 
-        dislay.WriteNewLine(subMenus.get(selectedMenu).name, false);
+        display.WriteNewLine(subMenus.get(selectedMenu).name, false);
     }
 
     public void down() {
@@ -79,7 +79,7 @@ public class Menu {
 
         UI.println("Look: " + subMenus.get(selectedMenu).name);
 
-        dislay.WriteNewLine(subMenus.get(selectedMenu).name, false);
+        display.WriteNewLine(subMenus.get(selectedMenu).name, false);
     }
 
     public String getName() {

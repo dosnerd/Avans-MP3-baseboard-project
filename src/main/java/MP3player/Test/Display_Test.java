@@ -1,6 +1,6 @@
 package MP3player.Test;
 
-import MP3player.IO.Dislay;
+import MP3player.IO.Display;
 import MP3player.IO.GPIO;
 import MP3player.IO.ShiftRegister;
 import MP3player.IO.UI;
@@ -13,12 +13,12 @@ import MP3player.IO.UI;
  */
 public class Display_Test extends Test {
     private GPIO io;
-    private MP3player.IO.Dislay dislay;
+    private Display display;
 
     public Display_Test(GPIO io) {
         try {
             this.io = io;
-            dislay = new Dislay(
+            display = new Display(
                     io,
                     new ShiftRegister(io, GPIO.Pin.PB17, GPIO.Pin.PB16, GPIO.Pin.PA28),
                     GPIO.Pin.PA22, GPIO.Pin.PA11);
@@ -60,7 +60,7 @@ public class Display_Test extends Test {
      * This test try to clear the screen
      */
     private void Clearing() {
-        dislay.ClearScreen();
+        display.ClearScreen();
         UI.println("Passed");
     }
 
@@ -68,7 +68,7 @@ public class Display_Test extends Test {
      * This test will true to write Hello World to the first line
      */
     private void HelloWorld() {
-        dislay.WriteNewLine("Hello world", true);
+        display.WriteNewLine("Hello world", true);
         if (waitForConirm()) {
             UI.println("Passed");
         } else {
@@ -80,7 +80,7 @@ public class Display_Test extends Test {
      * It will try to write on the second line 'Second line'.
      */
     private void SecondLine() {
-        dislay.WriteNewLine("Second line", false);
+        display.WriteNewLine("Second line", false);
         if (waitForConirm()) {
             UI.println("Passed");
         } else {

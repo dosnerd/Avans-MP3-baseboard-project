@@ -11,7 +11,7 @@ import java.io.UnsupportedEncodingException;
  * @author David de Prez
  * @version 1.0
  */
-public class Dislay implements Runnable {
+public class Display implements Runnable {
     private final ShiftRegister dataPins;
     private final GPIO gpio;
     private final GPIO.Pin enable;
@@ -23,7 +23,7 @@ public class Dislay implements Runnable {
     private boolean run;
     private boolean lock;
 
-    public Dislay(GPIO gpio, ShiftRegister dataPins, GPIO.Pin enable, GPIO.Pin rs) {
+    public Display(GPIO gpio, ShiftRegister dataPins, GPIO.Pin enable, GPIO.Pin rs) {
         UI.println("Initialize Display...");
         this.gpio = gpio;
         this.dataPins = dataPins;
@@ -219,47 +219,55 @@ public class Dislay implements Runnable {
             update();
             sleep(10);
         }
+
+        run = true;
         UI.println("Stop display thread");
     }
 
     private void update() {
-        synchronized (lines) {
-            for (int i = 0; i < lines.length; i++) {
-                //noinspection StatementWithEmptyBody
-                while (lock) ;
-                lock = true;
-                int p = pos[i];
-                if (p == -1) {
-                    setDDRAMaddress(0x40 * i);
-                    Write(lines[i]);
+        //copy array to other variable. This will prevent data corruption cause by multithreading
+        String[] lines = new String[this.lines.length];
+        System.arraycopy(this.lines, 0, lines, 0, lines.length);
+
+        for (int i = 0; i < lines.length; i++) {
+            //noinspection StatementWithEmptyBody
+            while (lock) ;
+            lock = true;
+            int p = pos[i];
+            if (p == -1) {
+                setDDRAMaddress(0x40 * i);
+                Write(lines[i]);
+
+                if (lines[i].equals(this.lines[i])) {
                     pos[i] = 0;
-                } else if (lines[i].length() > 16 && nextShift < System.currentTimeMillis()) {
-                    pos[i]++;
-                    p++;
+                }
+            } else if (lines[i].length() > 16 && nextShift < System.currentTimeMillis()) {
+                pos[i]++;
+                p++;
 
-                    if (lines[i].length() - p - 18 < 0) {
-                        if (lines[i].length() - p - 8 < 0) {
-                            pos[i] = 0;
-                            p = 0;
-                        } else {
-                            setDDRAMaddress(0x40 * i);
-                            Write(lines[i].substring(p) + "        ");
-                            lock = false;
-                            continue;
-                        }
+                if (lines[i].length() - p - 18 < 0) {
+                    if (lines[i].length() - p - 8 < 0) {
+                        pos[i] = 0;
+                        p = 0;
+                    } else {
+                        setDDRAMaddress(0x40 * i);
+                        Write(lines[i].substring(p) + "        ");
+                        lock = false;
+                        continue;
                     }
-
-                    setDDRAMaddress(0x40 * i);
-                    Write(lines[i].substring(p));
                 }
 
-                lock = false;
+                setDDRAMaddress(0x40 * i);
+                Write(lines[i].substring(p));
             }
 
-            if (nextShift < System.currentTimeMillis()) {
-                nextShift = System.currentTimeMillis() + shiftTime;
-            }
+            lock = false;
         }
+
+        if (nextShift < System.currentTimeMillis()) {
+            nextShift = System.currentTimeMillis() + shiftTime;
+        }
+
     }
 
     /**

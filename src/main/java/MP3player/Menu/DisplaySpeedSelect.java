@@ -1,5 +1,7 @@
 package MP3player.Menu;
 
+import MP3player.IO.Display;
+
 /**
  * Created by Acer on 2-6-2016.
  *
@@ -8,7 +10,7 @@ package MP3player.Menu;
  */
 class DisplaySpeedSelect extends Menu {
 
-    DisplaySpeedSelect(MP3player.IO.Dislay display) {
+    DisplaySpeedSelect(Display display) {
         super("Scroll speed", display);
         setStandardValue(display.getShiftTime() + "");
     }
@@ -20,13 +22,13 @@ class DisplaySpeedSelect extends Menu {
 
     @Override
     public void up() {
-        getDislay().setShiftTime(getDislay().getShiftTime() + 10);
-        getDislay().WriteNewLine(getDislay().getShiftTime() + "", false);
+        getDisplay().setShiftTime(getDisplay().getShiftTime() + 10);
+        getDisplay().WriteNewLine(getDisplay().getShiftTime() + "", false);
     }
 
     @Override
     public void down() {
-        getDislay().setShiftTime(getDislay().getShiftTime() - 10);
-        getDislay().WriteNewLine(getDislay().getShiftTime() + "", false);
+        getDisplay().setShiftTime(getDisplay().getShiftTime() - 10);
+        getDisplay().WriteNewLine(getDisplay().getShiftTime() + "", false);
     }
 }

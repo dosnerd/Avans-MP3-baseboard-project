@@ -69,7 +69,11 @@ public class MUXLED_Test extends Test {
         UI.print("Hit pin 0 (2 sec long): ");
         for (int i = 0; i < 200; i++) {
             mux.check();
-            sleep(2);
+            try {
+                Thread.sleep(2);
+            } catch (InterruptedException ex) {
+                UI.error("Can sleep", 4);
+            }
         }
 
         mux.check();
@@ -78,14 +82,6 @@ public class MUXLED_Test extends Test {
             UI.println("Passed(" + mux.timePin(pin) + ")");
         } else {
             Fail("Pin " + pin + " is not high!");
-        }
-    }
-
-    private void sleep(int mili) {
-        try {
-            Thread.sleep(mili);
-        } catch (InterruptedException ex) {
-            UI.error("Can sleep", 4);
         }
     }
 }

@@ -34,8 +34,11 @@ class Main {
             */
             GPIO.setDefaultGpio(new Gpio());
             GPIO gpio = new GPIO();
+
+            //run test if use asked for it
             if (_doTest) {
                 try {
+                    //run normal tests
                     runTest(new MP3player.Test.Gpio_Test(gpio));
                     runTest(new MP3player.Test.ShiftRegister_Test(gpio));
                     runTest(new MP3player.Test.MUXLED_Test(gpio));
@@ -45,14 +48,18 @@ class Main {
                     UI.error("Unknown error", 5);
                 }
 
-                //run sinus test for about 1000ms
+                //start sinus test + volume test
                 MP3player.Test.SinusTest sinusTest = new MP3player.Test.SinusTest();
                 sinusTest.startTest();
 
+                //increase volume slightly until max
                 for (int i = 0xFE; i >= 0; i--) {
                     try {
+                        //write volume
                         UI.println(i + "");
                         sinusTest.getSCI().write(new byte[]{0x02, 0x0B, (byte) i, (byte) i});
+
+                        //wait for a bit
                         Thread.sleep(100);
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -61,9 +68,11 @@ class Main {
                     }
                 }
 
+                //end the sinus test
                 sinusTest.endTest();
             }
 
+            //create MP3 with/without manual mode.
             MP3 mp3;
             if (_manualMode) {
                 mp3 = new ManualControl(gpio);
@@ -71,17 +80,15 @@ class Main {
                 mp3 = new MP3(gpio);
             }
 
+            //start MP3 mode, always in save mode. Unless user asked for unsave mode
             if (_saveMode) {
                 try {
                     UI.println("Start in safe mode");
-
-                    //mp3.getVs1033().run();
                     mp3.Run();
 
                 } catch (Exception ex) {
                     UI.error("An error occurs", 5);
                     mp3.Stop();
-                    ex.printStackTrace();
                 }
             } else {
                 UI.println("Start in unsafe mode");
@@ -91,7 +98,13 @@ class Main {
     }
 
 
+    /**
+     * Run the given test
+     *
+     * @param test test to run
+     */
     private static void runTest(MP3player.Test.Test test) {
+        //run the test
         test.run();
     }
 

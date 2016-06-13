@@ -8,7 +8,7 @@ package MP3player.IO;
  */
 public class UI {
     private static boolean _log;
-    private static Dislay _display;
+    private static Display _display;
 
     /**
      * This will set the _display. When this is set, the errornumber will be displayed when there
@@ -16,7 +16,7 @@ public class UI {
      *
      * @param _display The display to print the error number to
      */
-    public static void set_display(Dislay _display) {
+    public static void set_display(Display _display) {
         UI._display = _display;
     }
 

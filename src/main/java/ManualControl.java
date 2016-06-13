@@ -6,32 +6,41 @@ import java.util.Scanner;
 
 /**
  * Created by Acer on 25-5-2016.
+ * <p/>
+ * This class can be used as replacement for the buttons and rotary dial. Is continuously ask for a command.
  *
  * @author David de Prez
  * @version 1.0
  */
 class ManualControl extends MP3 implements Runnable {
 
+    /**
+     * Constructor for manual control. Here it start itself async. Gpio is needed for the super class.
+     *
+     * @param gpio needed for super class
+     */
     ManualControl(GPIO gpio) {
+        //call constructor super class
         super(gpio);
+
+        //start itself async.
         Thread t = new Thread(this);
         t.setName("Manual control");
         t.start();
     }
 
+    /**
+     * This override the method Runnable. This function called when it starts as a separate thread.
+     */
     @Override
     public void run() {
         Scanner rdr = new Scanner(System.in);
         while (true) {
-            /*UI.println((Runtime.getRuntime().freeMemory() + ""));
-            try{
-                Thread.sleep(1000);
-            } catch (InterruptedException ex){
-
-            }*/
-
+            //Ask for command
             UI.print("Command: ");
             String line = rdr.nextLine();
+
+            //run command
             if (line.equals("exit")) {
                 Stop();
                 return;
@@ -45,9 +54,6 @@ class ManualControl extends MP3 implements Runnable {
                 getVs1033().Pauze();
             } else if (line.equals("play")) {
                 getVs1033().Play();
-            } else if (line.startsWith("bit:")) {
-                String[] args = line.split(":");
-                getVs1033().changeBuffer(Integer.parseInt(args[1]));
             } else if (line.equals("VH")) {
                 increaseVolume();
             } else if (line.equals("VL")) {
