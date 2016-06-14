@@ -19,12 +19,13 @@ class PlaylistSelect extends Menu {
     private int filter;
 
     PlaylistSelect(Display display, FileSearch fileSearch) {
+        //set name and give display
         super("Filter", display);
         this.fileSearch = fileSearch;
         filters = new ArrayList<String>();
         filters.add("All");
-        setStandardValue(fileSearch.getFilter());
 
+        //add all possible filters
         for (File file : fileSearch.getFileList()) {
             String artistFilter = "<ARTIEST>" + file.getArtist();
             String albumFilter = "<ALBUM>" + file.getAlbum();
@@ -42,29 +43,42 @@ class PlaylistSelect extends Menu {
                 filters.add(genreFilter);
             }
         }
+
+        //set standard value
+        setStandardValue(fileSearch.getFilter());
+
+        //set selected filter to current filter (if exists)
+        if (filters.contains(fileSearch.getFilter())) {
+            filter = filters.indexOf(fileSearch.getFilter());
+        }
     }
 
     @Override
     public Menu select() {
+        //apply filter
         fileSearch.setFilter(filters.get(filter));
         return null;
     }
 
     @Override
     public void up() {
+        //select next filter, start from beginning if current is at the end
         if (++filter >= filters.size()) {
             filter = 0;
         }
 
+        //show selected filter to second line of display
         getDisplay().WriteNewLine(filters.get(filter), false);
     }
 
     @Override
     public void down() {
+        //select previous filter, start from end if current is at the beginning
         if (--filter < 0) {
             filter = filters.size() - 1;
         }
 
+        //show selected filter to second line of display
         getDisplay().WriteNewLine(filters.get(filter), false);
     }
 }

@@ -10,7 +10,10 @@ import MP3player.MP3;
  */
 class Displaymenu extends Menu {
     Displaymenu(MP3 mp3) {
+        //set name and give display
         super("Display", mp3.getDisplay());
+
+        //add submenu's
         addSubMenu(new StandbySelect(mp3));
         addSubMenu(new DisplaySpeedSelect(mp3.getDisplay()));
     }

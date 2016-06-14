@@ -11,7 +11,10 @@ import MP3player.Sources.FileSearch;
  */
 public class MainMenu extends Menu {
     public MainMenu(MP3 mp3, FileSearch fileSearch) {
+        //set name and give display
         super("Main menu", mp3.getDisplay());
+
+        //create and add submenu's
         addSubMenu(new Displaymenu(mp3));
         addSubMenu(new PlaylistSelect(mp3.getDisplay(), fileSearch));
         addSubMenu(new DiscoSelect(mp3));
