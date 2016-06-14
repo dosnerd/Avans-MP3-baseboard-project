@@ -4,16 +4,9 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/java/MP3player/MP3.java" line="415" mnemonic="9" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e27e6767-840a-4709-8774-aa6cc3b933a3" name="Default" comment="Almost everthing is with commands&#10;Add commands to Display&#10;Add commands to GPIO&#10;Add commands to MUX&#10;Add commands to Rotary Dial&#10;Add commands to ShiftRegister&#10;Add commands to VS1033&#10;Change entryModeSet at Display. It now send that data to the LCD. First it only set the data, without sending.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Main.class" afterPath="$PROJECT_DIR$/out/production/Main.class" />
+    <list default="true" id="e27e6767-840a-4709-8774-aa6cc3b933a3" name="Default" comment="Everything has commands (except test classes) &amp; bug fix&#10;Add commands to DiscoSelect&#10;Add commands to Displaymenu&#10;Add commands to DisplaySpeedSelect&#10;Add commands to MainMenu&#10;Add commands to Menu&#10;Add commands to PlaylistSelect&#10;Add commands to StandbyeSelect&#10;Fix current filter in PlaylistSelect is now standard selected. First it showed as it was selected, but is wasn't.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/MP3player/Menu/DiscoSelect.java" afterPath="$PROJECT_DIR$/src/main/java/MP3player/Menu/DiscoSelect.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/MP3player/Menu/DisplaySpeedSelect.java" afterPath="$PROJECT_DIR$/src/main/java/MP3player/Menu/DisplaySpeedSelect.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/MP3player/Menu/Displaymenu.java" afterPath="$PROJECT_DIR$/src/main/java/MP3player/Menu/Displaymenu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/MP3player/Menu/MainMenu.java" afterPath="$PROJECT_DIR$/src/main/java/MP3player/Menu/MainMenu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/MP3player/Menu/Menu.java" afterPath="$PROJECT_DIR$/src/main/java/MP3player/Menu/Menu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/MP3player/Menu/PlaylistSelect.java" afterPath="$PROJECT_DIR$/src/main/java/MP3player/Menu/PlaylistSelect.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/MP3player/Menu/StandbySelect.java" afterPath="$PROJECT_DIR$/src/main/java/MP3player/Menu/StandbySelect.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,7 +28,18 @@
     <favorites_list name="project" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="58" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -100,7 +104,6 @@
         <option value="$PROJECT_DIR$/src/main/java/MP3player/Sources/FileSearch.java" />
         <option value="$PROJECT_DIR$/src/main/java/MP3player/Sources/File.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/java/MP3player/Sources/Save.java" />
         <option value="$PROJECT_DIR$/src/main/java/MP3player/MP3.java" />
         <option value="$PROJECT_DIR$/src/main/java/MP3player/IO/Display.java" />
@@ -116,6 +119,7 @@
         <option value="$PROJECT_DIR$/src/main/java/MP3player/Menu/DiscoSelect.java" />
         <option value="$PROJECT_DIR$/src/main/java/MP3player/Menu/StandbySelect.java" />
         <option value="$PROJECT_DIR$/src/main/java/MP3player/Menu/PlaylistSelect.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -188,102 +192,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MP3player" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MP3player" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Test" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -755,7 +663,7 @@
       <workItem from="1465140741979" duration="8195000" />
       <workItem from="1465389408763" duration="20462000" />
       <workItem from="1465813507946" duration="962000" />
-      <workItem from="1465816573626" duration="8064000" />
+      <workItem from="1465816573626" duration="8614000" />
     </task>
     <task id="LOCAL-00001" summary="Project now compatible with eclipse.">
       <created>1461926544025</created>
@@ -827,11 +735,18 @@
       <option name="project" value="LOCAL" />
       <updated>1465909235951</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Everything has commands (except test classes) &amp; bug fix&#10;Add commands to DiscoSelect&#10;Add commands to Displaymenu&#10;Add commands to DisplaySpeedSelect&#10;Add commands to MainMenu&#10;Add commands to Menu&#10;Add commands to PlaylistSelect&#10;Add commands to StandbyeSelect&#10;Fix current filter in PlaylistSelect is now standard selected. First it showed as it was selected, but is wasn't.">
+      <created>1465910554809</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1465910554809</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="255968000" />
+    <option name="totallyTimeSpent" value="256518000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -844,7 +759,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="916" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3368146" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -907,7 +822,8 @@
     <MESSAGE value="Add loading and shutdown screen&#10;Add save systemd&#10;Rename Display speed to scroll speed" />
     <MESSAGE value="Command code and final touch&#10;Add commands to MP3&#10;Add commands to ManualControl&#10;Add commands to Main&#10;Add commands to Save&#10;Add commands to FileSearch&#10;Add commands to File&#10;Change sleep ShiftRegister. Always sleep 0 milliseconds&#10;Change next and prev have same function in the menu as the rotary dial.&#10;Rename Dislay to Display &#10;Remove Sleep function from MUXLED_Test&#10;" />
     <MESSAGE value="Almost everthing is with commands&#10;Add commands to Display&#10;Add commands to GPIO&#10;Add commands to MUX&#10;Add commands to Rotary Dial&#10;Add commands to ShiftRegister&#10;Add commands to VS1033&#10;Change entryModeSet at Display. It now send that data to the LCD. First it only set the data, without sending." />
-    <option name="LAST_COMMIT_MESSAGE" value="Almost everthing is with commands&#10;Add commands to Display&#10;Add commands to GPIO&#10;Add commands to MUX&#10;Add commands to Rotary Dial&#10;Add commands to ShiftRegister&#10;Add commands to VS1033&#10;Change entryModeSet at Display. It now send that data to the LCD. First it only set the data, without sending." />
+    <MESSAGE value="Everything has commands (except test classes) &amp; bug fix&#10;Add commands to DiscoSelect&#10;Add commands to Displaymenu&#10;Add commands to DisplaySpeedSelect&#10;Add commands to MainMenu&#10;Add commands to Menu&#10;Add commands to PlaylistSelect&#10;Add commands to StandbyeSelect&#10;Fix current filter in PlaylistSelect is now standard selected. First it showed as it was selected, but is wasn't." />
+    <option name="LAST_COMMIT_MESSAGE" value="Everything has commands (except test classes) &amp; bug fix&#10;Add commands to DiscoSelect&#10;Add commands to Displaymenu&#10;Add commands to DisplaySpeedSelect&#10;Add commands to MainMenu&#10;Add commands to Menu&#10;Add commands to PlaylistSelect&#10;Add commands to StandbyeSelect&#10;Fix current filter in PlaylistSelect is now standard selected. First it showed as it was selected, but is wasn't." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1088,14 +1004,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="7" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1442,6 +1350,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1249">
           <caret line="80" column="16" selection-start-line="80" selection-start-column="16" selection-end-line="80" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="58" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
           <folding />
         </state>
       </provider>
