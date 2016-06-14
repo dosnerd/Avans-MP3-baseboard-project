@@ -28,17 +28,23 @@ public class VS1033 implements Runnable {
         init();
     }
 
+    /**
+     * Get if the VS1033 is allowed to play
+     *
+     * @return true is allowed, false if disallowed
+     */
     public boolean isPlaying() {
         return play;
     }
 
+    /**
+     * Get if the file is valid. This is false if it is at the end of the file,
+     * file can not be read or if there were an exception by loaded/streaming
+     *
+     * @return true is file is valid, false if file is invalid
+     */
     public boolean ValidFile() {
         return valid;
-    }
-
-    public void changeBuffer(int size) {
-        this.bufferSize = size;
-        buffer = new byte[bufferSize];
     }
 
     /**
@@ -47,11 +53,14 @@ public class VS1033 implements Runnable {
      */
     private void init() {
         //initialize and volume data
+
+        //fast clock (to play song at normal speed, can glitch the song)
         //byte[] clockf = {0x02, 0x03, (byte) 0x90, (byte) 0x00};//CLOCKF
+
+        //slow clock (to play song little slower, less glitch in the song)
         byte[] clockf = {0x02, 0x03, (byte) 0x84, (byte) 0xE2};//CLOCKF
         byte[] vol = {0x02, 0x0B, 0x1F, 0x1F};  //VOL
         byte[] sampleRate = {0x02, 0x05, (byte) 0xAC, (byte) 0x45};//audata
-        //TODO: BASS
 
         UI.println("Initializing VS1033...");
 
@@ -121,11 +130,14 @@ public class VS1033 implements Runnable {
     }
 
     /**
-     * Resume the track
+     * Allow the VS1033 to play again.
      */
     public void Play() {
+        //allow playing
         play = true;
         UI.println("play");
+
+        //set leds at right status
         gpio.setPin(GPIO.Pin.PA25, false);
 
         gpio.cancelBlick(GPIO.Pin.PA9);
@@ -142,6 +154,7 @@ public class VS1033 implements Runnable {
 
         //stop playing, preventing sending more data of the current file to VS1033
         play = false;
+        valid = false;
 
         //software reset
         Write(_INIT, true);
@@ -157,7 +170,7 @@ public class VS1033 implements Runnable {
                 //open file
                 fileStream = new FileInputStream(source);
                 valid = true;
-                //tick = 0;
+
                 UI.println("New file");
             } else {
                 UI.println("File not found");
@@ -166,6 +179,7 @@ public class VS1033 implements Runnable {
             UI.error("Can not open file", 12);
         }
 
+        //start playing song
         Play();
     }
 
@@ -194,18 +208,25 @@ public class VS1033 implements Runnable {
     }
 
     /**
-     * Stop the track. This will first pauze the track, then it will scroll to the start of the track.
+     * Stop the track. This will first pause the track, then it will scroll to the start of the track.
      */
     public void Stop() {
+        //pause the song and update UI
         Pauze();
         UI.println("Stop");
         gpio.setPin(GPIO.Pin.PA25, true);
+
         try {
+            //close stream
             sleep(100);
             closeFileStream();
+
+            //write few 0 to give a smoother start (without a part of the current location)
             for (int i = 0; i < 50; i++) {
                 Write(new byte[]{0, 0, 0, 0}, false);
             }
+
+            //reopen file
             fileStream = new FileInputStream(source);
         } catch (IOException ex) {
             UI.error("Can not reset file", 10);
@@ -257,18 +278,24 @@ public class VS1033 implements Runnable {
     }
 
     /**
-     * The actions and check performed by every tick
+     * Send data and check performed by every tick
      */
     private void tick() {
+        //check if it is allowed to send data
         if (valid) {
+            //copy stream to separate variable, if it will remove by a other thread, it is still usable
             InputStream tempRdr = fileStream;
-            if (play) {//&& gpio.getPin(GPIO.Pin.PB19)) {
+            if (play) {
                 if (tempRdr != null) {
+                    //try sending data
                     try {
+                        //check if and of file
                         if (tempRdr.read(buffer) > -1) {
+                            //send data
                             valid = true;
                             Write(buffer, false);
                         } else {
+                            //end of file, file isn't valid anymore
                             valid = false;
                         }
                     } catch (IOException ex) {
@@ -281,7 +308,9 @@ public class VS1033 implements Runnable {
                     valid = false;
                 }
             } else {
+                //song is paused/stopped, check if the led needs to blink again.
                 if (blinkPlay <= System.currentTimeMillis()) {
+                    //blink led for 500ms (250 on, 250 off)
                     gpio.blick(GPIO.Pin.PA9, 250);
                     blinkPlay = System.currentTimeMillis() + 500;
                 }
@@ -290,6 +319,11 @@ public class VS1033 implements Runnable {
         }
     }
 
+    /**
+     * sleep thread for give time
+     *
+     * @param miliSecondes time in milliseconds
+     */
     private void sleep(int miliSecondes) {
         try {
             Thread.sleep(miliSecondes);

@@ -34,6 +34,9 @@ public class RotaryDial implements Runnable {
         previousValueA = gpio.getPin(pinA);
     }
 
+    /**
+     * Stop reading the rotary dial
+     */
     public void Stop() {
         run = false;
     }
@@ -42,17 +45,27 @@ public class RotaryDial implements Runnable {
     public void run() {
         UI.println("Start volume thread");
         while (run) {
+            //check status rotary dial
             check();
             try {
+                //let other threads to there jobs
                 Thread.sleep(1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+
+        //confirm that thread is stopped
+        run = true;
         UI.println("Stop volume thread");
     }
 
+    /**
+     * Check which way the rotary dial is turning. This code is partially from
+     * http://playground.arduino.cc/Main/RotaryEncoders#Waveform.
+     */
     private void check() {
+        //check if pin A went from high to low
         boolean statusA = gpio.getPin(pinA);
         if (previousValueA && !statusA) {
             previousValueA = false;
@@ -70,9 +83,7 @@ public class RotaryDial implements Runnable {
     }
 
     /**
-     * Get the direction that the rotary dial is turning to. This code is partially from
-     * http://playground.arduino.cc/Main/RotaryEncoders#Waveform.
-     *
+     * Get the direction that the rotary dial is turning to.
      * @return the direction. NO_WAY is it hasn't been turned
      */
     public Direction getDirection() {
@@ -91,6 +102,9 @@ public class RotaryDial implements Runnable {
 
     }
 
+    /**
+     * Possible directions
+     */
     public enum Direction {
         LEFT,
         RIGHT,

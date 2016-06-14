@@ -23,6 +23,15 @@ public class Display implements Runnable {
     private boolean run;
     private boolean lock;
 
+    /**
+     * Constructor. This will initialize the LCD for two lines. After initializing it will write
+     * Loading... to the screen.
+     *
+     * @param gpio     Object for controling some GPIO pins.
+     * @param dataPins a shift register where the data pins of the LCD is connect to.
+     * @param enable   The enable pin of the LCD
+     * @param rs       The RS pin of the LCD
+     */
     public Display(GPIO gpio, ShiftRegister dataPins, GPIO.Pin enable, GPIO.Pin rs) {
         UI.println("Initialize Display...");
         this.gpio = gpio;
@@ -34,22 +43,37 @@ public class Display implements Runnable {
 
         run = true;
 
+        //initialize and write loading...
         initialize();
-
         setDDRAMaddress(0);
-        Write("Loading");
+        Write("Loading...");
     }
 
+    /**
+     * Get the scroll speed
+     *
+     * @return scroll speed
+     */
     public int getShiftTime() {
         return shiftTime;
     }
 
-    public void setShiftTime(int shiftTime) {
-        if (shiftTime > 0) {
-            this.shiftTime = shiftTime;
+    /**
+     * Set the scroll speed of how fast the lines scrolls.
+     *
+     * @param scrollSpeed speed that a line scroll
+     */
+    public void setShiftTime(int scrollSpeed) {
+        //check if scroll speed is to low
+        if (scrollSpeed > 0) {
+            this.shiftTime = scrollSpeed;
         }
     }
 
+    /**
+     * Stop the LCD. This means that it will not send the lines with text to the display. You can still
+     * clear the screen.
+     */
     public void Stop() {
         run = false;
     }
@@ -59,6 +83,7 @@ public class Display implements Runnable {
      */
     private void initialize() {
         UI.println("Initialize LCD screen...");
+
         //3 time function set as suggested by the datasheet
         functionSet();
         sleep(4);
@@ -75,9 +100,8 @@ public class Display implements Runnable {
         entryModeSet(false, true);
         sleep(1);
 
+        //enable the display (show the text)
         setDisplay(true);
-
-        //functionSet();
 
         UI.println("LCD screen initialized");
     }
@@ -89,11 +113,15 @@ public class Display implements Runnable {
      * @param ID Increase/Decrease position after write a character. Increase if true, decrease if false
      */
     private void entryModeSet(boolean SH, boolean ID) {
+        //set data
         dataPins.setPin(0, SH);
         dataPins.setPin(1, ID);
         for (int i = 3; i < 8; i++) {
             dataPins.setPin(i, false);
         }
+
+        //send data
+        Send();
     }
 
     /**
@@ -104,15 +132,19 @@ public class Display implements Runnable {
      *             the data is invisible.
      */
     private void setDisplay(boolean show) {
+        //set data
         gpio.setPin(rs, false);
         for (int i = 0; i < 8; i++) {
             if (i == 2) {
+                //set text (in)visible
                 dataPins.setPin(2, show);
             } else if (i == 3) {
                 dataPins.setPin(3, true);
             } else
                 dataPins.setPin(i, false);
         }
+
+        //send data
         Send();
     }
 
@@ -121,6 +153,7 @@ public class Display implements Runnable {
      * how many lines we use and type of font (5x8 dots, 5x11 dots)
      */
     private void functionSet() {
+        //set data
         gpio.setPin(rs, false);
         dataPins.setPin(7, false);
         dataPins.setPin(6, false);
@@ -131,7 +164,11 @@ public class Display implements Runnable {
         dataPins.setPin(2, false);
         dataPins.setPin(1, false);
         dataPins.setPin(0, false);
+
+        //send data
         Send();
+
+        //wait so it can process
         sleep(1);
     }
 
@@ -141,12 +178,17 @@ public class Display implements Runnable {
      * @param index posistion of cursor in memory
      */
     private void setDDRAMaddress(int index) {
+        //check if out of limits
         if (index < 0 || index > 0x67) {
             throw new IndexOutOfBoundsException();
         }
+
+        //set data
         gpio.setPin(rs, false);
         dataPins.setData((byte) index);
         dataPins.setPin(7, true);
+
+        //send
         Send();
     }
 
@@ -156,8 +198,13 @@ public class Display implements Runnable {
      */
     private synchronized void Send() {
         try {
+            //set enable before setting data
             gpio.setPin(enable, true);
+
+            //set data to data pins
             dataPins.update();
+
+            //set enable, LCD will read data
             gpio.setPin(enable, false);
 
         } catch (Exception ex) {
@@ -165,7 +212,15 @@ public class Display implements Runnable {
         }
     }
 
+    /**
+     * This will send the given line to the LCD. It will try to convert the
+     * given line to ASCII, else it use it default. The cursor will not be set, it
+     * will write where the cursor is. It will stop writing when the line is writing or
+     * as it has wrote 16 characters.
+     * @param line The line to write.
+     */
     private void Write(String line) {
+        //convert string to byte array. If possible, in SCII
         byte[] data;
 
         try {
@@ -175,14 +230,17 @@ public class Display implements Runnable {
             data = line.getBytes();
         }
 
-
+        //write the line to the screen.
         for (int i = 0; i < data.length; i++) {
+            //if 16 character send, stop writing
             if (i > 16) {
                 return;
             }
 
+            //get 1 character at the current position
             byte character = data[i];
 
+            //send character
             dataPins.setData(character);
             gpio.setPin(rs, true);
             Send();
@@ -198,15 +256,21 @@ public class Display implements Runnable {
      * @param firstLine True if the data is on the top line. False if data on second line
      */
     public synchronized void WriteNewLine(String data, boolean firstLine) {
+        /*
+        * check if the line need to be on the first line or second. if true, index will
+        * be 0. If false, index will be 1
+        */
         int index = firstLine ? 0 : 1;
 
         //clear screen and save data
         gpio.setPin(rs, true);
 
+        //add spaces until it is as long as the previous line or 16 characters
         while (data.length() <= lines[index].length() && data.length() < 16) {
             data += " ";
         }
 
+        //save line and force rewrite of line
         lines[index] = data;
         pos[index] = -1;
 
@@ -220,36 +284,65 @@ public class Display implements Runnable {
             sleep(10);
         }
 
+        //confirm it stopped
         run = true;
         UI.println("Stop display thread");
     }
 
+    /**
+     * This will check if a line need to write to the screen. It calculate which line and which part of
+     * the line by reading the pos array. If this is -1, it will rewrite the line at the beginning. If
+     * this is higher than -1, it will represent which part is writing to the screen. The number in the
+     * variable means what the starting point were. If the line is longer that 16 character, it will
+     * scroll.
+     */
     private void update() {
         //copy array to other variable. This will prevent data corruption cause by multithreading
         String[] lines = new String[this.lines.length];
         System.arraycopy(this.lines, 0, lines, 0, lines.length);
 
+        //check every line
         for (int i = 0; i < lines.length; i++) {
+            //wait until screen is cleared (if it is clearing)
             //noinspection StatementWithEmptyBody
             while (lock) ;
             lock = true;
+
+            //get position
             int p = pos[i];
             if (p == -1) {
+                //force rewrite
+
+                //set which line (first or second)
                 setDDRAMaddress(0x40 * i);
+
+                //write line
                 Write(lines[i]);
 
+                /*
+                * check if line is still the same
+                * it is possible that another thread has change the line. if it is, it need to rewrite
+                 * the line.
+                */
                 if (lines[i].equals(this.lines[i])) {
                     pos[i] = 0;
                 }
             } else if (lines[i].length() > 16 && nextShift < System.currentTimeMillis()) {
+                //current line is longer than 16 and may shift
+
+                //Add the position
                 pos[i]++;
                 p++;
 
+                //check if the part of the line is shorter that the size of the LCD
                 if (lines[i].length() - p - 18 < 0) {
+                    //check if it needs to start over again
                     if (lines[i].length() - p - 8 < 0) {
+                        //reset position
                         pos[i] = 0;
                         p = 0;
                     } else {
+                        //write with spaces at the end
                         setDDRAMaddress(0x40 * i);
                         Write(lines[i].substring(p) + "        ");
                         lock = false;
@@ -257,6 +350,7 @@ public class Display implements Runnable {
                     }
                 }
 
+                //write the part of the line
                 setDDRAMaddress(0x40 * i);
                 Write(lines[i].substring(p));
             }
@@ -264,6 +358,7 @@ public class Display implements Runnable {
             lock = false;
         }
 
+        //set the time when the next shift take place
         if (nextShift < System.currentTimeMillis()) {
             nextShift = System.currentTimeMillis() + shiftTime;
         }
@@ -274,10 +369,12 @@ public class Display implements Runnable {
      * Clear the screen and set the cursor to begin of the first line
      */
     public void ClearScreen() {
+        //wait until the text it wrote to the screen (if it is writing)
         //noinspection StatementWithEmptyBody
         while (lock) ;
         lock = true;
 
+        //set data
         UI.println("Clear screen");
         gpio.setPin(rs, false);
         dataPins.setPin(0, true);
@@ -285,11 +382,19 @@ public class Display implements Runnable {
             dataPins.setPin(i, false);
         }
 
+        //send data
         Send();
+
+        //wait until screen is cleared. 1 millisecond is enough
         sleep(1);
         lock = false;
     }
 
+    /**
+     * This will let the thread sleep. This containt the try/catch block, so you won't need
+     * to write the try/catch block again.
+     * @param milis amount of time in milliseconds to sleep
+     */
     private void sleep(int milis) {
         try {
             Thread.sleep(milis);

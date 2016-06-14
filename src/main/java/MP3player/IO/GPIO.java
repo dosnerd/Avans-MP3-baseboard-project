@@ -130,27 +130,52 @@ public class GPIO {
         throw new IllegalPinModeException();
     }
 
+    /**
+     * Turn on the given pin and turn it automatically off after the given time.
+     *
+     * @param pin   Pin to blick
+     * @param milis Time before turning off in milliseconds
+     */
     public void blick(Pin pin, int milis) {
+        //Add pin to array and the time when it needs to turn off
         blickData.put(pin, System.currentTimeMillis() + milis);
+
+        //turn on pin
         setPin(pin, true);
     }
 
+    /**
+     * Check for all pins if it need to turn off. It will only turn the pin off after the time that
+     * is set by the blick function.
+     */
     public void checkBlick() {
+        //go through all pins
         for (Pin pin : Pin.values()) {
+            //check if it needs to be turned off
             if (pin.isOutput && blickData.containsKey(pin) && blickData.get(pin) <= System.currentTimeMillis()) {
                 setPin(pin, false);
                 blickData.remove(pin);
             }
+
+            //let a other thread do there jobs
             Thread.yield();
         }
     }
 
+    /**
+     * Cancel the blick. This will remove the time that is set by the blick function.
+     *
+     * @param pin pin to cancel the blink
+     */
     void cancelBlick(Pin pin) {
         blickData.remove(pin);
     }
 
     /**
-     * List of all usable Gpio pins, save with the right kernel ID and isOutput (input or output)
+     * List of all usable Gpio pins, save with the right kernel ID and isOutput (input or output) <br />
+     * An enum (enumeration) is a list of objects. These objects a from the same class. This objects are
+     * created once and can not be created again. So the programmer write the list, and you can only chose from
+     * this list. You can not create (easily) you own object from this class.
      */
     public enum Pin {
         PB31(false, 95),//MUX
@@ -172,15 +197,14 @@ public class GPIO {
         PA6(true, 38);//PWR LED
 
 
-        /**
-         * Meaning of bits:
-         * ab
-         * a -> output(0)/input(1)
-         * b -> GPIO(0)/SPI(1)
-         */
         private final boolean isOutput;
         private final int ID;
 
+        /**
+         * Represent a pin with information about itself
+         * @param isOutput true if it is an output pin, false if it is an input pin
+         * @param ID The id to write/read by the imported Gpio class.
+         */
         Pin(boolean isOutput, int ID) {
             this.isOutput = isOutput;
             this.ID = ID;

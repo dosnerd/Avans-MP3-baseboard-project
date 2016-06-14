@@ -87,6 +87,9 @@ public class ShiftRegister {
         //gpio.setPin(serial, false);
     }
 
+    /**
+     * Sleep 0 milliseconds
+     */
     private void sleep() {
         try {
             Thread.sleep(0);
