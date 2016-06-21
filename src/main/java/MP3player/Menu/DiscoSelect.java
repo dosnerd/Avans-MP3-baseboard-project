@@ -9,7 +9,7 @@ import MP3player.MP3;
  * @version 1.0
  */
 class DiscoSelect extends Menu {
-    private MP3 mp3;
+    private final MP3 mp3;
 
     DiscoSelect(MP3 mp3) {
         //set name and give display

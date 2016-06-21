@@ -15,11 +15,11 @@ import java.util.Map;
  */
 public class GPIO {
     private static Object defaultGpio;
-    private final Map<Pin, Long> blickData;
+    private final Map<Pin, Long> blinkData;
 
     public GPIO() {
         UI.println("Initialize GPIO...");
-        blickData = new HashMap<Pin, Long>();
+        blinkData = new HashMap<Pin, Long>();
     }
 
     /**
@@ -133,12 +133,12 @@ public class GPIO {
     /**
      * Turn on the given pin and turn it automatically off after the given time.
      *
-     * @param pin   Pin to blick
-     * @param milis Time before turning off in milliseconds
+     * @param pin   Pin to blink
+     * @param millis Time before turning off in milliseconds
      */
-    public void blick(Pin pin, int milis) {
+    public void blink(Pin pin, int millis) {
         //Add pin to array and the time when it needs to turn off
-        blickData.put(pin, System.currentTimeMillis() + milis);
+        blinkData.put(pin, System.currentTimeMillis() + millis);
 
         //turn on pin
         setPin(pin, true);
@@ -146,15 +146,15 @@ public class GPIO {
 
     /**
      * Check for all pins if it need to turn off. It will only turn the pin off after the time that
-     * is set by the blick function.
+     * is set by the blink function.
      */
-    public void checkBlick() {
+    public void checkBlink() {
         //go through all pins
         for (Pin pin : Pin.values()) {
             //check if it needs to be turned off
-            if (pin.isOutput && blickData.containsKey(pin) && blickData.get(pin) <= System.currentTimeMillis()) {
+            if (pin.isOutput && blinkData.containsKey(pin) && blinkData.get(pin) <= System.currentTimeMillis()) {
                 setPin(pin, false);
-                blickData.remove(pin);
+                blinkData.remove(pin);
             }
 
             //let a other thread do there jobs
@@ -163,12 +163,12 @@ public class GPIO {
     }
 
     /**
-     * Cancel the blick. This will remove the time that is set by the blick function.
+     * Cancel the blink. This will remove the time that is set by the blink function.
      *
      * @param pin pin to cancel the blink
      */
-    void cancelBlick(Pin pin) {
-        blickData.remove(pin);
+    void cancelBlink(Pin pin) {
+        blinkData.remove(pin);
     }
 
     /**

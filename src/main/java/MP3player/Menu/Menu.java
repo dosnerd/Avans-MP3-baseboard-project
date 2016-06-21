@@ -13,10 +13,10 @@ import java.util.List;
  * @version 1.0
  */
 public class Menu {
-    private String name;
-    private List<Menu> subMenus;
+    private final String name;
+    private final List<Menu> subMenus;
+    private final Display display;
     private int selectedMenu;
-    private Display display;
     private String standardValue;
 
     /**
@@ -129,7 +129,7 @@ public class Menu {
 
     /**
      * Get the name of the menu
-     * @return the naem of the menu
+     * @return the name of the menu
      */
     public String getName() {
         return name;

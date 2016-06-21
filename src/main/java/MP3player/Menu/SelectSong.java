@@ -10,8 +10,8 @@ import MP3player.Sources.FileSearch;
  * @version 1.0
  */
 class SelectSong extends Menu {
-    private FileSearch files;
-    private MP3 mp3;
+    private final FileSearch files;
+    private final MP3 mp3;
     private int selected;
 
     SelectSong(MP3 mp3, FileSearch fileSearch) {

@@ -80,7 +80,7 @@ class Main {
                 mp3 = new MP3(gpio);
             }
 
-            //start MP3 mode, always in save mode. Unless user asked for unsave mode
+            //start MP3 mode, always in save mode. Unless user asked for unsafe mode
             if (_saveMode) {
                 try {
                     UI.println("Start in safe mode");
@@ -112,7 +112,7 @@ class Main {
 
     /**
      * Check all the arguments and set some variable. It check for example if there is a -l argument,
-     * the enable logging. It will return a boolean value if the program can go futher. This can
+     * the enable logging. It will return a boolean value if the program can go further. This can
      * be false if for example --help in the arguments are. Then the program should only run the arguments
      * before --help and --help itself.
      *
@@ -128,7 +128,7 @@ class Main {
             } else if (argument.equals("-l")) {
                 //allow logging
                 UI.set_log(true);
-            } else if (argument.equals("--unsave") || argument.equals("-u")) {
+            } else if (argument.equals("--unsafe") || argument.equals("-u")) {
                 //disable save mode
                 _saveMode = false;
             } else if (argument.equals("--manual") || argument.equals("-m")) {
@@ -149,7 +149,7 @@ class Main {
                     UI.error("Can not read line from help file", 3);
                 } finally {
                     //this code will ALWAYS run
-                    //check if the file is opend
+                    //check if the file is opened
                     if (rdr != null) {
                         //try to close the file
                         try {

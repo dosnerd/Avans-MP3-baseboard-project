@@ -27,7 +27,7 @@ public class Display implements Runnable {
      * Constructor. This will initialize the LCD for two lines. After initializing it will write
      * Loading... to the screen.
      *
-     * @param gpio     Object for controling some GPIO pins.
+     * @param gpio     Object for controlling some GPIO pins.
      * @param dataPins a shift register where the data pins of the LCD is connect to.
      * @param enable   The enable pin of the LCD
      * @param rs       The RS pin of the LCD
@@ -149,7 +149,7 @@ public class Display implements Runnable {
     }
 
     /**
-     * Set startup information. This includes interface data lenght (how many pins we use),
+     * Set startup information. This includes interface data length (how many pins we use),
      * how many lines we use and type of font (5x8 dots, 5x11 dots)
      */
     private void functionSet() {
@@ -175,7 +175,7 @@ public class Display implements Runnable {
     /**
      * Set the cursor to the given position.
      *
-     * @param index posistion of cursor in memory
+     * @param index position of cursor in memory
      */
     private void setDDRAMaddress(int index) {
         //check if out of limits
@@ -220,13 +220,13 @@ public class Display implements Runnable {
      * @param line The line to write.
      */
     private void Write(String line) {
-        //convert string to byte array. If possible, in SCII
+        //convert string to byte array. If possible, in ASCII
         byte[] data;
 
         try {
             data = line.getBytes("US-ASCII");
         } catch (UnsupportedEncodingException ex) {
-            UI.println("US-ACII conversion not supported");
+            UI.println("US-ASCII conversion not supported");
             data = line.getBytes();
         }
 
@@ -391,13 +391,13 @@ public class Display implements Runnable {
     }
 
     /**
-     * This will let the thread sleep. This containt the try/catch block, so you won't need
+     * This will let the thread sleep. This contains the try/catch block, so you won't need
      * to write the try/catch block again.
-     * @param milis amount of time in milliseconds to sleep
+     * @param millis amount of time in milliseconds to sleep
      */
-    private void sleep(int milis) {
+    private void sleep(int millis) {
         try {
-            Thread.sleep(milis);
+            Thread.sleep(millis);
         } catch (InterruptedException ignored) {
 
         }

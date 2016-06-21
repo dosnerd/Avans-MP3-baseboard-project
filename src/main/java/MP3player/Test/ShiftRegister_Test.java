@@ -27,7 +27,7 @@ public class ShiftRegister_Test extends Test {
         if (!isFailed()) {
             UI.println("Start shift register test");
 
-            UI.print("Lightbar: ");
+            UI.print("Light bar: ");
             lightBar();
 
             if (isFailed()) {
@@ -50,7 +50,7 @@ public class ShiftRegister_Test extends Test {
                 shiftRegister.setPin(i, true);
                 shiftRegister.update();
                 shiftRegister.setPin(i, false);
-                waitForConirm();
+                waitForConfirm();
             }
             Thread.sleep(1);
 

@@ -15,7 +15,7 @@ import java.net.URL;
  * <p/>
  * This class is the 'master control'. This is the most upper layer of the control. This call the right function
  * if a button is pressed or if the rotary dial is turned. It also goes to the next song if it is
- * at the end of the file or the file is corrupt. The LED are also controled here.
+ * at the end of the file or the file is corrupt. The LED are also controlled here.
  *
  * @author David de Prez
  * @version 1.0
@@ -23,7 +23,7 @@ import java.net.URL;
 public class MP3 {
     private final VS1033 vs1033;
     private final GPIO gpio;
-    private final MUX multyplexer;
+    private final MUX multiplexer;
     private final Display display;
     private final RotaryDial rotaryDial;
     private final FileSearch files;
@@ -51,7 +51,7 @@ public class MP3 {
         this.gpio = gpio;
         ShiftRegister dataPins = new ShiftRegister(gpio, GPIO.Pin.PB17, GPIO.Pin.PB16, GPIO.Pin.PA28);
         display = new Display(gpio, dataPins, GPIO.Pin.PA22, GPIO.Pin.PA11);
-        multyplexer = new MUX(gpio, GPIO.Pin.PA27, GPIO.Pin.PA26, null, GPIO.Pin.PB31);
+        multiplexer = new MUX(gpio, GPIO.Pin.PA27, GPIO.Pin.PA26, null, GPIO.Pin.PB31);
         rotaryDial = new RotaryDial(gpio, GPIO.Pin.PB20, GPIO.Pin.PB30);
         vs1033 = new VS1033(gpio);
 
@@ -64,7 +64,7 @@ public class MP3 {
             }
         }
 
-        //enable display and show volyme
+        //enable display and show volume
         UI.set_display(display);
         gpio.setPin(GPIO.Pin.PA6, true);
         display.WriteNewLine("Vol: " + (15 - volume), false);
@@ -230,7 +230,7 @@ public class MP3 {
      * Put the MP3 out standby mode. this will recover the status of the LEDS and set the timer
      */
     private void setHideLines() {
-        //recover status of leds
+        //recover status of LEDS
         gpio.setPin(GPIO.Pin.PA9, vs1033.isPlaying());
         gpio.setPin(GPIO.Pin.PA10, false);
         gpio.setPin(GPIO.Pin.PA7, false);
@@ -263,7 +263,7 @@ public class MP3 {
         display.ClearScreen();
         gpio.setPin(GPIO.Pin.PA6, false);
 
-        //diinit GPIO
+        //deinit GPIO
         gpio.deinit();
 
 
@@ -271,7 +271,7 @@ public class MP3 {
     }
 
     /**
-     * Start the MP3 and run it until the stop button is hold down to close the progam
+     * Start the MP3 and run it until the stop button is hold down to close the program
      */
     public void Run() {
         //set timer for standby mode
@@ -287,7 +287,7 @@ public class MP3 {
             //control the MP3
             while (run) {
                 //update input multiplexer
-                multyplexer.check();
+                multiplexer.check();
                 Thread.yield();
 
                 //update GPIO input/output
@@ -313,8 +313,8 @@ public class MP3 {
                     Thread.yield();
                 }
 
-                //check if LEDS in blick mode must be off
-                gpio.checkBlick();
+                //check if LEDS in blink mode must be off
+                gpio.checkBlink();
                 Thread.yield();
 
                 //check if MP3 need to go in standby mode
@@ -329,7 +329,7 @@ public class MP3 {
                         showSong();
                         setHideLines();
                     } else {
-                        //set all leds off
+                        //set all LEDS off
                         gpio.setPin(GPIO.Pin.PA10, false);
                         gpio.setPin(GPIO.Pin.PA9, false);
                         gpio.setPin(GPIO.Pin.PA7, false);
@@ -390,7 +390,7 @@ public class MP3 {
         }
 
         //set previous led 500ms on
-        gpio.blick(GPIO.Pin.PA10, 500);
+        gpio.blink(GPIO.Pin.PA10, 500);
     }
 
     /**
@@ -420,7 +420,7 @@ public class MP3 {
         }
 
         //set next led for 500ms on
-        gpio.blick(GPIO.Pin.PA7, 500);
+        gpio.blink(GPIO.Pin.PA7, 500);
     }
 
     /**
@@ -498,7 +498,7 @@ public class MP3 {
      */
     private void checkGPIO() {
         //Check if there is an button pressed
-        if (multyplexer.pressed(2)) {
+        if (multiplexer.pressed(2)) {
             //Wake up out of standby mode / reset timer
             setHideLines();
 
@@ -513,7 +513,7 @@ public class MP3 {
                 showSong();
                 display.WriteNewLine("Vol: " + (15 - volume), false);
             }
-        } else if (multyplexer.pressed(1)) {
+        } else if (multiplexer.pressed(1)) {
             //Wake up out of standby mode / reset timer
             setHideLines();
 
@@ -521,13 +521,13 @@ public class MP3 {
             if (vs1033.isPlaying()) {
                 //pause song
                 UI.println("pause");
-                vs1033.Pauze();
+                vs1033.Pause();
             } else {
                 //play song
                 UI.println("play");
                 vs1033.Play();
             }
-        } else if (multyplexer.pressed(3)) {
+        } else if (multiplexer.pressed(3)) {
             //Wake up out of standby mode / reset timer
             setHideLines();
 
@@ -540,7 +540,7 @@ public class MP3 {
                 //scroll up in menu
                 menuActive.up();
             }
-        } else if (multyplexer.pressed(0)) {
+        } else if (multiplexer.pressed(0)) {
             //Wake up out of standby mode / reset timer
             setHideLines();
 
@@ -557,16 +557,16 @@ public class MP3 {
             //Wake up out of standby mode / reset timer
             setHideLines();
 
-            //show main menu or next menyu
+            //show main menu or next menu
             showMenu();
 
             //prevent spam of button push
             dialPushTime = -1;
-        } else if (multyplexer.timePin(2) > 2000) {
+        } else if (multiplexer.timePin(2) > 2000) {
             //stop the MP3
             Stop();
             return;
-        } else if (multyplexer.timePin(3) > 2000) {
+        } else if (multiplexer.timePin(3) > 2000) {
             MainMenu.set_secreteMode(true);
             display.WriteNewLine("Secrete mode enabled", false);
         }
@@ -614,11 +614,11 @@ public class MP3 {
     /**
      * Let the thread sleep. This method includes the try/catch block.
      *
-     * @param mili amount of milliseconds
+     * @param milli amount of milliseconds
      */
-    private void sleep(int mili) {
+    private void sleep(int milli) {
         try {
-            Thread.sleep(mili);
+            Thread.sleep(milli);
         } catch (InterruptedException ex) {
             UI.error("Can not sleep", 4);
         }

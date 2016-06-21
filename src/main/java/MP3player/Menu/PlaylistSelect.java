@@ -14,8 +14,8 @@ import java.util.List;
  * @version 1.0
  */
 class PlaylistSelect extends Menu {
-    private FileSearch fileSearch;
-    private List<String> filters;
+    private final FileSearch fileSearch;
+    private final List<String> filters;
     private int filter;
 
     PlaylistSelect(Display display, FileSearch fileSearch) {

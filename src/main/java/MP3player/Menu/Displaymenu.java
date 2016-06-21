@@ -8,8 +8,8 @@ import MP3player.MP3;
  * @author David de Prez
  * @version 1.0
  */
-class Displaymenu extends Menu {
-    Displaymenu(MP3 mp3) {
+class DisplayMenu extends Menu {
+    DisplayMenu(MP3 mp3) {
         //set name and give display
         super("Display", mp3.getDisplay());
 

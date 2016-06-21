@@ -11,7 +11,7 @@ public class UI {
     private static Display _display;
 
     /**
-     * This will set the _display. When this is set, the errornumber will be displayed when there
+     * This will set the _display. When this is set, the error number will be displayed when there
      * is an error. This will not happen when it is testing
      *
      * @param _display The display to print the error number to

@@ -18,7 +18,7 @@ public abstract class Test {
         reader = new Scanner(System.in);
     }
 
-    boolean waitForConirm() {
+    boolean waitForConfirm() {
         String line;
 
         UI.print("Passed? (y/n): ");

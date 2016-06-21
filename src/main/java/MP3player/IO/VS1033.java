@@ -11,8 +11,8 @@ import java.io.*;
 public class VS1033 implements Runnable {
     private final byte[] _INIT = {0x02, 0x00, 0x08, (byte) 0x06}; //MODE46, 68
     private final GPIO gpio;
-    private int bufferSize = 32;
-    private byte[] buffer = new byte[bufferSize];
+    private final int bufferSize = 32;
+    private final byte[] buffer = new byte[bufferSize];
     private RandomAccessFile SCI;
     private RandomAccessFile SDI;
     private InputStream fileStream;
@@ -55,10 +55,10 @@ public class VS1033 implements Runnable {
         //initialize and volume data
 
         //fast clock (to play song at normal speed, can glitch the song)
-        //byte[] clockf = {0x02, 0x03, (byte) 0x90, (byte) 0x00};//CLOCKF
+        //byte[] clockf = {0x02, 0x03, (byte) 0x90, (byte) 0x00};
 
         //slow clock (to play song little slower, less glitch in the song)
-        byte[] clockf = {0x02, 0x03, (byte) 0x84, (byte) 0xE2};//CLOCKF
+        byte[] clockf = {0x02, 0x03, (byte) 0x84, (byte) 0xE2};
         byte[] vol = {0x02, 0x0B, 0x1F, 0x1F};  //VOL
         byte[] sampleRate = {0x02, 0x05, (byte) 0xAC, (byte) 0x45};//audata
 
@@ -137,10 +137,10 @@ public class VS1033 implements Runnable {
         play = true;
         UI.println("play");
 
-        //set leds at right status
+        //set LEDS at right status
         gpio.setPin(GPIO.Pin.PA25, false);
 
-        gpio.cancelBlick(GPIO.Pin.PA9);
+        gpio.cancelBlink(GPIO.Pin.PA9);
         gpio.setPin(GPIO.Pin.PA9, true);
     }
 
@@ -194,7 +194,7 @@ public class VS1033 implements Runnable {
                 fileStream = null;
             }
         } catch (IOException ex) {
-            UI.error("Can not close filestream", 6);
+            UI.error("Can not close file stream", 6);
         }
     }
 
@@ -202,8 +202,8 @@ public class VS1033 implements Runnable {
      * Stop sending data to the VS1033. This will cause the VS1033 to give sound. The location
      * in the file will be remembered. When
      */
-    public void Pauze() {
-        UI.println("Pauze");
+    public void Pause() {
+        UI.println("Pause");
         play = false;
     }
 
@@ -212,7 +212,7 @@ public class VS1033 implements Runnable {
      */
     public void Stop() {
         //pause the song and update UI
-        Pauze();
+        Pause();
         UI.println("Stop");
         gpio.setPin(GPIO.Pin.PA25, true);
 
@@ -236,17 +236,15 @@ public class VS1033 implements Runnable {
     /**
      * Send data to the VS1033. It will check if it is allowed to send data (by DREQ pin). When not allowed,
      * it will wait until it is allowed. When it is allowed to send data, it send data. If it is an
-     * operation, it will send ofer SCI, else over SDI.
+     * operation, it will send offer SCI, else over SDI.
      * <p>
      * This function need to be synchronized the problems when data been send and a command (such volume) by
      * a different thread. This may not at the same time.
      *
      * @param data        The data or the command(s) to send at once.
-     * @param isOperation If true, the data will be sended over SCI. If false, the data will be send over SDI.
+     * @param isOperation If true, the data will be send over SCI. If false, the data will be send over SDI.
      */
     public void Write(byte[] data, boolean isOperation) {
-        //UI.println("Prepaire for sending over SCI/SDI...");
-
         //check if allowed to send data/command
         //noinspection StatementWithEmptyBody
         while (!gpio.getPin(GPIO.Pin.PB19)) ;
@@ -311,7 +309,7 @@ public class VS1033 implements Runnable {
                 //song is paused/stopped, check if the led needs to blink again.
                 if (blinkPlay <= System.currentTimeMillis()) {
                     //blink led for 500ms (250 on, 250 off)
-                    gpio.blick(GPIO.Pin.PA9, 250);
+                    gpio.blink(GPIO.Pin.PA9, 250);
                     blinkPlay = System.currentTimeMillis() + 500;
                 }
                 sleep(10);
@@ -322,11 +320,11 @@ public class VS1033 implements Runnable {
     /**
      * sleep thread for give time
      *
-     * @param miliSecondes time in milliseconds
+     * @param milliSeconds time in milliseconds
      */
-    private void sleep(int miliSecondes) {
+    private void sleep(int milliSeconds) {
         try {
-            Thread.sleep(miliSecondes);
+            Thread.sleep(milliSeconds);
         } catch (InterruptedException ex) {
             UI.error("Can not sleep", 4);
         }

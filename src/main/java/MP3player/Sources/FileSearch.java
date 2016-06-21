@@ -23,9 +23,9 @@ import java.util.List;
  * @version 1.0
  */
 public class FileSearch {
+    private final List<File> fileList;
+    private final List<Integer> playList;
     private String filter;
-    private List<File> fileList;
-    private List<Integer> playList;
     private boolean shuffleMode = false;
 
     /**
@@ -193,7 +193,7 @@ public class FileSearch {
             } catch (FileNotFoundException ex) {
                 UI.error("File not found", 14);
             } catch (IOException ex) {
-                UI.error("An MP3player.IO exeption has occurs", 1);
+                UI.error("An MP3player.IO exception has occurs", 1);
             }
         }
     }

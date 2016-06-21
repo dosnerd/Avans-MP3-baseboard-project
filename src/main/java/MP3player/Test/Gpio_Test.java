@@ -29,14 +29,14 @@ public class Gpio_Test extends Test {
     @Override
     public void run() {
         if (!isFailed()) {
-            UI.print("Prepaire GPIO test");
+            UI.print("Prepare GPIO test");
             for (GPIO.Pin p : GPIO.Pin.values()) {
                 try {
                     io.setPin(p, false);
                 } catch (IllegalPinModeException ignored) {
 
                 } catch (Exception ex) {
-                    UI.print("Can not prepaire pin: " + p.name());
+                    UI.print("Can not prepare pin: " + p.name());
                 }
             }
 
@@ -63,7 +63,7 @@ public class Gpio_Test extends Test {
 
     /**
      * This test if you could set a input pin. If this test fails, you could set a input pin. We need to prevent
-     * this because every PGIO pin is a input OR output.
+     * this because every GPIO pin is a input OR output.
      */
     private void writeToInput() {
         try {
@@ -118,7 +118,7 @@ public class Gpio_Test extends Test {
             try {
                 UI.println("Testing pin: " + GPIO.Pin.values()[i].name());
                 io.setPin(GPIO.Pin.values()[i], true);
-                waitForConirm();
+                waitForConfirm();
                 io.setPin(GPIO.Pin.values()[i], false);
             } catch (Exception ex) {
                 Fail("Exception occurs");

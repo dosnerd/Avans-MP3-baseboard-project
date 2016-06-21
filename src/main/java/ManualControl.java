@@ -50,8 +50,8 @@ class ManualControl extends MP3 implements Runnable {
                 prevSong();
             } else if (line.equals("stop")) {
                 getVs1033().Stop();
-            } else if (line.equals("pauze")) {
-                getVs1033().Pauze();
+            } else if (line.equals("pause")) {
+                getVs1033().Pause();
             } else if (line.equals("play")) {
                 getVs1033().Play();
             } else if (line.equals("VH")) {

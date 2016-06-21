@@ -41,12 +41,12 @@ public class Display_Test extends Test {
             UI.print("Hello world: ");
             HelloWorld();
 
-            UI.print("Seconde Line: ");
+            UI.print("Second Line: ");
             SecondLine();
 
             UI.print("Clearing (2nd time): ");
             Clearing();
-            waitForConirm();
+            waitForConfirm();
 
             if (isFailed()) {
                 UI.println("MP3player.Test failed");
@@ -69,7 +69,7 @@ public class Display_Test extends Test {
      */
     private void HelloWorld() {
         display.WriteNewLine("Hello world", true);
-        if (waitForConirm()) {
+        if (waitForConfirm()) {
             UI.println("Passed");
         } else {
             Fail("");
@@ -81,7 +81,7 @@ public class Display_Test extends Test {
      */
     private void SecondLine() {
         display.WriteNewLine("Second line", false);
-        if (waitForConirm()) {
+        if (waitForConfirm()) {
             UI.println("Passed");
         } else {
             Fail("");

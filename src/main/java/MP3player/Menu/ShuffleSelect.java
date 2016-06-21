@@ -10,7 +10,7 @@ import MP3player.Sources.FileSearch;
  * @version 1.0
  */
 class ShuffleSelect extends Menu {
-    private FileSearch fileSearch;
+    private final FileSearch fileSearch;
 
     ShuffleSelect(Display display, FileSearch fileSearch) {
         super("Shuffle", display);

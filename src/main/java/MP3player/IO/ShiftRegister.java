@@ -6,7 +6,6 @@ package MP3player.IO;
  * the memory to the shift register over a serial line. When the data has been send, the out of the shift
  * register will be updated. this is done by enabling the latch pin of the shift register.
  * <p>
- * TODO: configure this class to the right component type
  *
  * @author David de Prez
  * @version 1.0
