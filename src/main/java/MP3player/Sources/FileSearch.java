@@ -24,6 +24,7 @@ public class FileSearch {
     private String filter;
     private List<File> fileList;
     private List<Integer> playList;
+    private boolean shuffleMode = false;
 
     /**
      * Constructor. This will search imminently for song and set the filter to "All".
@@ -32,6 +33,15 @@ public class FileSearch {
         fileList = new ArrayList<File>();
         playList = new ArrayList<Integer>();
         setFilter("All");
+    }
+
+    public boolean isShuffleMode() {
+        return shuffleMode;
+    }
+
+    public void setShuffleMode(boolean shuffleMode) {
+        this.shuffleMode = shuffleMode;
+        setFilter(filter);
     }
 
     /**
@@ -92,6 +102,7 @@ public class FileSearch {
      * All the files that has been found, will be saved in the file list. It will go through the
      * file list to search song that meet the requirements of the filter. Those will be added to
      * the playlist
+     *
      * @param filter the search filter
      */
     public void setFilter(String filter) {
@@ -122,10 +133,24 @@ public class FileSearch {
                 UI.println(file.getTitle() + " added to playlist (" + file.getArtist() + ")");
             }
         }
+
+        //shuffle if shuffle mode is on
+        if (shuffleMode) {
+            for (int i = 0; i < playList.size(); i++) {
+                //get random number that isn't been randomized
+                int index = (int) (Math.random() * (playList.size() - i) + i);
+                int song = playList.get(index);
+
+                //move song to front
+                playList.remove(index);
+                playList.add(0, song);
+            }
+        }
     }
 
     /**
      * Get the file list
+     *
      * @return file list
      */
     public List<File> getFileList() {
@@ -136,6 +161,7 @@ public class FileSearch {
      * Find files that can probably be read by the VS1033. The only check is that the
      * name must and with .mp3. This method will search in the given directory and all
      * the directories under that (and under that, and so an)
+     *
      * @param entry a file/directory to check
      */
     private void findFiles(java.io.File entry) {

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/main/java/MP3player/MP3.java" line="415" mnemonic="9" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="e27e6767-840a-4709-8774-aa6cc3b933a3" name="Default" comment="Everything has commands (except test classes) &amp; bug fix&#10;Add commands to DiscoSelect&#10;Add commands to Displaymenu&#10;Add commands to DisplaySpeedSelect&#10;Add commands to MainMenu&#10;Add commands to Menu&#10;Add commands to PlaylistSelect&#10;Add commands to StandbyeSelect&#10;Fix current filter in PlaylistSelect is now standard selected. First it showed as it was selected, but is wasn't.">
+    <list default="true" id="e27e6767-840a-4709-8774-aa6cc3b933a3" name="Default" comment="Add Shuffle mode">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/MP3player/Menu/ShuffleSelect.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/MP3player/Menu/MainMenu.java" afterPath="$PROJECT_DIR$/src/main/java/MP3player/Menu/MainMenu.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/MP3player/Sources/FileSearch.java" afterPath="$PROJECT_DIR$/src/main/java/MP3player/Sources/FileSearch.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Main.java" afterPath="$PROJECT_DIR$/src/main/java/Main.java" />
     </list>
     <ignored path="project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -21,7 +21,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
-    <option name="PATCH_PATH" value="" />
+    <option name="PATCH_PATH" value="C:\Users\Acer\Documents\projects\MP3\Programs\project" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -29,12 +29,85 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
+      <file leaf-file-name="ShuffleSelect.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Menu/ShuffleSelect.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="58" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
+            <state relative-caret-position="107">
+              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#496#497#0" expanded="true" />
+                <element signature="e#523#524#0" expanded="true" />
+                <element signature="e#756#757#0" expanded="true" />
+                <element signature="e#776#777#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainMenu.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Menu/MainMenu.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="19" column="65" selection-start-line="19" selection-start-column="65" selection-end-line="19" selection-end-column="65" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="556">
+              <caret line="108" column="13" selection-start-line="108" selection-start-column="13" selection-end-line="108" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/IO/UI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DiscoSelect.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Menu/DiscoSelect.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="31" column="75" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="75" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileSearch.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Sources/FileSearch.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="471">
+              <caret line="143" column="36" selection-start-line="143" selection-start-column="36" selection-end-line="143" selection-end-column="36" />
+              <folding>
+                <element signature="docComment;class#FileSearch#0" expanded="false" />
+                <element signature="docComment;method#FileSearch#0;class#FileSearch#0" expanded="false" />
+                <element signature="method#FileSearch#0;class#FileSearch#0" expanded="false" />
+                <element signature="e#1160#1161#0" expanded="true" />
+                <element signature="e#1194#1195#0" expanded="true" />
+                <element signature="docComment;method#getPlayList#0;class#FileSearch#0" expanded="false" />
+                <element signature="docComment;method#getSongOrder#0;class#FileSearch#0" expanded="false" />
+                <element signature="method#getSongOrder#0;class#FileSearch#0" expanded="false" />
+                <element signature="docComment;method#getSongUID#0;class#FileSearch#0" expanded="false" />
+                <element signature="docComment;method#getSong#0;class#FileSearch#0" expanded="false" />
+                <element signature="docComment;method#getFilter#0;class#FileSearch#0" expanded="false" />
+                <element signature="docComment;method#setFilter#0;class#FileSearch#0" expanded="false" />
+                <element signature="docComment;method#getFileList#0;class#FileSearch#0" expanded="false" />
+                <element signature="docComment;method#findFiles#0;class#FileSearch#0" expanded="false" />
+                <element signature="method#findFiles#0;class#FileSearch#0" expanded="false" />
+                <element signature="e#5466#5513#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -69,8 +142,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/Help" />
-        <option value="$PROJECT_DIR$/src/main/java/AudioTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/Temp.java" />
         <option value="$PROJECT_DIR$/src/main/java/IO/UI.java" />
         <option value="$PROJECT_DIR$/src/main/java/Test/ShiftRegister_Test.java" />
@@ -99,20 +170,14 @@
         <option value="$PROJECT_DIR$/Errors" />
         <option value="$PROJECT_DIR$/src/main/java/MP3player/IO/Dislay.java" />
         <option value="$PROJECT_DIR$/src/main/java/MP3player/Test/MUXLED_Test.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/ManualControl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/MP3player/Sources/FileSearch.java" />
         <option value="$PROJECT_DIR$/src/main/java/MP3player/Sources/File.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/MP3player/Sources/Save.java" />
-        <option value="$PROJECT_DIR$/src/main/java/MP3player/MP3.java" />
-        <option value="$PROJECT_DIR$/src/main/java/MP3player/IO/Display.java" />
         <option value="$PROJECT_DIR$/src/main/java/MP3player/IO/MUX.java" />
         <option value="$PROJECT_DIR$/src/main/java/MP3player/IO/RotaryDial.java" />
-        <option value="$PROJECT_DIR$/src/main/java/MP3player/IO/ShiftRegister.java" />
         <option value="$PROJECT_DIR$/src/main/java/MP3player/IO/VS1033.java" />
         <option value="$PROJECT_DIR$/src/main/java/MP3player/IO/GPIO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/MP3player/Menu/MainMenu.java" />
         <option value="$PROJECT_DIR$/src/main/java/MP3player/Menu/Menu.java" />
         <option value="$PROJECT_DIR$/src/main/java/MP3player/Menu/DisplaySpeedSelect.java" />
         <option value="$PROJECT_DIR$/src/main/java/MP3player/Menu/Displaymenu.java" />
@@ -120,6 +185,14 @@
         <option value="$PROJECT_DIR$/src/main/java/MP3player/Menu/StandbySelect.java" />
         <option value="$PROJECT_DIR$/src/main/java/MP3player/Menu/PlaylistSelect.java" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/main/java/MP3player/IO/Display.java" />
+        <option value="$PROJECT_DIR$/src/main/java/MP3player/IO/ShiftRegister.java" />
+        <option value="$PROJECT_DIR$/src/main/java/MP3player/MP3.java" />
+        <option value="$PROJECT_DIR$/src/main/java/MP3player/Menu/MainMenu.java" />
+        <option value="$PROJECT_DIR$/src/main/java/MP3player/IO/UI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/MP3player/Sources/FileSearch.java" />
+        <option value="$PROJECT_DIR$/src/main/java/MP3player/Menu/ShuffleSelect.java" />
       </list>
     </option>
   </component>
@@ -137,10 +210,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1616" />
-    <option name="height" value="916" />
+    <option name="width" value="1124" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -172,7 +243,6 @@
     <panes>
       <pane id="PackagesPane" />
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -195,8 +265,165 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MP3player" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MP3player" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Sources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MP3player" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Menu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MP3player" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IO" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -663,7 +890,10 @@
       <workItem from="1465140741979" duration="8195000" />
       <workItem from="1465389408763" duration="20462000" />
       <workItem from="1465813507946" duration="962000" />
-      <workItem from="1465816573626" duration="8614000" />
+      <workItem from="1465816573626" duration="10192000" />
+      <workItem from="1466425500389" duration="1628000" />
+      <workItem from="1466427475812" duration="603000" />
+      <workItem from="1466498646415" duration="4353000" />
     </task>
     <task id="LOCAL-00001" summary="Project now compatible with eclipse.">
       <created>1461926544025</created>
@@ -742,11 +972,18 @@
       <option name="project" value="LOCAL" />
       <updated>1465910554809</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Project finished&#10;Update README">
+      <created>1465910968724</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1465910968724</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="256518000" />
+    <option name="totallyTimeSpent" value="264680000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -758,24 +995,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="916" extended-state="6" />
+    <frame x="0" y="0" width="1124" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3368146" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3469388" sideWeight="0.48714653" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34635416" sideWeight="0.48714653" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27423468" sideWeight="0.5179949" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50127554" sideWeight="0.5141388" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33163264" sideWeight="0.4945946" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.48586118" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.041666668" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20758355" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3026316" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27040815" sideWeight="0.48200515" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -788,6 +1024,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Documentation" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="659" y="455" width="444" height="168" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5114796" sideWeight="0.7043702" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27040815" sideWeight="0.48200515" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="UnknownFeatures">
@@ -823,14 +1060,16 @@
     <MESSAGE value="Command code and final touch&#10;Add commands to MP3&#10;Add commands to ManualControl&#10;Add commands to Main&#10;Add commands to Save&#10;Add commands to FileSearch&#10;Add commands to File&#10;Change sleep ShiftRegister. Always sleep 0 milliseconds&#10;Change next and prev have same function in the menu as the rotary dial.&#10;Rename Dislay to Display &#10;Remove Sleep function from MUXLED_Test&#10;" />
     <MESSAGE value="Almost everthing is with commands&#10;Add commands to Display&#10;Add commands to GPIO&#10;Add commands to MUX&#10;Add commands to Rotary Dial&#10;Add commands to ShiftRegister&#10;Add commands to VS1033&#10;Change entryModeSet at Display. It now send that data to the LCD. First it only set the data, without sending." />
     <MESSAGE value="Everything has commands (except test classes) &amp; bug fix&#10;Add commands to DiscoSelect&#10;Add commands to Displaymenu&#10;Add commands to DisplaySpeedSelect&#10;Add commands to MainMenu&#10;Add commands to Menu&#10;Add commands to PlaylistSelect&#10;Add commands to StandbyeSelect&#10;Fix current filter in PlaylistSelect is now standard selected. First it showed as it was selected, but is wasn't." />
-    <option name="LAST_COMMIT_MESSAGE" value="Everything has commands (except test classes) &amp; bug fix&#10;Add commands to DiscoSelect&#10;Add commands to Displaymenu&#10;Add commands to DisplaySpeedSelect&#10;Add commands to MainMenu&#10;Add commands to Menu&#10;Add commands to PlaylistSelect&#10;Add commands to StandbyeSelect&#10;Fix current filter in PlaylistSelect is now standard selected. First it showed as it was selected, but is wasn't." />
+    <MESSAGE value="Project finished&#10;Update README" />
+    <MESSAGE value="Add Shuffle mode" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Shuffle mode" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="85" />
+      <option name="time" value="86" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -839,8 +1078,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/out/production/IO/VS1033.class" />
-    <entry file="file://$PROJECT_DIR$/out/production/Gpio_Test.class" />
     <entry file="file://$PROJECT_DIR$/out/production/Gpio.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -984,12 +1221,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-          <folding>
-            <element signature="docComment;method#ManualControl#0;class#ManualControl#0" expanded="false" />
-            <element signature="method#ManualControl#0;class#ManualControl#0" expanded="false" />
-            <element signature="docComment;method#run#0;class#ManualControl#0" expanded="false" />
-            <element signature="method#run#0;class#ManualControl#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1004,29 +1235,132 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="7" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Sources/Save.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
-          <caret line="90" column="24" selection-start-line="90" selection-start-column="24" selection-end-line="90" selection-end-column="24" />
-          <folding>
-            <element signature="docComment;method#main#0;class#Main#0" expanded="false" />
-            <element signature="docComment;method#runTest#0;class#Main#0" expanded="false" />
-            <element signature="method#runTest#0;class#Main#0" expanded="false" />
-            <element signature="docComment;method#setArgs#0;class#Main#0" expanded="false" />
-            <element signature="method#setArgs#0;class#Main#0" expanded="false" />
-            <element signature="e#5220#5247#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="-77">
+          <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Sources/File.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="133" column="4" selection-start-line="133" selection-start-column="4" selection-end-line="133" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/IO/MUX.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="120" column="24" selection-start-line="120" selection-start-column="24" selection-end-line="120" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/IO/RotaryDial.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="569">
+          <caret line="105" column="26" selection-start-line="105" selection-start-column="26" selection-end-line="105" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/IO/GPIO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="167" column="41" selection-start-line="167" selection-start-column="41" selection-end-line="167" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Menu/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Menu/DisplaySpeedSelect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Menu/Displaymenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Menu/StandbySelect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="501">
+          <caret line="36" column="18" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Test/Display_Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="34" column="33" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Test/Gpio_Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-366">
+          <caret line="120" column="32" selection-start-line="120" selection-start-column="32" selection-end-line="120" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Test/MUXLED_Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1249">
+          <caret line="80" column="16" selection-start-line="80" selection-start-column="16" selection-end-line="80" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="57" selection-start-line="5" selection-start-column="57" selection-end-line="5" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/IO/VS1033.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="321" column="4" selection-start-line="321" selection-start-column="4" selection-end-line="321" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/IO/ShiftRegister.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="488">
+          <caret line="65" column="31" selection-start-line="65" selection-start-column="31" selection-end-line="65" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/IO/Display.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="243" column="24" selection-start-line="243" selection-start-column="24" selection-end-line="243" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Errors/IllegalPinModeException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/MP3.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1428">
-          <caret line="601" column="4" selection-start-line="601" selection-start-column="4" selection-end-line="601" selection-end-column="4" />
+        <state relative-caret-position="340">
+          <caret line="91" column="5" selection-start-line="91" selection-start-column="5" selection-end-line="91" selection-end-column="5" />
           <folding>
             <element signature="docComment;class#MP3#0" expanded="false" />
             <element signature="docComment;method#MP3#0;class#MP3#0" expanded="false" />
@@ -1052,9 +1386,7 @@
             <element signature="docComment;method#checkFile#0;class#MP3#0" expanded="false" />
             <element signature="method#checkFile#0;class#MP3#0" expanded="false" />
             <element signature="docComment;method#prevSong#0;class#MP3#0" expanded="false" />
-            <element signature="method#prevSong#0;class#MP3#0" expanded="false" />
             <element signature="docComment;method#nextSong#0;class#MP3#0" expanded="false" />
-            <element signature="method#nextSong#0;class#MP3#0" expanded="false" />
             <element signature="docComment;method#showSong#0;class#MP3#0" expanded="false" />
             <element signature="method#showSong#0;class#MP3#0" expanded="false" />
             <element signature="docComment;method#setVolume#0;class#MP3#0" expanded="false" />
@@ -1075,36 +1407,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Sources/Save.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Menu/PlaylistSelect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-77">
-          <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
+        <state relative-caret-position="170">
+          <caret line="20" column="57" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="57" />
           <folding>
-            <element signature="docComment;class#Save#0" expanded="false" />
-            <element signature="docComment;method#setVolume#0;class#Save#0" expanded="false" />
-            <element signature="method#setVolume#0;class#Save#0" expanded="false" />
-            <element signature="docComment;method#isDisco#0;class#Save#0" expanded="false" />
-            <element signature="docComment;method#setDisco#0;class#Save#0" expanded="false" />
-            <element signature="docComment;method#getTimeToHide#0;class#Save#0" expanded="false" />
-            <element signature="method#getTimeToHide#0;class#Save#0" expanded="false" />
-            <element signature="docComment;method#setTimeToHide#0;class#Save#0" expanded="false" />
-            <element signature="method#setTimeToHide#0;class#Save#0" expanded="false" />
-            <element signature="docComment;method#getScrollSpeed#0;class#Save#0" expanded="false" />
-            <element signature="docComment;method#setScrollSpeed#0;class#Save#0" expanded="false" />
-            <element signature="docComment;method#getFilter#0;class#Save#0" expanded="false" />
-            <element signature="docComment;method#setFilter#0;class#Save#0" expanded="false" />
+            <element signature="docComment;class#PlaylistSelect#0" expanded="false" />
+            <element signature="method#PlaylistSelect#0;class#PlaylistSelect#0" expanded="false" />
+            <element signature="method#select#0;class#PlaylistSelect#0" expanded="false" />
+            <element signature="method#up#0;class#PlaylistSelect#0" expanded="false" />
+            <element signature="method#down#0;class#PlaylistSelect#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Menu/DiscoSelect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="31" column="75" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Menu/MainMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="19" column="65" selection-start-line="19" selection-start-column="65" selection-end-line="19" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/IO/UI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="556">
+          <caret line="108" column="13" selection-start-line="108" selection-start-column="13" selection-end-line="108" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Sources/FileSearch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="135" column="47" selection-start-line="135" selection-start-column="47" selection-end-line="135" selection-end-column="47" />
+        <state relative-caret-position="471">
+          <caret line="143" column="36" selection-start-line="143" selection-start-column="36" selection-end-line="143" selection-end-column="36" />
           <folding>
             <element signature="docComment;class#FileSearch#0" expanded="false" />
             <element signature="docComment;method#FileSearch#0;class#FileSearch#0" expanded="false" />
             <element signature="method#FileSearch#0;class#FileSearch#0" expanded="false" />
+            <element signature="e#1160#1161#0" expanded="true" />
+            <element signature="e#1194#1195#0" expanded="true" />
             <element signature="docComment;method#getPlayList#0;class#FileSearch#0" expanded="false" />
             <element signature="docComment;method#getSongOrder#0;class#FileSearch#0" expanded="false" />
             <element signature="method#getSongOrder#0;class#FileSearch#0" expanded="false" />
@@ -1112,253 +1470,25 @@
             <element signature="docComment;method#getSong#0;class#FileSearch#0" expanded="false" />
             <element signature="docComment;method#getFilter#0;class#FileSearch#0" expanded="false" />
             <element signature="docComment;method#setFilter#0;class#FileSearch#0" expanded="false" />
-            <element signature="method#setFilter#0;class#FileSearch#0" expanded="false" />
             <element signature="docComment;method#getFileList#0;class#FileSearch#0" expanded="false" />
+            <element signature="docComment;method#findFiles#0;class#FileSearch#0" expanded="false" />
             <element signature="method#findFiles#0;class#FileSearch#0" expanded="false" />
-            <element signature="e#4749#4796#0" expanded="false" />
+            <element signature="e#5466#5513#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Sources/File.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Menu/ShuffleSelect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="133" column="4" selection-start-line="133" selection-start-column="4" selection-end-line="133" selection-end-column="4" />
-          <folding>
-            <element signature="docComment;class#File#0" expanded="false" />
-            <element signature="docComment;method#File#0;class#File#0" expanded="false" />
-            <element signature="method#File#0;class#File#0" expanded="false" />
-            <element signature="docComment;method#filter#0;class#File#0" expanded="false" />
-            <element signature="method#filter#0;class#File#0" expanded="false" />
-            <element signature="docComment;method#hasTag#0;class#File#0" expanded="false" />
-            <element signature="docComment;method#getTitle#0;class#File#0" expanded="false" />
-            <element signature="method#getTitle#0;class#File#0" expanded="false" />
-            <element signature="docComment;method#getArtist#0;class#File#0" expanded="false" />
-            <element signature="method#getArtist#0;class#File#0" expanded="false" />
-            <element signature="docComment;method#getGenre#0;class#File#0" expanded="false" />
-            <element signature="method#getGenre#0;class#File#0" expanded="false" />
-            <element signature="docComment;method#getAlbum#0;class#File#0" expanded="false" />
-            <element signature="method#getAlbum#0;class#File#0" expanded="false" />
-            <element signature="docComment;method#getPath#0;class#File#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/IO/Display.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="392" column="59" selection-start-line="392" selection-start-column="59" selection-end-line="392" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/IO/MUX.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="120" column="24" selection-start-line="120" selection-start-column="24" selection-end-line="120" selection-end-column="24" />
-          <folding>
-            <element signature="docComment;class#MUX#0" expanded="false" />
-            <element signature="docComment;method#MUX#0;class#MUX#0" expanded="false" />
-            <element signature="method#MUX#0;class#MUX#0" expanded="false" />
-            <element signature="docComment;method#getPin#0;class#MUX#0" expanded="false" />
-            <element signature="method#getPin#0;class#MUX#0" expanded="false" />
-            <element signature="docComment;method#pressed#0;class#MUX#0" expanded="false" />
-            <element signature="method#pressed#0;class#MUX#0" expanded="false" />
-            <element signature="docComment;method#resetTime#0;class#MUX#0" expanded="false" />
-            <element signature="method#resetTime#0;class#MUX#0" expanded="false" />
-            <element signature="docComment;method#readPin#0;class#MUX#0" expanded="false" />
-            <element signature="method#readPin#0;class#MUX#0" expanded="false" />
-            <element signature="docComment;method#timePin#0;class#MUX#0" expanded="false" />
-            <element signature="method#timePin#0;class#MUX#0" expanded="false" />
-            <element signature="docComment;method#check#0;class#MUX#0" expanded="false" />
-            <element signature="method#check#0;class#MUX#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/IO/RotaryDial.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="569">
-          <caret line="105" column="26" selection-start-line="105" selection-start-column="26" selection-end-line="105" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/IO/VS1033.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="324" column="7" selection-start-line="324" selection-start-column="7" selection-end-line="324" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/IO/UI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-434">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/IO/ShiftRegister.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="89" column="4" selection-start-line="89" selection-start-column="4" selection-end-line="89" selection-end-column="4" />
-          <folding>
-            <element signature="docComment;class#ShiftRegister#0" expanded="false" />
-            <element signature="method#ShiftRegister#0;class#ShiftRegister#0" expanded="false" />
-            <element signature="docComment;method#setPin#0;class#ShiftRegister#0" expanded="false" />
-            <element signature="method#setPin#0;class#ShiftRegister#0" expanded="false" />
-            <element signature="docComment;method#setData#0;class#ShiftRegister#0" expanded="false" />
-            <element signature="docComment;method#update#0;class#ShiftRegister#0" expanded="false" />
-            <element signature="method#update#0;class#ShiftRegister#0" expanded="false" />
-            <element signature="docComment;method#sendBit#0;class#ShiftRegister#0" expanded="false" />
-            <element signature="method#sendBit#0;class#ShiftRegister#0" expanded="false" />
-            <element signature="e#2599#2610#0" expanded="false" />
-            <element signature="docComment;method#sleep#0;class#ShiftRegister#0" expanded="false" />
-            <element signature="method#sleep#0;class#ShiftRegister#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/IO/GPIO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="167" column="41" selection-start-line="167" selection-start-column="41" selection-end-line="167" selection-end-column="41" />
-          <folding>
-            <element signature="docComment;class#GPIO#0" expanded="false" />
-            <element signature="method#GPIO#0;class#GPIO#0" expanded="false" />
-            <element signature="docComment;method#setDefaultGpio#0;class#GPIO#0" expanded="false" />
-            <element signature="docComment;method#iowrite#0;class#GPIO#0" expanded="false" />
-            <element signature="method#iowrite#0;class#GPIO#0" expanded="false" />
-            <element signature="docComment;method#ioread#0;class#GPIO#0" expanded="false" />
-            <element signature="method#ioread#0;class#GPIO#0" expanded="false" />
-            <element signature="docComment;method#deinit#0;class#GPIO#0" expanded="false" />
-            <element signature="method#deinit#0;class#GPIO#0" expanded="false" />
-            <element signature="docComment;method#setPin#0;class#GPIO#0" expanded="false" />
-            <element signature="method#setPin#0;class#GPIO#0" expanded="false" />
-            <element signature="docComment;method#getPin#0;class#GPIO#0" expanded="false" />
-            <element signature="method#getPin#0;class#GPIO#0" expanded="false" />
-            <element signature="docComment;method#blick#0;class#GPIO#0" expanded="false" />
-            <element signature="method#blick#0;class#GPIO#0" expanded="false" />
-            <element signature="docComment;method#checkBlick#0;class#GPIO#0" expanded="false" />
-            <element signature="method#checkBlick#0;class#GPIO#0" expanded="false" />
-            <element signature="docComment;method#Pin#0;class#Pin#0;class#GPIO#0" expanded="false" />
-            <element signature="method#Pin#0;class#Pin#0;class#GPIO#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Menu/MainMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Menu/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
-          <folding>
-            <element signature="docComment;method#Menu#0;class#Menu#0" expanded="false" />
-            <element signature="method#Menu#0;class#Menu#0" expanded="false" />
-            <element signature="docComment;method#getStandardValue#0;class#Menu#0" expanded="false" />
-            <element signature="docComment;method#setStandardValue#0;class#Menu#0" expanded="false" />
-            <element signature="docComment;method#select#0;class#Menu#0" expanded="false" />
-            <element signature="method#select#0;class#Menu#0" expanded="false" />
-            <element signature="docComment;method#getDisplay#0;class#Menu#0" expanded="false" />
-            <element signature="docComment;method#addSubMenu#0;class#Menu#0" expanded="false" />
-            <element signature="method#addSubMenu#0;class#Menu#0" expanded="false" />
-            <element signature="docComment;method#up#0;class#Menu#0" expanded="false" />
-            <element signature="method#up#0;class#Menu#0" expanded="false" />
-            <element signature="docComment;method#down#0;class#Menu#0" expanded="false" />
-            <element signature="method#down#0;class#Menu#0" expanded="false" />
-            <element signature="docComment;method#getName#0;class#Menu#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Menu/DisplaySpeedSelect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
-          <folding>
-            <element signature="e#434#435#0" expanded="true" />
-            <element signature="e#461#462#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Menu/Displaymenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Menu/DiscoSelect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="35" column="23" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
-          <folding>
-            <element signature="docComment;class#DiscoSelect#0" expanded="false" />
-            <element signature="method#DiscoSelect#0;class#DiscoSelect#0" expanded="false" />
-            <element signature="method#up#0;class#DiscoSelect#0" expanded="false" />
-            <element signature="method#down#0;class#DiscoSelect#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Menu/StandbySelect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="36" column="18" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Menu/PlaylistSelect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="80" column="56" selection-start-line="80" selection-start-column="56" selection-end-line="80" selection-end-column="56" />
+        <state relative-caret-position="107">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#496#497#0" expanded="true" />
+            <element signature="e#523#524#0" expanded="true" />
+            <element signature="e#756#757#0" expanded="true" />
+            <element signature="e#776#777#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Test/Display_Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="34" column="33" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Test/Gpio_Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-366">
-          <caret line="120" column="32" selection-start-line="120" selection-start-column="32" selection-end-line="120" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MP3player/Test/MUXLED_Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1249">
-          <caret line="80" column="16" selection-start-line="80" selection-start-column="16" selection-end-line="80" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="58" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>

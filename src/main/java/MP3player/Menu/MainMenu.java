@@ -17,6 +17,7 @@ public class MainMenu extends Menu {
         //create and add submenu's
         addSubMenu(new Displaymenu(mp3));
         addSubMenu(new PlaylistSelect(mp3.getDisplay(), fileSearch));
+        addSubMenu(new ShuffleSelect(mp3.getDisplay(), fileSearch));
         addSubMenu(new DiscoSelect(mp3));
     }
 }

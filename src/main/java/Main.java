@@ -88,6 +88,7 @@ class Main {
 
                 } catch (Exception ex) {
                     UI.error("An error occurs", 5);
+                    ex.printStackTrace();
                     mp3.Stop();
                 }
             } else {
