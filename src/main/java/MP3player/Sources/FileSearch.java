@@ -5,6 +5,8 @@ import MP3player.IO.UI;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -133,6 +135,13 @@ public class FileSearch {
                 UI.println(file.getTitle() + " added to playlist (" + file.getArtist() + ")");
             }
         }
+
+        Collections.sort(fileList, new Comparator<File>() {
+            @Override
+            public int compare(File o1, File o2) {
+                return o1.getTitle().compareTo(o2.getTitle());
+            }
+        });
 
         //shuffle if shuffle mode is on
         if (shuffleMode) {

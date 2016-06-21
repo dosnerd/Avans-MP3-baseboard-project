@@ -2,6 +2,7 @@ package MP3player;
 
 import MP3player.Errors.IllegalPinModeException;
 import MP3player.IO.*;
+import MP3player.Menu.MainMenu;
 import MP3player.Sources.FileSearch;
 import MP3player.Sources.Save;
 
@@ -91,6 +92,10 @@ public class MP3 {
         load();
     }
 
+    public void setSong(int song) {
+        this.song = song;
+    }
+
     /**
      * Loads the settings like volume, scroll speed, standby time, disco mode and filter
      */
@@ -168,7 +173,8 @@ public class MP3 {
     }
 
     /**
-     *Set the time it takes before it goes to standby mode.
+     * Set the time it takes before it goes to standby mode.
+     *
      * @param timeToHide time to standby mode in ms
      */
     public void setTimeToHide(int timeToHide) {
@@ -179,6 +185,7 @@ public class MP3 {
 
     /**
      * Get if the MP3 is in disco mode
+     *
      * @return true when in disco mode
      */
     public boolean isDisco() {
@@ -187,6 +194,7 @@ public class MP3 {
 
     /**
      * Set the MP3 disco mode
+     *
      * @param disco true to enable disco mode
      */
     public void setDisco(boolean disco) {
@@ -211,9 +219,10 @@ public class MP3 {
 
     /**
      * Get the VS1033 that is initialized and in use
+     *
      * @return initialized VS1033
      */
-    protected VS1033 getVs1033() {
+    public VS1033 getVs1033() {
         return vs1033;
     }
 
@@ -418,7 +427,7 @@ public class MP3 {
      * Write the name of the song and artiest to the first line of the display. If there is no tag available,
      * it will write the file name.
      */
-    private void showSong() {
+    public void showSong() {
         //check if menu is opened
         if (menuActive == null) {
             //get the title and artist, if no tag available, title wil give the file name
@@ -463,7 +472,7 @@ public class MP3 {
             setVolume();
         } else {
             //reset volume
-            volume=0;
+            volume = 0;
         }
 
         UI.println("Volume(" + volume + ")");
@@ -557,6 +566,9 @@ public class MP3 {
             //stop the MP3
             Stop();
             return;
+        } else if (multyplexer.timePin(3) > 2000) {
+            MainMenu.set_secreteMode(true);
+            display.WriteNewLine("Secrete mode enabled", false);
         }
 
         //set time of rotary dial when not pushed (for debouching, need to push more then 50 ms)
@@ -601,6 +613,7 @@ public class MP3 {
 
     /**
      * Let the thread sleep. This method includes the try/catch block.
+     *
      * @param mili amount of milliseconds
      */
     private void sleep(int mili) {
